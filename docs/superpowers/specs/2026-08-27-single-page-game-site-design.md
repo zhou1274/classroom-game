@@ -25,7 +25,7 @@
 参考站单个游戏页给出的可复用视觉模式如下：
 
 - 游戏区外层是 `<section class="area-mid rounded-md overflow-hidden">`，圆角较小，外层有 `overflow: hidden`。
-- 游戏容器使用固定高度 `600px`，即参考站实际使用 `game-container h-[600px]`。
+- 游戏容器桌面使用固定高度 `680px`、移动端 `520px`；全屏时由父容器拉伸。原参考站 2048 内容在 600px 高度下会显示内部滚动条，因此本期调整为留足空间。
 - iframe 放在容器内，宽高都是 `100%`，外层用绝对定位或 flex 撑满。
 - 游戏未点击前展示封面、游戏名、`Play Game` 按钮和说明；点击后才加载 iframe。
 - 右下角提供全屏按钮，方便玩家把注意力集中到游戏本身。
@@ -49,7 +49,7 @@
 保留参考站的三个优点：
 
 1. 左侧游戏选项卡 + 右侧主游戏区的两栏体验。
-2. 游戏区高 600px、圆角容器、页面内直接游玩。
+2. 游戏区桌面高 680px、移动端 520px，圆角容器，页面内直接游玩。
 3. 干净、低干扰、移动端可用的浅色内容区。
 
 补上参考站的四个缺失：
@@ -151,7 +151,7 @@
 | [Minecraft Unblocked] <coming soon>   |     Classroom Games Unblocked              |
 | [Tetris Unblocked]    <coming soon>   |     Short intro paragraph                  |
 | [Snake Unblocked]     <coming soon>   | ③ Game Area                                |
-| [Puzzle Games Unblocked] <coming soon> | iframe wrapper 960px, 600px            |
+| [Puzzle Games Unblocked] <coming soon> | iframe wrapper 960px, 680px            |
 | [Wordle Unblocked]    <coming soon>   |     fullscreen button                      |
 | [Math Games Unblocked]<coming soon>   | ④ Middle Banner Ad Slot                    |
 |                                       | ⑤ Article / SEO Content                    |
@@ -177,7 +177,7 @@
 | --- | --- | --- | --- | --- |
 | 顶部导航 | 品牌识别 + 站内锚点导航 | `<header>` + `<nav>` | Logo、搜索框、分类菜单、移动端汉堡 | 导航只放 Home / Play Now / FAQ，不占 H1/H2；移动端减少入口 |
 | 左栏游戏选项卡 | 当前游戏导航 + 未来游戏扩展入口 | `<aside>` + `<nav>` + `<ul>` | 深色 260px 固定侧栏，分类与 All Games 列表 | 用 `aria-current="page"` 标记当前游戏；占位项不产生 404 |
-| 主游戏区 | 承载 iframe 和核心玩法 | `<main>` 内 `<section>` | 600px 高、圆角、全屏按钮、点击后加载 | 增加游戏名、alt、title 和结构化数据；游戏区不写 H2/H3 标题，避免挤占正文层级 |
+| 主游戏区 | 承载 iframe 和核心玩法 | `<main>` 内 `<section>` | 桌面 680px / 移动 520px、圆角、全屏按钮、点击后加载 | 增加游戏名、alt、title 和结构化数据；游戏区不写 H2/H3 标题，避免挤占正文层级 |
 | 游戏介绍区 | 解释玩法、开始体验 | `<article>` 内 `<h2>` + `<p>` | 内容长文卡片 | 围绕当前游戏写 2–3 段原创内容，不复制参考站 |
 | SEO 内容区 | 覆盖核心词、长尾词、FAQ | `<section>` + `<h2>` + `<h3>` + `<p>` | 常见 FAQ、分类说明、相关游戏 | 全文 ≥600 英文词；FAQ 与 FAQPage 结构化数据一一对应 |
 | 页脚 | 版权、免责声明、站内链接 | `<footer>` | 简单导航 + cookie 提示 | Phase 1 只放 Home / Play Now / FAQ 锚点；正式游戏页存在后再替换候选游戏链接，避免 404 |
@@ -522,7 +522,7 @@ JS 数组应放在独立文件 `assets/js/games.js` 中，方便后续新增游�
   src="assets/games/2048/index.html"
   title="2048 Unblocked"
   width="100%"
-  height="600"
+  height="680"
   frameborder="0"
   allowfullscreen
   loading="lazy">
@@ -541,9 +541,9 @@ JS 数组应放在独立文件 `assets/js/games.js` 中，方便后续新增游�
 
 | 环境 | 规格 |
 | --- | --- |
-| 桌面端 | 游戏区最大宽度 `960px`，水平居中；高度 `600px` |
+| 桌面端 | 游戏区最大宽度 `960px`，水平居中；高度 `680px` |
 | 平板端 | 最大宽度 `960px`，左右留 `16px` 间距 |
-| 手机端 | 全宽，左右留 `12px` 间距；高度维持 `600px` |
+| 手机端 | 全宽，左右留 `12px` 间距；高度 `520px` |
 
 外层容器：
 
@@ -922,7 +922,7 @@ Puzzle Games Unblocked
 ### 第 3 步：实现游戏区 iframe 占位
 
 - 在主区放入占位 iframe。
-- 使用 `title="2048 Unblocked"`、`width="100%"`、`height="600"`、`frameborder="0"`、`allowfullscreen`、`loading="lazy"`。
+- 使用 `title="2048 Unblocked"`、`width="100%"`、`height="680"`（移动端 520）、`frameborder="0"`、`allowfullscreen`、`loading="lazy"`。
 - 外层容器最大宽度 960px、圆角、overflow hidden。
 - 添加全屏按钮（如实现页面内全屏）或“在新窗口打开”提示。
 
@@ -950,7 +950,7 @@ Puzzle Games Unblocked
 
 - 桌面端：260px 固定左栏 + 292px 主区左边距。
 - 768–1023px：隐藏左栏，显示横向选项卡条。
-- <768px：主区全宽，iframe 高度 600px，容器不溢出。
+- <768px：主区全宽，iframe 高度 520px，容器不溢出。
 - 遵循第 3.4 节配色，使用系统字体，不加载外部字体。
 
 ### 第 8 步：创建附带文件
@@ -990,7 +990,7 @@ Puzzle Games Unblocked
 
 - 主游戏已确定：**2048 Unblocked**。
 - 来源：`gabrielecirulli/2048`，MIT 许可证，本地自托管于 `assets/games/2048/`。
-- 页面 iframe 正式地址：`assets/games/2048/index.html`，保留 `width=100%`、`height=600`、`frameborder=0`、`allowfullscreen`、`loading=lazy`。
+- 页面 iframe 正式地址：`assets/games/2048/index.html`；桌面 `height=680`、移动端 `height=520`，保留 `frameborder=0`、`allowfullscreen`、`loading=lazy`。
 - 游戏内页设置了 `noindex`，避免搜索引擎把嵌入游戏当成独立页面并产生重复内容。
 - VideoGame 结构化数据名称改为 `2048 Unblocked`；未添加虚构 aggregateRating，等获得真实评分后再补。
 - 游戏选项卡第 1 项改为 `2048 Unblocked`，其余 6 项仍为 `coming-soon`。

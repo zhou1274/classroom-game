@@ -47,6 +47,17 @@ with sync_playwright() as p:
 
     page.evaluate("document.querySelector(\".toast\")?.remove()")
     page.screenshot(path="visual-desktop.png", full_page=True)
+    page.evaluate("document.querySelector('.game-shell').requestFullscreen()")
+    page.wait_for_function("document.fullscreenElement !== null", timeout=5000)
+    page.wait_for_timeout(300)
+    fullscreen_shell = page.locator(".game-shell").bounding_box()
+    fullscreen_frame = page.locator(".game-frame").bounding_box()
+    fullscreen_label = page.locator("#fullscreen-button").inner_text()
+    fullscreen_fit = game_frame_obj.evaluate("() => document.documentElement.scrollHeight <= window.innerHeight")
+    results.append(f"fullscreen-shell={fullscreen_shell} fullscreen-frame={fullscreen_frame} label={fullscreen_label!r} fit={fullscreen_fit}")
+    page.screenshot(path="visual-fullscreen.png", full_page=False)
+    page.evaluate("document.exitFullscreen()")
+    page.wait_for_function("document.fullscreenElement === null", timeout=5000)
 
     mobile = browser.new_page(viewport={"width": 390, "height": 844})
     mobile.goto("http://127.0.0.1:8765/", wait_until="domcontentloaded")
@@ -77,6 +88,12 @@ with sync_playwright() as p:
         raise SystemExit("2048 interaction did not produce a new tile state")
     if not game_scroll_fit:
         raise SystemExit("2048 iframe has internal vertical scrolling")
+    if not fullscreen_shell or fullscreen_shell["height"] < 900 or not fullscreen_frame or fullscreen_frame["height"] < 700:
+        raise SystemExit("fullscreen game area does not fill the viewport")
+    if fullscreen_label.lower() != "exit fullscreen":
+        raise SystemExit("fullscreen button state is not updated")
+    if not fullscreen_fit:
+        raise SystemExit("fullscreen game iframe has internal vertical scrolling")
     if mobile_h1 != 1 or mobile_tabs != 7:
         raise SystemExit("mobile structural check failed")
     if "coming soon" not in toast_text.lower():

@@ -5,6 +5,10 @@ body {
 }
 
 body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
   margin: 0;
   overflow: hidden;
   background: #FAF8EF;
@@ -12,40 +16,63 @@ body {
 
 .container {
   width: 100%;
-  max-width: 500px;
-  padding: 6px 12px 0;
+  max-width: 560px;
+  padding: 12px 16px 12px;
 }
 
 h1.title {
-  font-size: 38px;
+  font-size: 48px;
   line-height: 1;
 }
 
 .score-container,
 .best-container {
-  padding: 8px 14px;
-  height: 18px;
-  line-height: 34px;
+  margin-right: 5px;
+  padding: 10px 18px;
+  height: 24px;
+  line-height: 44px;
   margin-top: 2px;
+  background: #8F7A66;
+}
+
+.score-container:after,
+.best-container:after {
+  font-size: 16px;
 }
 
 .above-game {
-  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 8px;
   padding-bottom: 0;
 }
 
+.score-container:after,
+.best-container:after {
+  color: #FFF8E1;
+  font-weight: 800;
+}
+
 .game-intro {
-  line-height: 36px;
+  float: none;
+  color: #5F564E;
+  font-size: 17px;
+  line-height: 40px;
   margin-bottom: 0;
+  white-space: nowrap;
 }
 
 .restart-button {
-  height: 36px;
-  line-height: 36px;
+  float: none;
+  height: 40px;
+  line-height: 40px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.14);
 }
 
 .game-container {
-  margin-top: 4px;
+  margin-top: 14px;
 }
 
 @media (max-width: 520px) {
@@ -56,6 +83,17 @@ h1.title {
 
   h1.title {
     font-size: 34px;
+  }
+
+  .game-intro {
+    white-space: normal;
+    line-height: 1.4;
+  }
+
+  .above-game {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 8px;
   }
 }
 

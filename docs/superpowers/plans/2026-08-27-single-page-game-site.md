@@ -4,7 +4,7 @@
 
 > User constraint: **Do not use subagents.** When execution begins, use `superpowers:executing-plans` and execute tasks inline with review checkpoints.
 
-**Goal:** Build a pure-static English single-page game site at `classroom-game.com` with a 600px iframe game area, a responsive left game-tab list, three AdSense placeholders, 1,000+ words of SEO content, FAQPage/WebSite/VideoGame structured data, and the required static companion files.
+**Goal:** Build a pure-static English single-page game site at `classroom-game.com` with a responsive game area (desktop 680px, mobile 520px), a responsive left game-tab list, three AdSense placeholders, 1,000+ words of SEO content, FAQPage/WebSite/VideoGame structured data, and the required static companion files.
 
 **Architecture:** Use hand-written `index.html`, `style.css`, `games.js`, and `main.js`. The left game tabs are rendered from a simple JavaScript array `{name, url, status}` so future games can be added without restructuring the page. `404.html`, `robots.txt`, `sitemap.xml`, and a small SVG favicon complete the static deploy.
 
@@ -22,7 +22,7 @@
 - Homepage body copy: at least 600 English words; current sample is about 1,042 words.
 - Keyword density target: core phrase plus semantic variants, roughly 3%–5%; exact core phrase 5–8 times.
 - Desktop sidebar: fixed width `260px`; main content left offset `292px`.
-- Game area: max width `960px`, height `600px`, rounded container.
+- Game area: max width `960px`; desktop height `680px`, mobile height `520px`; rounded container.
 - Mobile: sidebar becomes a horizontal scrollable game-tab strip; no hamburger required.
 - Ad slots: exactly three HTML comments `<!-- AdSense Ad Slot: top banner -->`, `<!-- AdSense Ad Slot: middle banner -->`, `<!-- AdSense Ad Slot: bottom banner -->`; no AdSense script or fake ad copy.
 - No `adsbygoogle`, no external fonts, no `@font-face`, no large images, no hidden text.
@@ -289,7 +289,7 @@ Create `index.html` with this exact structure and content:
           src="assets/games/2048/index.html"
           title="2048 Unblocked"
           width="100%"
-          height="600"
+          height="680"
           frameborder="0"
           allowfullscreen
           loading="lazy">
@@ -845,7 +845,7 @@ button:focus-visible {
 .game-frame {
   display: block;
   width: 100%;
-  height: 600px;
+  height: 680px;
   border: 0;
 }
 
@@ -1049,7 +1049,7 @@ button:focus-visible {
 Run:
 
 ```powershell
-rg -n "padding-left: 292px|width: 260px|max-width: 960px|height: 600px|overflow-x: auto" assets/css/style.css
+rg -n "padding-left: 292px|width: 260px|max-width: 960px|height: 680px|height: 520px|overflow-x: auto" assets/css/style.css
 ```
 
 Expected: all five rules present.
@@ -1335,7 +1335,8 @@ for (const rule of [
   "padding-left: 292px",
   "width: 260px",
   "max-width: 960px",
-  "height: 600px",
+  "height: 680px",
+  "height: 520px",
   "overflow-x: auto",
   "min-height: 56px",
   "min-height: 100vh",
@@ -1516,6 +1517,6 @@ User preference is **inline execution**, not subagent-driven execution. After th
 ## 2026-08-27 实施后状态更新
 
 - 主游戏已接入本地 MIT 2048：`assets/games/2048/index.html`。
-- 游戏源内页已精简为适合 600px iframe 的嵌入版，保留 MIT 声明并设置 `noindex`。
+- 游戏源内页已精简为适合桌面 680px / 移动端 520px iframe 的嵌入版，保留 MIT 声明并设置 `noindex`。
 - 首页选项卡、游戏区标题、VideoGame schema 与正文介绍已同步为 `2048 Unblocked`。
 - 下一阶段可继续把 `Snake Unblocked`、`Tic Tac Toe` 等作为独立页面接入。

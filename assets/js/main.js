@@ -81,6 +81,14 @@
       return;
     }
 
+    function updateFullscreenState() {
+      const active = document.fullscreenElement === shell;
+      button.textContent = active ? "Exit Fullscreen" : "Fullscreen";
+      shell.classList.toggle("is-fullscreen", active);
+    }
+
+    document.addEventListener("fullscreenchange", updateFullscreenState);
+
     button.addEventListener("click", () => {
       if (document.fullscreenElement) {
         document.exitFullscreen?.();
