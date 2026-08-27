@@ -419,15 +419,14 @@ Create exactly:
 
 ```js
 window.CLASSROOM_GAMES = [
-  { name: "2048 Unblocked", url: "#game-area", status: "active" },
-  { name: "Minecraft Unblocked", url: "/games/minecraft-unblocked.html", status: "coming-soon" },
-  { name: "Tetris Unblocked", url: "/games/tetris-unblocked.html", status: "coming-soon" },
-  { name: "Snake Unblocked", url: "/games/snake-unblocked.html", status: "coming-soon" },
-  { name: "Wordle Unblocked", url: "/games/wordle-unblocked.html", status: "coming-soon" },
-  { name: "Math Games Unblocked", url: "/games/math-games-unblocked.html", status: "coming-soon" },
-  { name: "Puzzle Games Unblocked", url: "/games/puzzle-games-unblocked.html", status: "coming-soon" }
+  { name: "2048 Unblocked", url: "/index.html#game-area", page: "home", status: "active" },
+  { name: "Snake Unblocked", url: "/games/snake-unblocked.html", page: "snake", status: "live" },
+  { name: "Minecraft Unblocked", url: "/games/minecraft-unblocked.html", page: "minecraft", status: "coming-soon" },
+  { name: "Tetris Unblocked", url: "/games/tetris-unblocked.html", page: "tetris", status: "coming-soon" },
+  { name: "Wordle Unblocked", url: "/games/wordle-unblocked.html", page: "wordle", status: "coming-soon" },
+  { name: "Math Games Unblocked", url: "/games/math-games-unblocked.html", page: "math", status: "coming-soon" },
+  { name: "Puzzle Games Unblocked", url: "/games/puzzle-games-unblocked.html", page: "puzzle", status: "coming-soon" }
 ]
-];
 ```
 
 - [ ] **Step 2: Create `assets/js/main.js`**
@@ -1521,3 +1520,15 @@ User preference is **inline execution**, not subagent-driven execution. After th
 - 首页选项卡、游戏区标题、VideoGame schema 与正文介绍已同步为 `2048 Unblocked`。
 - 游戏框下方新增一行非标题控制提示：Use arrow keys or swipe to move...。
 - 下一阶段可继续把 `Snake Unblocked`、`Tic Tac Toe` 等作为独立页面接入。
+
+---
+
+## 2026-08-27 第二阶段进度：Snake 已接入
+
+- 已新增独立页面：`/games/snake-unblocked.html`。
+- 实际游戏源：`xosg/WebGames` 的 `greedy-snake`（commit f854382...），自托管于 `assets/games/snake/`；仓库 README 声明 MIT，但未发现 LICENSE 文件。
+- 首页选项卡已支持 `page` 字段与 `live` 状态；Snake 在 Snake 页显示 `This Page`，在首页显示 `Live`。
+- `sitemap.xml`、`404.html`、首页相关文案已同步加入 Snake。
+- 新增来源与许可证审查文档：`docs/game-source-license-review-2026-08-27.md`、`docs/game-embed-source-review-2026-08-27.md`。
+- 验证：`node tests/verify.mjs` 通过；`tests/visual_check_snake.py` 在 500/768/1024/1440 通过。
+- 尚未完成：Snake 来源许可证补证或替换、`/games/2048-unblocked.html`、Minecraft/Tetris/Wordle/Math/Puzzle 页面、AdSense 接入、正式域名部署。

@@ -3,3 +3,6 @@ docs/
 github-similar-game-sites.md
 assets/games/2048/README.md
 assets/games/2048/style/*.scss
+assets/games/snake/README.md
+assets/games/snake/UPSTREAM_README.md
+assets/games/snake/CHANGES.md

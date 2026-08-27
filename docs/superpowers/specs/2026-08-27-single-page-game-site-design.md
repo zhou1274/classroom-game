@@ -4,7 +4,7 @@
 > 文档版本：v2 
 > 文件状态：当前唯一版本，旧版已删除，不再引用  
 > 设计日期：2026-08-27  
-> 文档状态：待站长确认，确认后才进入下一阶段  
+> 文档状态：已进入实施；2026-08-27 已新增 Snake 独立页，当前进度见文末。  
 
 ## 0. 参考站分析摘要（已实测）
 
@@ -106,8 +106,8 @@
 
 | 阶段 | 范围 | 目标关键词 | 页面数量 | 预期流量目标（非承诺） |
 | --- | --- | --- | --- | --- |
-| 第 1 阶段（本期） | 单页首页 + 一个本地 MIT 2048 主游戏 + 左侧游戏选项卡 + 完整 SEO 内容 | classroom games unblocked | 1 个主页面 | 收录后 0–500 次/月，3–6 个月逐步提升到 200–2,000 次/月 |
-| 第 2 阶段 | 每新增一个游戏就新增一个独立游戏页 | minecraft unblocked、tetris unblocked、snake unblocked、2048 unblocked、wordle unblocked 等 | 6–15 个游戏页 | 收录后 1,000–10,000 次/月 |
+| 第 1 阶段（完成） | 单页首页 + 一个本地 MIT 2048 主游戏 + 左侧游戏选项卡 + 完整 SEO 内容 | classroom games unblocked | 1 个主页面 | 收录后 0–500 次/月，3–6 个月逐步提升到 200–2,000 次/月 |
+| 第 2 阶段（已启动） | 已新增 Snake 独立页；后续每新增一个游戏就新增一个独立游戏页 | snake unblocked、2048 unblocked、minecraft unblocked、tetris unblocked、wordle unblocked 等 | 2–15 个游戏页 | 收录后 1,000–10,000 次/月 |
 | 第 3 阶段 | 增加场景页、分类页、列表页和更多长尾页 | unblocked games for school、math games unblocked、typing games unblocked、puzzle games unblocked、free classroom games for kids 等 | 30–100 个页面 | 收录后 10,000–100,000 次/月 |
 
 流量数值只用于设定阶段性努力方向，不写进任何对外宣传内容，也不作为上线承诺。
@@ -121,7 +121,7 @@
 | classroom games unblocked | 主词 | `/`（本期首页） | P0 | 唯一核心词；title、description、H1、正文首段自然出现 |
 | minecraft unblocked | 长尾 | `/games/minecraft-unblocked.html`（未来） | P1 | 高热度、高竞争；必须验证授权后再上线 |
 | tetris unblocked | 长尾 | `/games/tetris-unblocked.html`（未来） | P1 | 优先使用开源/授权实现，避免直接使用商标资产 |
-| snake unblocked | 长尾 | `/games/snake-unblocked.html`（未来） | P1 | 适合自托管或正规平台嵌入，课堂适配度高 |
+| snake unblocked | 长尾 | `/games/snake-unblocked.html`（当前已上线） | P1 | 已接入本地 MIT 版本和独立游戏页 |
 | 2048 unblocked | 长尾 | `/games/2048-unblocked.html`（未来） | P1 | 最推荐的第一个正式游戏；原版为 MIT 许可 |
 | wordle unblocked | 长尾 | `/games/wordle-unblocked.html`（未来） | P1 | 建议自研原创玩法与原创 UI，避免使用 NYT 资产 |
 | math games unblocked | 长尾 | `/games/math-games-unblocked.html`（未来） | P1 | 适合老师场景，内容可写课堂用途与练习建议 |
@@ -150,7 +150,7 @@
 | [2048 Unblocked] <active>          | ② H1 Hero                                 |
 | [Minecraft Unblocked] <coming soon>   |     Classroom Games Unblocked              |
 | [Tetris Unblocked]    <coming soon>   |     Short intro paragraph                  |
-| [Snake Unblocked]     <coming soon>   | ③ Game Area                                |
+| [Snake Unblocked]     <live>          | ③ Game Area                                |
 | [Puzzle Games Unblocked] <coming soon> | iframe wrapper 960px, 680px            |
 | [Wordle Unblocked]    <coming soon>   |     fullscreen button                      |
 | [Math Games Unblocked]<coming soon>   | ④ Middle Banner Ad Slot                    |
@@ -167,7 +167,7 @@
 
 说明：
 
-- 本期不实现分类页或完整游戏列表页；`aside` 只放 6 个以上游戏选项卡，其中第 1 个为主游戏，其余为占位项。
+- 当前已有首页 + Snake 独立页；`aside` 放 7 个游戏选项卡，其中 2048 为首页主游戏、Snake 为 live、其余为占位项。
 - 移动端 `<1024px` 隐藏左侧 `aside`，改为顶部横向滚动的“游戏选项卡条”，游戏区保持主视觉。
 - 广告位只出现在游戏区之外，按注释规范保留占位容器。
 
@@ -182,7 +182,7 @@
 | SEO 内容区 | 覆盖核心词、长尾词、FAQ | `<section>` + `<h2>` + `<h3>` + `<p>` | 常见 FAQ、分类说明、相关游戏 | 全文 ≥600 英文词；FAQ 与 FAQPage 结构化数据一一对应 |
 | 页脚 | 版权、免责声明、站内链接 | `<footer>` | 简单导航 + cookie 提示 | Phase 1 只放 Home / Play Now / FAQ 锚点；正式游戏页存在后再替换候选游戏链接，避免 404 |
 
-本期因为只有一个主游戏，不实现参考站那种“首页方形卡片墙”；参考站的白色圆角卡片、悬停上移和图名叠加视觉保留给第 2 阶段的游戏列表页。
+本期首页仍有单一主游戏，不实现参考站那种“首页方形卡片墙”；参考站的白色圆角卡片、悬停上移和图名叠加视觉保留给第 2 阶段的游戏列表页。
 
 ### 3.3 两栏比例与响应式断点
 
@@ -467,7 +467,7 @@ JS 数组应放在独立文件 `assets/js/games.js` 中，方便后续新增游�
 | 2048 Unblocked | `active` | 停留当前页并跳转到 `#game-area` | `index.html`（或 `/`） | 当前主游戏；已接入本地 MIT 开源版本 |
 | Minecraft Unblocked | `coming-soon` | 显示 `Coming Soon`，不跳转 | `/games/minecraft-unblocked.html` | 占位槽位 |
 | Tetris Unblocked | `coming-soon` | 显示 `Coming Soon`，不跳转 | `/games/tetris-unblocked.html` | 占位槽位 |
-| Snake Unblocked | `coming-soon` | 显示 `Coming Soon`，不跳转 | `/games/snake-unblocked.html` | 占位槽位 |
+| Snake Unblocked | `live` | 跳转到 `/games/snake-unblocked.html` | `/games/snake-unblocked.html` | 已有独立页面；首页选项卡显示 Live |
 | Puzzle Games Unblocked | `coming-soon` | 显示 `Coming Soon`，不跳转 | `/games/puzzle-games-unblocked.html` | 占位槽位 |
 | Wordle Unblocked | `coming-soon` | 显示 `Coming Soon`，不跳转 | `/games/wordle-unblocked.html` | 占位槽位 |
 | Math Games Unblocked | `coming-soon` | 显示 `Coming Soon`，不跳转 | `/games/math-games-unblocked.html` | 占位槽位 |
@@ -589,7 +589,7 @@ assets/games/2048/index.html
 | 候选游戏 | 嵌入方式建议 | 来源平台建议 | 风险等级 | 课堂适配度 | 推荐理由 / 注意 |
 | --- | --- | --- | --- | --- | --- |
 | 2048 | 已选定并本地自托管 MIT 开源版本 | gabrielecirulli/2048（MIT） | 低 | ★★★★★ | 经典、规则清楚、无需注册；已保留版权声明并设置嵌入页 noindex |
-| Snake | 自研或 MIT 开源贪吃蛇；或正规平台 iframe | 本地 `games/snake/`；GameDistribution | 低 | ★★★★☆ | 操作简单、每局短，适合课间；注意不要复制第三方品牌 |
+| Snake | 已接入本地自托管版本，许可证待补证 | xosg/WebGames `greedy-snake`；README 声明 MIT 但无 LICENSE 文件 | 中 | ★★★★☆ | 操作简单、每局短，适合课间；上线前应替换为 sen-ltd/snake 或补正式许可 |
 | Tetris 类块状益智游戏 | 自研“Block Fall/Block Puzzle”玩法，或使用无商标风险的开源实现 | 本地实现；GameDistribution | 中 | ★★★★☆ | 玩法本身需注意商标和美术资产；建议改名为中性名称，不直接使用 Tetris 商标图片 |
 | Wordle 类单词游戏 | 自研原创单词猜测玩法与 UI，或正规授权平台 | 本地实现 | 中 | ★★★★☆ | 玩法不受保护，但 NYT 词表、Logo、棋盘美术受保护；必须原创 |
 | Tic Tac Toe | 本地 HTML/Canvas 自研 | 本地实现 | 低 | ★★★★★ | 规则无版权问题，适合低年级，开发成本极低 |

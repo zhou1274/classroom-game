@@ -210,3 +210,15 @@
 - 页面源码包含 Google Analytics、AdSense、Google Fonts、jQuery、Hammer.js、SweetAlert、Font Awesome、分享按钮、App Store / Google Play 链接。
 - 若要生产使用，需要彻底删除广告/分析和社交代码，确认字体与图标许可，并处理 GPL 合规；不适合第一批量产。
 - 结论：只作为“块状益智”技术参考，或后续在确认 GPL 义务后单独处理。
+
+
+---
+
+## 实际接入偏差更正（2026-08-27 二次核对）
+
+- 当前 `assets/games/snake/` 实际复制自 `xosg/WebGames`，目录为 `greedy-snake`，commit `f854382d2e8a97ed4a9d04fdd9dd4f7d449e24f1`。
+- `CHANGES.md` 明确记录：仓库 README 声明 “All games and code are provided under the MIT License.”，但审计时根目录和 `greedy-snake/` 子目录均未发现 LICENSE 文件。
+- 该来源不应被标记为“已验证 MIT”；它最多只能视为 README 声明 + 技术可运行。
+- 上线前两条路线：
+  1. 获取并公开原始 `xosg/WebGames` 的正式 LICENSE 与作者许可；
+  2. 将 Snake 替换为 `sen-ltd/snake`（LICENSE 已验证、34 个测试通过）并重新做页面适配与视觉验证。
