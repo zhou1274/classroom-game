@@ -161,9 +161,9 @@ Create `index.html` with this exact structure and content:
   {
     "@context": "https://schema.org",
     "@type": "VideoGame",
-    "name": "Featured Game",
+    "name": "2048 Unblocked",
     "url": "https://classroom-game.com/",
-    "description": "The featured game is a browser-based challenge designed for short play sessions. It opens in the game area above without any download or sign-up.",
+    "description": "2048 Unblocked is a free browser number puzzle. Slide matching tiles, build bigger numbers, and play in the game area with no download or sign-up.",
     "gamePlatform": ["Web Browser"],
     "applicationCategory": "Game",
     "offers": {
@@ -273,21 +273,21 @@ Create `index.html` with this exact structure and content:
       <p>Play classroom games unblocked online for free. Choose a game tab below and start playing in your browser.</p>
     </section>
 
-    <section class="game-area" id="game-area" aria-label="Featured game">
+    <section class="game-area" id="game-area" aria-label="Play 2048 Unblocked">
       <div class="game-shell">
         <div class="game-toolbar">
-          <span class="game-toolbar-label">Featured Game</span>
+          <span class="game-toolbar-label">2048 Unblocked</span>
           <button class="fullscreen-button" id="fullscreen-button" type="button">Fullscreen</button>
         </div>
         <div class="game-placeholder" id="game-placeholder" role="status" aria-live="polite">
           <svg aria-hidden="true" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="5" width="20" height="14" rx="7" fill="#2563EB"/><circle cx="8" cy="10" r="1.3" fill="#fff"/><circle cx="12" cy="10" r="1.3" fill="#fff"/><circle cx="16" cy="10" r="1.3" fill="#fff"/><path d="M7 15h10" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <strong>Featured Game</strong>
-          <p>This game is being prepared and will load here once it is ready for classroom play.</p>
+          <strong>2048 Unblocked</strong>
+          <p>Loading 2048. If the game does not appear, refresh the page and try again.</p>
         </div>
         <iframe
           class="game-frame"
-          src="https://example-game-platform.com/embed/your-game"
-          title="Featured Game"
+          src="assets/games/2048/index.html"
+          title="2048 Unblocked"
           width="100%"
           height="600"
           frameborder="0"
@@ -305,9 +305,9 @@ Create `index.html` with this exact structure and content:
       <h2>Play Classroom Games Unblocked Online</h2>
       <p>Looking for a quick break between classes? You can play classroom games unblocked right here in your browser. These free classroom games run directly on the page. Choose a game tab, click Play, and enjoy a game without downloading software or creating an account. Whether you are on a school Chromebook, a shared classroom computer, or your own laptop, the game loads directly on this page. If your network allows the site, you can start playing in seconds.</p>
 
-      <p>The featured game is a browser-based challenge designed for short play sessions. It opens in the game area above, so you can start, pause, and return to your schoolwork without installing anything. The controls are simple enough for a first try, but the challenge grows as you learn the patterns and make better decisions.</p>
+      <p>2048 Unblocked is a free number puzzle that takes seconds to understand. Slide matching tiles together, reach the 2048 tile if you can, and start a new round whenever class is about to begin. Everything runs in the browser, with no download, no account, and no setup.</p>
 
-      <p>Because the game runs inside this page, the experience stays tidy and easy to manage. You can use the Games menu to explore other options, or ask a teacher if you want to use the game as part of a classroom activity. If you are using a touchscreen, follow the on-screen prompts and tap or swipe. If you are using a keyboard or mouse, the controls should be clear from the first move.</p>
+      <p>Use the arrow keys on a computer or swipe on a phone to move the tiles. When two matching numbers touch, they merge into one. Your score appears at the top of the game, and you can press New Game to begin again. If a tab is marked Coming Soon, it means that title is being prepared for its own page rather than available here today.</p>
 
       <p>Every game on this page is made to be easy to start and easy to pause when class begins again. If a title is marked Coming Soon, it means the game is being prepared for its own page. When it arrives, you will find controls, tips, and classroom-friendly details right here.</p>
 
@@ -321,13 +321,13 @@ Create `index.html` with this exact structure and content:
       <p>Most free browser games are safe when they come from a reviewed source and do not ask for personal details. This site uses games that run directly in the browser, without downloads or sign-up forms. Students should still follow school rules, and teachers should review any game before using it with a class. If a game asks for money, private information, or unusual permissions, close it and choose another game.</p>
 
       <h2>Best Unblocked Games for Classroom</h2>
-      <p>The best classroom games unblocked are simple to explain, quick to load, and easy to end between periods. Puzzle games work well for quiet brain breaks, while word games and math challenges fit learning goals. The Games menu shows the featured game and a short list of titles that are planned for upcoming pages.</p>
+      <p>The best classroom games unblocked are simple to explain, quick to load, and easy to end between periods. Puzzle games work well for quiet brain breaks, while word games and math challenges fit learning goals. The Games menu shows 2048 Unblocked and a short list of titles that are planned for upcoming pages.</p>
 
       <h3>Popular Games You Can Play Unblocked</h3>
       <p>Popular choices include 2048, Snake, word games, and classroom-friendly puzzle games. They share the same pattern: short rounds, clear rules, and no download required. When a new game is added, it will get its own page with a longer description, controls, and tips.</p>
 
       <h3>How to Find More Games</h3>
-      <p>Use the Games menu to find classroom games unblocked quickly. If a game shows Coming Soon, it means the page is planned but not live yet. You can also return to the top of the page and use the navigation links to get back to the featured game or jump to the FAQ.</p>
+      <p>Use the Games menu to find classroom games unblocked quickly. If a game shows Coming Soon, it means the page is planned but not live yet. You can also return to the top of the page and use the navigation links to get back to 2048 Unblocked or jump to the FAQ.</p>
 
       <h2>How to Play Unblocked Games at School</h2>
       <p>To play games at school, pick a game from the Games menu, make sure the game area is visible, and click the play prompt inside the frame. If the game does not load, refresh the page and try again. Some school networks may limit certain sites, so a game that works at home may not open at school. This site does not bypass network policies and does not guarantee that every title will be available everywhere.</p>
@@ -419,13 +419,14 @@ Create exactly:
 
 ```js
 window.CLASSROOM_GAMES = [
-  { name: "Featured Game", url: "#game-area", status: "active" },
+  { name: "2048 Unblocked", url: "#game-area", status: "active" },
   { name: "Minecraft Unblocked", url: "/games/minecraft-unblocked.html", status: "coming-soon" },
   { name: "Tetris Unblocked", url: "/games/tetris-unblocked.html", status: "coming-soon" },
   { name: "Snake Unblocked", url: "/games/snake-unblocked.html", status: "coming-soon" },
-  { name: "2048 Unblocked", url: "/games/2048-unblocked.html", status: "coming-soon" },
   { name: "Wordle Unblocked", url: "/games/wordle-unblocked.html", status: "coming-soon" },
-  { name: "Math Games Unblocked", url: "/games/math-games-unblocked.html", status: "coming-soon" }
+  { name: "Math Games Unblocked", url: "/games/math-games-unblocked.html", status: "coming-soon" },
+  { name: "Puzzle Games Unblocked", url: "/games/puzzle-games-unblocked.html", status: "coming-soon" }
+]
 ];
 ```
 
@@ -530,7 +531,7 @@ Create exactly:
   const gameFrame = document.querySelector(".game-frame");
   if (placeholder && gameFrame) {
     gameFrame.addEventListener("load", () => {
-      if (!/example-game-platform\.com/.test(gameFrame.src)) {
+      if (gameFrame.src) {
         placeholder.hidden = true;
       }
     });
@@ -1483,7 +1484,7 @@ Expected: `PASS`; no unexpected untracked files.
 | 3. Layout and components | Task 1 + Task 3 |
 | 4. Head SEO | Task 1; exact title/description/canonical/OG/JSON-LD included |
 | 5. Left game tabs | Task 2 + Task 3 |
-| 6. Game iframe candidate | Task 1 + Task 3; placeholder source, authorized replacement required later |
+| 6. Game iframe candidate | Task 1 + Task 3; local MIT 2048 source, licensed replacement required for future games |
 | 7. SEO content tree | Task 1 |
 | 8. Ad slots | Task 1 + Task 3 |
 | 9. Companion files | Task 4 + Task 5 |
@@ -1500,7 +1501,7 @@ Expected: `PASS`; no unexpected untracked files.
 - After deployment, confirm `https://classroom-game.com/` returns the homepage.
 - Set Cloudflare SSL/TLS to **Full (strict)**.
 - Submit `https://classroom-game.com/sitemap.xml` to Google Search Console.
-- Replace the iframe `src` only after the station owner selects and authorizes a formal game.
+- The main game is already the local MIT 2048 build. Replace it only after confirming the license for any future game.
 - Add AdSense code only after approval; keep the three HTML comments in place.
 
 ## Execution Handoff
@@ -1508,3 +1509,13 @@ Expected: `PASS`; no unexpected untracked files.
 Plan complete and saved to `docs/superpowers/plans/2026-08-27-single-page-game-site.md`.
 
 User preference is **inline execution**, not subagent-driven execution. After the user confirms this plan, use `superpowers:executing-plans` and execute tasks one by one with a review checkpoint after each task.
+
+
+---
+
+## 2026-08-27 实施后状态更新
+
+- 主游戏已接入本地 MIT 2048：`assets/games/2048/index.html`。
+- 游戏源内页已精简为适合 600px iframe 的嵌入版，保留 MIT 声明并设置 `noindex`。
+- 首页选项卡、游戏区标题、VideoGame schema 与正文介绍已同步为 `2048 Unblocked`。
+- 下一阶段可继续把 `Snake Unblocked`、`Tic Tac Toe` 等作为独立页面接入。

@@ -106,7 +106,7 @@
 
 | 阶段 | 范围 | 目标关键词 | 页面数量 | 预期流量目标（非承诺） |
 | --- | --- | --- | --- | --- |
-| 第 1 阶段（本期） | 单页首页 + 一个占位主游戏 + 左侧游戏选项卡 + 完整 SEO 内容 | classroom games unblocked | 1 个主页面 | 收录后 0–500 次/月，3–6 个月逐步提升到 200–2,000 次/月 |
+| 第 1 阶段（本期） | 单页首页 + 一个本地 MIT 2048 主游戏 + 左侧游戏选项卡 + 完整 SEO 内容 | classroom games unblocked | 1 个主页面 | 收录后 0–500 次/月，3–6 个月逐步提升到 200–2,000 次/月 |
 | 第 2 阶段 | 每新增一个游戏就新增一个独立游戏页 | minecraft unblocked、tetris unblocked、snake unblocked、2048 unblocked、wordle unblocked 等 | 6–15 个游戏页 | 收录后 1,000–10,000 次/月 |
 | 第 3 阶段 | 增加场景页、分类页、列表页和更多长尾页 | unblocked games for school、math games unblocked、typing games unblocked、puzzle games unblocked、free classroom games for kids 等 | 30–100 个页面 | 收录后 10,000–100,000 次/月 |
 
@@ -147,11 +147,11 @@
 +--------------------------------------+------------------------------------------+
 | ASIDE（桌面 <1024px 隐藏）             | MAIN                                      |
 | Games                                | ① Ad Slot: top banner                     |
-| [Featured Game] <active>              | ② H1 Hero                                 |
+| [2048 Unblocked] <active>          | ② H1 Hero                                 |
 | [Minecraft Unblocked] <coming soon>   |     Classroom Games Unblocked              |
 | [Tetris Unblocked]    <coming soon>   |     Short intro paragraph                  |
 | [Snake Unblocked]     <coming soon>   | ③ Game Area                                |
-| [2048 Unblocked]      <coming soon>   |     iframe wrapper 960px, 600px            |
+| [Puzzle Games Unblocked] <coming soon> | iframe wrapper 960px, 600px            |
 | [Wordle Unblocked]    <coming soon>   |     fullscreen button                      |
 | [Math Games Unblocked]<coming soon>   | ④ Middle Banner Ad Slot                    |
 |                                       | ⑤ Article / SEO Content                    |
@@ -359,13 +359,13 @@ inLanguage: en
 
 **4.5.2 VideoGame**
 
-用于“当前主游戏”。本期主游戏未确定，先使用以下占位值：
+用于“当前主游戏”。本期主游戏为 2048 Unblocked，使用以下值：
 
 ```text
 @type: VideoGame
-name: Featured Game
+name: 2048 Unblocked
 url: https://classroom-game.com/
-description: 与当前游戏简介一致
+description: 2048 Unblocked is a free browser number puzzle. Slide matching tiles, build bigger numbers, and play in the game area with no download or sign-up.
 gamePlatform: ["Web Browser"]
 applicationCategory: Game
 offers: @type Offer, price 0, priceCurrency USD, availability https://schema.org/InStock
@@ -374,7 +374,7 @@ aggregateRating: @type AggregateRating, ratingValue 4.5, reviewCount 120（占�
 
 规则：
 
-- 主游戏确定后，只需替换 `name`、`description`、`image` 和 `url`，结构不变。
+- 后续更换主游戏时，只需替换 `name`、`description`、`image` 和 `url`，结构不变。
 - `aggregateRating` 不得长期保留虚构数值；没有真实评分时直接删除该字段。
 - 不允许把 `aggregateRating` 写在首页但页面没有任何评分展示，以免被判为误导数据。
 
@@ -464,11 +464,11 @@ JS 数组应放在独立文件 `assets/js/games.js` 中，方便后续新增游�
 
 | 显示文案 | status | 本期点击行为 | 未来 URL 命名 | 说明 |
 | --- | --- | --- | --- | --- |
-| Featured Game | `active` | 停留当前页并跳转到 `#game-area` | `index.html`（或 `/`） | 当前主游戏；主游戏确认后替换为正式名称 |
+| 2048 Unblocked | `active` | 停留当前页并跳转到 `#game-area` | `index.html`（或 `/`） | 当前主游戏；已接入本地 MIT 开源版本 |
 | Minecraft Unblocked | `coming-soon` | 显示 `Coming Soon`，不跳转 | `/games/minecraft-unblocked.html` | 占位槽位 |
 | Tetris Unblocked | `coming-soon` | 显示 `Coming Soon`，不跳转 | `/games/tetris-unblocked.html` | 占位槽位 |
 | Snake Unblocked | `coming-soon` | 显示 `Coming Soon`，不跳转 | `/games/snake-unblocked.html` | 占位槽位 |
-| 2048 Unblocked | `coming-soon` | 显示 `Coming Soon`，不跳转 | `/games/2048-unblocked.html` | 占位槽位 |
+| Puzzle Games Unblocked | `coming-soon` | 显示 `Coming Soon`，不跳转 | `/games/puzzle-games-unblocked.html` | 占位槽位 |
 | Wordle Unblocked | `coming-soon` | 显示 `Coming Soon`，不跳转 | `/games/wordle-unblocked.html` | 占位槽位 |
 | Math Games Unblocked | `coming-soon` | 显示 `Coming Soon`，不跳转 | `/games/math-games-unblocked.html` | 占位槽位 |
 
@@ -519,8 +519,8 @@ JS 数组应放在独立文件 `assets/js/games.js` 中，方便后续新增游�
 
 ```html
 <iframe
-  src="https://example-game-platform.com/embed/your-game"
-  title="Featured Game"
+  src="assets/games/2048/index.html"
+  title="2048 Unblocked"
   width="100%"
   height="600"
   frameborder="0"
@@ -550,25 +550,23 @@ JS 数组应放在独立文件 `assets/js/games.js` 中，方便后续新增游�
 - 使用 `border-radius: 12px–16px`，并设置 `overflow: hidden`，与参考站“圆角游戏框”一致。
 - 背景 `#FFFFFF`，细边框 `#E2E8F0`，可加轻量阴影。
 - iframe 必须占满容器，不允许内部滚动条横向溢出。
-- 容器顶部可放 `Featured Game` 一行小字或工具栏，但不得使用 `H2`。
-- 游戏未加载时，容器内显示用户可读的 `Featured Game` 占位提示；iframe 成功加载后隐藏该提示。
+- 容器顶部可放 `2048 Unblocked` 一行小字或工具栏，但不得使用 `H2`。
+- 游戏未加载时，容器内显示用户可读的 `2048 Unblocked` 加载提示；iframe 成功加载后隐藏该提示。
 
-### 6.3 占位链接与替换流程
+### 6.3 已接入游戏（替换完成）
 
-本期统一使用：
+本期正式游戏为本地自托管 2048：
 
 ```text
-https://example-game-platform.com/embed/your-game
+assets/games/2048/index.html
 ```
 
-替换时机：
+当前状态：
 
-1. 站长选定正式游戏。
-2. 站长注册正规游戏平台并取得嵌入授权。
-3. 将 `iframe src` 替换为平台官方提供的嵌入地址。
-4. 更新选项卡第 1 项的游戏名。
-5. 更新 VideoGame JSON-LD 的 `name` 和 `description`。
-6. 更新正文中的当前游戏介绍（保留泛化介绍段落即可）。
+1. 游戏源码已从 `gabrielecirulli/2048`（MIT）本地接入。
+2. `LICENSE.txt` 与版权声明已保留。
+3. 嵌入页已设置 `noindex`，避免被当成重复页面收录。
+4. 后续把 2048 换成其它游戏时，同样按“确认授权 → 自托管/官方嵌入 → 更新选项卡与 schema”执行。
 
 ### 6.4 版权与平台合规
 
@@ -589,7 +587,7 @@ https://example-game-platform.com/embed/your-game
 
 | 候选游戏 | 嵌入方式建议 | 来源平台建议 | 风险等级 | 课堂适配度 | 推荐理由 / 注意 |
 | --- | --- | --- | --- | --- | --- |
-| 2048 | 自托管 MIT 开源版本；或正规平台 iframe | gabrielecirulli/2048（MIT）；GameDistribution | 低 | ★★★★★ | 经典、规则清楚、无需注册；可保留版权声明后本地托管 |
+| 2048 | 已选定并本地自托管 MIT 开源版本 | gabrielecirulli/2048（MIT） | 低 | ★★★★★ | 经典、规则清楚、无需注册；已保留版权声明并设置嵌入页 noindex |
 | Snake | 自研或 MIT 开源贪吃蛇；或正规平台 iframe | 本地 `games/snake/`；GameDistribution | 低 | ★★★★☆ | 操作简单、每局短，适合课间；注意不要复制第三方品牌 |
 | Tetris 类块状益智游戏 | 自研“Block Fall/Block Puzzle”玩法，或使用无商标风险的开源实现 | 本地实现；GameDistribution | 中 | ★★★★☆ | 玩法本身需注意商标和美术资产；建议改名为中性名称，不直接使用 Tetris 商标图片 |
 | Wordle 类单词游戏 | 自研原创单词猜测玩法与 UI，或正规授权平台 | 本地实现 | 中 | ★★★★☆ | 玩法不受保护，但 NYT 词表、Logo、棋盘美术受保护；必须原创 |
@@ -794,11 +792,11 @@ Puzzle Games Unblocked
 
 > Looking for a quick break between classes? You can play classroom games unblocked right here in your browser. These free classroom games run directly on the page. Choose a game tab, click Play, and enjoy a game without downloading software or creating an account. Whether you are on a school Chromebook, a shared classroom computer, or your own laptop, the game loads directly on this page. If your network allows the site, you can start playing in seconds.
 
-**Featured Game Introduction (2–3 paragraphs)**
+**2048 Unblocked Introduction (2–3 paragraphs)**
 
-> The featured game is a browser-based challenge designed for short play sessions. It opens in the game area above, so you can start, pause, and return to your schoolwork without installing anything. The controls are simple enough for a first try, but the challenge grows as you learn the patterns and make better decisions.
+> 2048 Unblocked is a free number puzzle that takes seconds to understand. Slide matching tiles together, reach the 2048 tile if you can, and start a new round whenever class is about to begin. Everything runs in the browser, with no download, no account, and no setup.
 
-> Because the game runs inside this page, the experience stays tidy and easy to manage. You can use the Games menu to explore other options, or ask a teacher if you want to use the game as part of a classroom activity. If you are using a touchscreen, follow the on-screen prompts and tap or swipe. If you are using a keyboard or mouse, the controls should be clear from the first move.
+> Use the arrow keys on a computer or swipe on a phone to move the tiles. When two matching numbers touch, they merge into one. Your score appears at the top of the game, and you can press New Game to begin again. If a tab is marked Coming Soon, it means that title is being prepared for its own page rather than available here today.
 
 > Every game on this page is made to be easy to start and easy to pause when class begins again. If a title is marked Coming Soon, it means the game is being prepared for its own page. When it arrives, you will find controls, tips, and classroom-friendly details right here.
 
@@ -816,7 +814,7 @@ Puzzle Games Unblocked
 
 **H2: Best Unblocked Games for Classroom**
 
-> The best classroom games unblocked are simple to explain, quick to load, and easy to end between periods. Puzzle games work well for quiet brain breaks, while word games and math challenges fit learning goals. The Games menu shows the featured game and a short list of titles that are planned for upcoming pages.
+> The best classroom games unblocked are simple to explain, quick to load, and easy to end between periods. Puzzle games work well for quiet brain breaks, while word games and math challenges fit learning goals. The Games menu shows 2048 Unblocked and a short list of titles that are planned for upcoming pages.
 
 **H3: Popular Games You Can Play Unblocked**
 
@@ -824,7 +822,7 @@ Puzzle Games Unblocked
 
 **H3: How to Find More Games**
 
-> Use the Games menu to find classroom games unblocked quickly. If a game shows Coming Soon, it means the page is planned but not live yet. You can also return to the top of the page and use the navigation links to get back to the featured game or jump to the FAQ.
+> Use the Games menu to find classroom games unblocked quickly. If a game shows Coming Soon, it means the page is planned but not live yet. You can also return to the top of the page and use the navigation links to get back to 2048 Unblocked or jump to the FAQ.
 
 **H2: How to Play Unblocked Games at School**
 
@@ -873,8 +871,8 @@ Puzzle Games Unblocked
 3. 使用 Vercel、Cloudflare Pages 或 GitHub Pages 完成纯静态部署，确认 `/` 可访问。
 4. 确认 `index.html` 只有一个 H1。
 5. 确认 title、description、canonical、OG、robots 全部正确。
-6. 替换游戏 iframe 为选定游戏的正规嵌入代码，不保留占位链接。
-7. 更新游戏选项卡第 1 项名称、VideoGame schema 名称和正文游戏介绍。
+6. 确认游戏 iframe 已指向本地 MIT 2048（assets/games/2048/index.html），不存在第三方占位链接。
+7. 确认游戏选项卡第 1 项、VideoGame schema 名称和正文介绍均为 2048 Unblocked。
 8. 确认移动端左栏收起效果，横向选项卡不遮挡游戏区。
 9. 确认 iframe 不横向溢出，桌面端最大宽度 960px，移动端全宽。
 10. 确认三个广告位注释存在，广告容器不遮挡游戏。
@@ -917,14 +915,14 @@ Puzzle Games Unblocked
 - 创建 `/assets/js/games.js`。
 - 创建 `/assets/js/main.js`，负责读取游戏数组、渲染选项卡、处理当前高亮和 Coming Soon 提示。
 - 维护 `{name, url, status}` 数组。
-- 数组包含 Featured Game + 6 个占位游戏。
+- 数组包含 2048 Unblocked + 6 个占位游戏。
 - 占位项显示 Coming Soon 并阻止跳转。
 - 当前项设置高亮和 `aria-current="page"`。
 
 ### 第 3 步：实现游戏区 iframe 占位
 
 - 在主区放入占位 iframe。
-- 使用 `title="Featured Game"`、`width="100%"`、`height="600"`、`frameborder="0"`、`allowfullscreen`、`loading="lazy"`。
+- 使用 `title="2048 Unblocked"`、`width="100%"`、`height="600"`、`frameborder="0"`、`allowfullscreen`、`loading="lazy"`。
 - 外层容器最大宽度 960px、圆角、overflow hidden。
 - 添加全屏按钮（如实现页面内全屏）或“在新窗口打开”提示。
 
@@ -940,7 +938,7 @@ Puzzle Games Unblocked
 
 - 在 `<head>` 写入 WebSite、VideoGame、FAQPage 三个 JSON-LD。
 - FAQPage 与页面 FAQ 使用完全相同的英文问题与答案。
-- 主游戏未确定时，VideoGame 使用 `Featured Game` 占位名，并删除虚构 aggregateRating 或只保留开发期占位说明。
+- VideoGame 目前使用 `2048 Unblocked`，并删除虚构 aggregateRating，直到获得真实评分。
 
 ### 第 6 步：补齐 head 元数据
 
@@ -975,7 +973,7 @@ Puzzle Games Unblocked
 
 ### 交付前验收标准
 
-1. coding agent 不再需要询问游戏名称；本期统一用 `Featured Game` 占位。
+1. coding agent 不再需要询问游戏名称；本期统一使用 `2048 Unblocked`。
 2. coding agent 不需要询问页面文件结构；严格按本文档第 12 章执行。
 3. 页面可部署到 Vercel / Cloudflare Pages / GitHub Pages，纯静态、无构建步骤。
 4. 页面在手机、平板、桌面上均可读、可玩、不遮挡。
@@ -984,3 +982,15 @@ Puzzle Games Unblocked
 ---
 
 **本设计细则已经写入 `docs/superpowers/specs/2026-08-27-single-page-game-site-design.md`。请站长审阅后确认，再进行下一阶段的实施计划。**
+
+
+---
+
+## 2026-08-27 实施决策更新：主游戏选定
+
+- 主游戏已确定：**2048 Unblocked**。
+- 来源：`gabrielecirulli/2048`，MIT 许可证，本地自托管于 `assets/games/2048/`。
+- 页面 iframe 正式地址：`assets/games/2048/index.html`，保留 `width=100%`、`height=600`、`frameborder=0`、`allowfullscreen`、`loading=lazy`。
+- 游戏内页设置了 `noindex`，避免搜索引擎把嵌入游戏当成独立页面并产生重复内容。
+- VideoGame 结构化数据名称改为 `2048 Unblocked`；未添加虚构 aggregateRating，等获得真实评分后再补。
+- 游戏选项卡第 1 项改为 `2048 Unblocked`，其余 6 项仍为 `coming-soon`。

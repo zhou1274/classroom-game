@@ -170,3 +170,35 @@
 - <https://github.com/DevinEats314/GamesSiteTemplate>
 - <https://github.com/marco48vx/classroom-6x>
 - <https://github.com/shakirdmr/free-unblocked-games>
+
+## 2026-08-27 补充：GitHub 上可直接考虑的 HTML5 游戏候选
+
+> 本部分只列“许可证已核实或仓库本身许可证清晰”的来源。MIT 仓库不保证其中每个子游戏、图片、音频都使用了同样的许可证，正式上线前仍需逐游戏核对。
+
+| 游戏/仓库 | 许可证 | 包含内容 | 适合本站的方式 | 风险/注意 |
+| --- | --- | --- | --- | --- |
+| [gabrielecirulli/2048](https://github.com/gabrielecirulli/2048) | MIT | 原版 2048，键盘/触屏 | 已选定并本地自托管为首页主游戏 | 低；已保留版权声明与 LICENSE.txt |
+| [sausi-7/games](https://github.com/sausi-7/games) | MIT | 142 个浏览器游戏，无构建步骤，含 Snake、2048、Tetris、Memory、Chess 等 | 按分类挑选自托管；仓库本身就是静态站 | 中；部分名称/风格可能带既有品牌感，需改名或替换素材 |
+| [SK8-infi/OpenCade](https://github.com/SK8-infi/OpenCade) | MIT | 纯 HTML/CSS/JS 复古街机合集，无框架 | 参考结构或挑选其中小游戏自托管 | 中；社区提交项目需逐个确认子游戏来源 |
+| [ellisonleao/clumsy-bird](https://github.com/ellisonleao/clumsy-bird) | MIT | Flappy Bird 玩法移植（MelonJS） | 可作为 Flappy 类游戏候选 | 中；需确认构建产物/依赖，不应直接复制 Flappy Bird 品牌 |
+| [jsdevspace/snake-js](https://github.com/jsdevspace/snake-js) | MIT | 纯 JS/HTML/CSS 贪吃蛇 | 可直接作为 Snake Unblocked 候选 | 低 |
+| [addiebart/tictactoe](https://github.com/addiebart/tictactoe) | MIT | HTML5 Tic-Tac-Toe | 可直接作为课堂小游戏候选 | 低 |
+| [Hextris/hextris](https://github.com/Hextris/hextris) | GPL-3.0 | 六边形方块益智游戏 | 可作为 Tetris 类游戏替代 | 中；使用 GPL 代码时需遵守开源义务 |
+| [wangzifan396-wzf/mini-browser-games](https://github.com/wangzifan396-wzf/mini-browser-games) | 未核实 | 约 118 个单文件浏览器小游戏 | 可浏览试玩，但不要直接上线 | 高；需要先确认 LICENSE 与每个游戏来源 |
+| [xosg/WebGames](https://github.com/xosg/WebGames) | 未核实 | classic HTML5/CSS/JS 游戏合集 | 仅作参考 | 高；许可证不明 |
+| [chengzuopeng/game-space](https://github.com/chengzuopeng/game-space) | 未核实 | 60 款 HTML5 小游戏合集 | 仅作参考 | 高；许可证不明 |
+
+### 推荐顺序
+
+1. 首选 **2048**：原版 MIT、单文件、键盘/触屏、课堂适应度最高。
+2. 次选 **Snake**（jsdevspace/snake-js 或 sausi-7 版本）：玩法简单、代码轻量。
+3. 第三选 **Tic Tac Toe**（addiebart/tictactoe）：无版权争议、开发成本低。
+4. 若需要批量扩展，可以用 **sausi-7/games** 做选品来源，但每个游戏必须改成中性名称，并自托管你确认过的版本。
+5. 如果使用 **Hextris**，确认你的站点和分发方式能接受 GPL-3.0 的开源义务。
+6. 不要直接使用 `wangzifan396-wzf/mini-browser-games`、`xosg/WebGames`、`chengzuopeng/game-space` 等许可证不明的仓库上线。
+
+### 进一步建议
+
+- 每个候选游戏都应先拉到一个本地临时目录，检查是否只引用相对路径、是否有外部 CDN、是否适合 iframe。
+- 若游戏代码使用 Phaser、Three.js，也要确认引擎许可和打包后的资源体积。
+- 不要在一期首页直接嵌入 142 个游戏；一期先锁定一个主游戏，二期再逐个新增 SEO 游戏页。

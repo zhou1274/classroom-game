@@ -17,6 +17,19 @@ with sync_playwright() as p:
     h4_count = page.locator("h4").count()
     tab_count = page.locator("#game-list a").count()
     iframe_count = page.locator(".game-frame").count()
+    page.locator(".game-frame").wait_for(state="visible", timeout=10000)
+    game_frame_src = page.locator(".game-frame").get_attribute("src")
+    game_frame_title = page.frame_locator(".game-frame").locator("h1").inner_text(timeout=10000)
+    game_frame = page.frame_locator(".game-frame")
+    game_frame.locator(".tile-container .tile").first.wait_for(timeout=10000)
+    game_tiles_before = game_frame.locator(".tile-container .tile").count()
+    game_frame.locator(".container").click()
+    page.keyboard.press("ArrowLeft")
+    page.keyboard.press("ArrowRight")
+    page.wait_for_timeout(300)
+    game_tiles_after = game_frame.locator(".tile-container .tile").count()
+    results.append(f"game-tiles-before={game_tiles_before} game-tiles-after={game_tiles_after}")
+    results.append(f"game-src={game_frame_src} game-inner-title={game_frame_title!r}")
     ad_count = page.locator(".ad-slot").count()
 
     results.append(f"desktop h1={h1_count} h4={h4_count} tabs={tab_count} iframes={iframe_count} ad-slots={ad_count}")
@@ -36,6 +49,9 @@ with sync_playwright() as p:
     mobile.goto("http://127.0.0.1:8765/", wait_until="domcontentloaded")
     mobile.wait_for_selector("#game-list a", timeout=5000)
     mobile.wait_for_timeout(500)
+    mobile.locator(".game-frame").wait_for(state="visible", timeout=10000)
+    mobile_src = mobile.locator(".game-frame").get_attribute("src")
+    results.append(f"mobile-game-src={mobile_src}")
     mobile_h1 = mobile.locator("h1").count()
     mobile_tabs = mobile.locator("#game-list a").count()
     results.append(f"mobile h1={mobile_h1} tabs={mobile_tabs}")
@@ -50,6 +66,12 @@ with sync_playwright() as p:
 
     if h1_count != 1 or h4_count != 0 or tab_count != 7 or iframe_count != 1 or ad_count != 3:
         raise SystemExit("desktop structural check failed")
+    if "assets/games/2048/index.html" not in game_frame_src:
+        raise SystemExit("local game iframe missing")
+    if "2048" not in game_frame_title.lower():
+        raise SystemExit("local game title missing")
+    if game_tiles_after < game_tiles_before:
+        raise SystemExit("2048 interaction did not produce a new tile state")
     if mobile_h1 != 1 or mobile_tabs != 7:
         raise SystemExit("mobile structural check failed")
     if "coming soon" not in toast_text.lower():

@@ -94,7 +94,7 @@
   const gameFrame = document.querySelector(".game-frame");
   if (placeholder && gameFrame) {
     gameFrame.addEventListener("load", () => {
-      if (!/example-game-platform\.com/.test(gameFrame.src)) {
+      if (gameFrame.src) {
         placeholder.hidden = true;
       }
     });

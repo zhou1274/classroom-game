@@ -19,7 +19,9 @@ const requiredFiles = [
   "assets/css/style.css",
   "assets/js/games.js",
   "assets/js/main.js",
-  "assets/icons/favicon.svg"
+  "assets/icons/favicon.svg",
+  "assets/games/2048/index.html",
+  "assets/games/2048/LICENSE.txt"
 ];
 
 for (const file of requiredFiles) {
@@ -43,6 +45,7 @@ const robots = readOrEmpty("robots.txt");
 const sitemap = readOrEmpty("sitemap.xml");
 const notFound = readOrEmpty("404.html");
 const favicon = readOrEmpty("assets/icons/favicon.svg");
+const gameHtml = readOrEmpty("assets/games/2048/index.html");
 
 function check(condition, label) {
   if (condition) {
@@ -70,13 +73,17 @@ check(html.includes("Best Unblocked Games for Classroom"), "H2 best games headin
 check(html.includes("How to Play Unblocked Games at School"), "H2 how-to heading");
 check(html.includes("FAQ About Classroom Games Unblocked"), "H2 FAQ heading");
 check(html.includes('class="game-frame"'), "game iframe uses game-frame class");
+check(html.includes('src="assets/games/2048/index.html"'), "game iframe local source");
+check(!html.includes("example-game-platform.com"), "no external placeholder iframe");
+check(gameHtml.includes('content="noindex"'), "game embed noindex");
+check(gameHtml.includes("MIT License"), "game embed license notice");
 check(html.includes('class="skip-link"'), "skip link present");
 check(html.includes("id=\"game-placeholder\""), "game placeholder present");
 check(!html.includes("Once the featured game is confirmed"), "no developer placeholder note");
 check(mainJs.includes("placeholder.hidden = true"), "placeholder hides after game loads");
 check(!mainJs.includes("Now Playing"), "no false playing claim");
 check(html.includes("Games menu shows"), "device-neutral games menu copy");
-check(html.includes("Games menu to explore"), "explore copy is device neutral");
+check(html.includes("Use the arrow keys"), "2048 controls copy present");
 check(html.includes("Games menu to find"), "find copy is device neutral");
 check(!html.includes("left sidebar"), "no desktop-only sidebar copy");
 check(css.includes(".game-placeholder svg"), "placeholder icon style");
@@ -110,6 +117,8 @@ const statuses = [...gamesJs.matchAll(/status:\s*"(active|coming-soon|live)"/g)]
 check(statuses.length === 7, `seven game entries (got ${statuses.length})`);
 check(statuses[0] === "active", "first game is active");
 check(statuses.slice(1).every((status) => status === "coming-soon"), "six placeholder entries");
+check(gamesJs.includes('{ name: "2048 Unblocked", url: "#game-area", status: "active" }'), "2048 first active tab");
+check(!gamesJs.includes('{ name: "2048 Unblocked", url: "/games/2048-unblocked.html", status: "coming-soon" }'), "no duplicate 2048 placeholder");
 check(!gamesJs.includes("javascript:void"), "no javascript:void in games.js");
 check(mainJs.includes("preventDefault"), "main.js prevents placeholder navigation");
 check(mainJs.includes("aria-current"), "main.js marks current tab");
