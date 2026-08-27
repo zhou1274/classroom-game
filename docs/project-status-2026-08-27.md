@@ -44,3 +44,11 @@
 2. 然后将 2048 独立页接入，使首页和游戏页词群完整。
 3. 继续新增 Tic Tac Toe、Memory 等低风险课堂游戏。
 4. 接入 AdSense 前先完成域名和收录验证。
+
+
+## 7. 当前部署状态（2026-08-27 更新）
+
+- 当前线上托管：Vercel。
+- 已新增 Railway 静态托管配置文件：`Dockerfile`、`Caddyfile`、`.dockerignore`。
+- Railway 部署方法见 `docs/railway-deployment-2026-08-27.md`。
+- 正式域名切换或托管平台切换前，需要验证自定义域名、SSL、404 页、sitemap 与 iframe 路径。

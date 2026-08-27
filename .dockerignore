@@ -1,0 +1,10 @@
+.git
+.gitignore
+.github
+docs
+tests
+node_modules
+*.md
+*.png
+.vercelignore
+visual-*.png

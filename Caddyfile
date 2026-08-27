@@ -1,0 +1,33 @@
+{
+    admin off
+    persist_config off
+    auto_https off
+
+    log {
+        format json
+    }
+
+    servers {
+        trusted_proxies static private_ranges 100.0.0.0/8
+    }
+}
+
+:{$PORT:3000} {
+    root * /srv
+
+    encode gzip
+
+    header {
+        X-Content-Type-Options nosniff
+        Referrer-Policy strict-origin-when-cross-origin
+        Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    }
+
+    @notFound expression {http.error.status_code} == 404
+    handle_errors {
+        rewrite @notFound /404.html
+        file_server
+    }
+
+    file_server
+}
