@@ -6,42 +6,46 @@ body {
 
 body {
   margin: 0;
+  overflow: hidden;
   background: #FAF8EF;
 }
 
 .container {
   width: 100%;
   max-width: 500px;
-  padding: 8px 16px 12px;
+  padding: 6px 12px 0;
 }
 
 h1.title {
-  font-size: 44px;
+  font-size: 38px;
   line-height: 1;
 }
 
 .score-container,
 .best-container {
-  padding: 10px 18px;
-  height: 22px;
-  line-height: 42px;
-  margin-top: 4px;
+  padding: 8px 14px;
+  height: 18px;
+  line-height: 34px;
+  margin-top: 2px;
 }
 
 .above-game {
-  margin-top: 8px;
-  padding-bottom: 4px;
+  margin-top: 4px;
+  padding-bottom: 0;
+}
+
+.game-intro {
+  line-height: 36px;
+  margin-bottom: 0;
+}
+
+.restart-button {
+  height: 36px;
+  line-height: 36px;
 }
 
 .game-container {
-  margin-top: 8px;
-}
-
-.game-source {
-  margin: 8px 0 0;
-  color: #A79C91;
-  font-size: 12px;
-  line-height: 1.4;
+  margin-top: 4px;
 }
 
 @media (max-width: 520px) {
@@ -51,11 +55,7 @@ h1.title {
   }
 
   h1.title {
-    font-size: 38px;
-  }
-
-  .game-source {
-    font-size: 11px;
+    font-size: 34px;
   }
 }
 

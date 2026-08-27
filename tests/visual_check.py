@@ -22,6 +22,9 @@ with sync_playwright() as p:
     game_frame_title = page.frame_locator(".game-frame").locator("h1").inner_text(timeout=10000)
     game_frame = page.frame_locator(".game-frame")
     game_frame.locator(".tile-container .tile").first.wait_for(timeout=10000)
+    game_frame_obj = next(f for f in page.frames if "/assets/games/2048/index.html" in f.url)
+    game_scroll_fit = game_frame_obj.evaluate("() => document.documentElement.scrollHeight <= window.innerHeight")
+    results.append(f"game-scroll-fit={game_scroll_fit}")
     game_tiles_before = game_frame.locator(".tile-container .tile").count()
     game_frame.locator(".container").click()
     page.keyboard.press("ArrowLeft")
@@ -72,6 +75,8 @@ with sync_playwright() as p:
         raise SystemExit("local game title missing")
     if game_tiles_after < game_tiles_before:
         raise SystemExit("2048 interaction did not produce a new tile state")
+    if not game_scroll_fit:
+        raise SystemExit("2048 iframe has internal vertical scrolling")
     if mobile_h1 != 1 or mobile_tabs != 7:
         raise SystemExit("mobile structural check failed")
     if "coming soon" not in toast_text.lower():
