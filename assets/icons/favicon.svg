@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="ClassroomGames">
+  <rect width="32" height="32" rx="7" fill="#1A2B3C"/>
+  <rect x="4" y="8" width="24" height="16" rx="8" fill="#2563EB"/>
+  <circle cx="10" cy="14" r="1.8" fill="#fff"/>
+  <circle cx="15" cy="14" r="1.8" fill="#fff"/>
+  <circle cx="20" cy="14" r="1.8" fill="#fff"/>
+  <path d="M9 21h14" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+</svg>

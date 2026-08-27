@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://classroom-game.com/sitemap.xml
