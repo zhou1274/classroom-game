@@ -312,6 +312,15 @@ button:focus-visible {
   flex: 0 0 auto;
 }
 
+.game-controls {
+  max-width: 960px;
+  margin: 12px auto 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+
 .game-shell.is-fullscreen .game-frame,
 .game-shell:fullscreen .game-frame {
   flex: 1 1 auto;

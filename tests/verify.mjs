@@ -77,6 +77,8 @@ check(html.includes('src="assets/games/2048/index.html"'), "game iframe local so
 check(!html.includes("example-game-platform.com"), "no external placeholder iframe");
 check(gameHtml.includes('content="noindex"'), "game embed noindex");
 check(gameHtml.includes("MIT License"), "game embed license notice");
+check(html.includes('class="game-controls"'), "game controls helper present");
+check(html.includes("Use arrow keys or swipe to move."), "game controls copy present");
 check(html.includes('class="skip-link"'), "skip link present");
 check(html.includes("id=\"game-placeholder\""), "game placeholder present");
 check(!html.includes("Once the featured game is confirmed"), "no developer placeholder note");
@@ -136,6 +138,7 @@ for (const rule of [
   "min-height: 44px",
   "min-height: 100vh",
   ".game-placeholder",
+  ".game-controls",
   ".skip-link",
   "scroll-behavior: smooth",
   "linear-gradient",

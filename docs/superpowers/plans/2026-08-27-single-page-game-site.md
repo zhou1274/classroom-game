@@ -1519,4 +1519,5 @@ User preference is **inline execution**, not subagent-driven execution. After th
 - 主游戏已接入本地 MIT 2048：`assets/games/2048/index.html`。
 - 游戏源内页已精简为适合桌面 680px / 移动端 520px iframe 的嵌入版，保留 MIT 声明并设置 `noindex`。
 - 首页选项卡、游戏区标题、VideoGame schema 与正文介绍已同步为 `2048 Unblocked`。
+- 游戏框下方新增一行非标题控制提示：Use arrow keys or swipe to move...。
 - 下一阶段可继续把 `Snake Unblocked`、`Tic Tac Toe` 等作为独立页面接入。
