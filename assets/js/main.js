@@ -5,6 +5,8 @@
     return;
   }
 
+  const currentPage = document.body.dataset.page || "home";
+
   const toast = document.createElement("div");
   toast.className = "toast";
   toast.setAttribute("role", "status");
@@ -22,13 +24,13 @@
     }, 2000);
   }
 
-  function createBadge(status) {
+  function createBadge(status, isCurrent) {
     const badge = document.createElement("span");
     badge.className = "badge";
     badge.setAttribute("aria-hidden", "true");
-    if (status === "active") {
+    if (isCurrent) {
       badge.textContent = "This Page";
-    } else if (status === "live") {
+    } else if (status === "active" || status === "live") {
       badge.textContent = "Live";
     } else {
       badge.textContent = "Soon";
@@ -42,12 +44,13 @@
     games.forEach((game) => {
       const item = document.createElement("li");
       const link = document.createElement("a");
+      const isCurrent = game.page === currentPage;
 
-      if (game.status === "active") {
+      if (isCurrent) {
         link.href = game.url;
         link.classList.add("is-active");
         link.setAttribute("aria-current", "page");
-      } else if (game.status === "live") {
+      } else if (game.status === "active" || game.status === "live") {
         link.href = game.url;
         link.classList.add("is-live");
       } else {
@@ -61,7 +64,7 @@
       }
 
       link.textContent = game.name + " ";
-      link.appendChild(createBadge(game.status));
+      link.appendChild(createBadge(game.status, isCurrent));
       item.appendChild(link);
       list.appendChild(item);
     });

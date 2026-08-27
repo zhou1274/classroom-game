@@ -1,0 +1,151 @@
+﻿/* Minimal embed integration for ClassroomGames.
+   Keeps the upstream game self-contained and responsive inside a fixed-height iframe. */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  overflow: auto;
+  padding: 6px;
+}
+
+.container {
+  width: min(100%, 640px);
+  margin: 0 auto;
+  padding: 12px;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.game-header {
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.game-info {
+  gap: 8px;
+}
+
+.info-item {
+  padding: 6px 10px;
+}
+
+.game-canvas-container {
+  width: min(100%, 440px);
+  margin: 10px auto;
+}
+
+#game-canvas {
+  width: min(100%, 400px);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  touch-action: none;
+}
+
+.instructions {
+  margin: 10px auto;
+  font-size: 13px;
+}
+
+.mobile-controls {
+  touch-action: none;
+}
+
+.dpad-btn {
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (min-width: 600px) {
+  .mobile-controls {
+    display: none;
+  }
+}
+
+@media (max-width: 599px) {
+  body {
+    padding: 5px;
+  }
+
+  .container {
+    padding: 6px;
+  }
+
+  h1 {
+    margin-bottom: 6px;
+    font-size: 22px;
+  }
+
+  .game-header {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  .game-info {
+    flex: 1 1 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+  }
+
+  .info-item {
+    min-width: 72px;
+    flex: 1 1 72px;
+    padding: 4px 6px;
+  }
+
+  .game-controls {
+    flex: 1 1 100%;
+    gap: 4px;
+    justify-content: center;
+  }
+
+  #difficulty,
+  #new-game,
+  #pause-game {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+
+  #game-canvas {
+    width: min(100%, 260px);
+  }
+
+  .game-canvas-container {
+    margin: 6px auto;
+  }
+
+  .instructions {
+    display: none;
+  }
+
+  .mobile-controls {
+    margin-top: 8px;
+  }
+
+  .dpad {
+    width: 96px;
+    height: 96px;
+  }
+
+  .dpad-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  #game-canvas {
+    width: min(100%, 330px);
+  }
+}
