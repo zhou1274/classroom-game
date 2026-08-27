@@ -202,3 +202,8 @@
 - 每个候选游戏都应先拉到一个本地临时目录，检查是否只引用相对路径、是否有外部 CDN、是否适合 iframe。
 - 若游戏代码使用 Phaser、Three.js，也要确认引擎许可和打包后的资源体积。
 - 不要在一期首页直接嵌入 142 个游戏；一期先锁定一个主游戏，二期再逐个新增 SEO 游戏页。
+
+## 2026-08-27 二次更正
+
+- `ellisonleao/clumsy-bird` 不是 MIT：最后提交为 `fae3d48`，2017-06-16，提交信息为 `Change LICENSE to GPLv3`，仓库 `LICENSE.md` 是 GPL-3.0 全文。如需作为 Flappy 类参考，必须按 GPL-3.0 处理源码义务，且不能直接沿用 Flappy Bird 品牌和原素材。
+- `SK8-infi/OpenCade` 仓库整体为 MIT（Copyright 2025 Games for Beginners Contributors），但包含大量 `Game-##` 占位目录、共享站点头部、Google Fonts、IEEE logo 与社交外链；提取单游戏后仍需逐项确认贡献者、图片和字体来源。
