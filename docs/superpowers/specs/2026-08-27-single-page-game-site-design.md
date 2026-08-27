@@ -485,7 +485,7 @@ JS 数组应放在独立文件 `assets/js/games.js` 中，方便后续新增游�
 - 侧栏宽 `260px`，背景 `#1A2B3C`，全高纵向排列。
 - 侧栏顶部显示站点名和一个 36px 的控制器 SVG 图标。
 - 游戏列表使用 `<ul>`，每项高度约 `44px`，间距 `6px`。
-- 当前项：背景 `#2563EB` 或左侧 3px 高亮条，文字白色，并显示 `Now Playing` 小标签。
+- 当前项：背景 `#2563EB` 或左侧 3px 高亮条，文字白色，并显示 `This Page` 小标签。
 - 占位项：文字 `rgba(255,255,255,0.72)`，右侧显示 `Soon` 标签；悬停背景变浅。
 - 焦点使用明显 `outline: 2px solid #93C5FD`，鼠标按下和键盘操作都可识别。
 
@@ -798,7 +798,7 @@ Puzzle Games Unblocked
 
 > The featured game is a browser-based challenge designed for short play sessions. It opens in the game area above, so you can start, pause, and return to your schoolwork without installing anything. The controls are simple enough for a first try, but the challenge grows as you learn the patterns and make better decisions.
 
-> Because the game runs inside this page, the experience stays tidy and easy to manage. You can use the game tabs on the left to explore other options, or ask a teacher if you want to use the game as part of a classroom activity. If you are using a touchscreen, follow the on-screen prompts and tap or swipe. If you are using a keyboard or mouse, the controls should be clear from the first move.
+> Because the game runs inside this page, the experience stays tidy and easy to manage. You can use the Games menu to explore other options, or ask a teacher if you want to use the game as part of a classroom activity. If you are using a touchscreen, follow the on-screen prompts and tap or swipe. If you are using a keyboard or mouse, the controls should be clear from the first move.
 
 > Every game on this page is made to be easy to start and easy to pause when class begins again. If a title is marked Coming Soon, it means the game is being prepared for its own page. When it arrives, you will find controls, tips, and classroom-friendly details right here.
 
@@ -816,7 +816,7 @@ Puzzle Games Unblocked
 
 **H2: Best Unblocked Games for Classroom**
 
-> The best classroom games unblocked are simple to explain, quick to load, and easy to end between periods. Puzzle games work well for quiet brain breaks, while word games and math challenges fit learning goals. The game tabs on the left show the featured game and a short list of titles that are planned for upcoming pages.
+> The best classroom games unblocked are simple to explain, quick to load, and easy to end between periods. Puzzle games work well for quiet brain breaks, while word games and math challenges fit learning goals. The Games menu shows the featured game and a short list of titles that are planned for upcoming pages.
 
 **H3: Popular Games You Can Play Unblocked**
 
@@ -824,11 +824,11 @@ Puzzle Games Unblocked
 
 **H3: How to Find More Games**
 
-> Use the game tabs on the left of this page to find classroom games unblocked quickly. If a game shows Coming Soon, it means the page is planned but not live yet. You can also return to the top of the page and use the navigation links to get back to the featured game or jump to the FAQ.
+> Use the Games menu to find classroom games unblocked quickly. If a game shows Coming Soon, it means the page is planned but not live yet. You can also return to the top of the page and use the navigation links to get back to the featured game or jump to the FAQ.
 
 **H2: How to Play Unblocked Games at School**
 
-> To play games at school, pick a game from the left sidebar, make sure the game area is visible, and click the play prompt inside the frame. If the game does not load, refresh the page and try again. Some school networks may limit certain sites, so a game that works at home may not open at school. This site does not bypass network policies and does not guarantee that every title will be available everywhere.
+> To play games at school, pick a game from the Games menu, make sure the game area is visible, and click the play prompt inside the frame. If the game does not load, refresh the page and try again. Some school networks may limit certain sites, so a game that works at home may not open at school. This site does not bypass network policies and does not guarantee that every title will be available everywhere.
 
 **H3: Do Unblocked Games Require Download?**
 

@@ -29,6 +29,7 @@ with sync_playwright() as p:
     toast_text = toast.inner_text() if toast.count() else ""
     results.append(f"coming-soon-toast={toast_text!r}")
 
+    page.evaluate("document.querySelector(\".toast\")?.remove()")
     page.screenshot(path="visual-desktop.png", full_page=True)
 
     mobile = browser.new_page(viewport={"width": 390, "height": 844})

@@ -280,6 +280,7 @@ Create `index.html` with this exact structure and content:
           <button class="fullscreen-button" id="fullscreen-button" type="button">Fullscreen</button>
         </div>
         <div class="game-placeholder" id="game-placeholder" role="status" aria-live="polite">
+          <svg aria-hidden="true" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="5" width="20" height="14" rx="7" fill="#2563EB"/><circle cx="8" cy="10" r="1.3" fill="#fff"/><circle cx="12" cy="10" r="1.3" fill="#fff"/><circle cx="16" cy="10" r="1.3" fill="#fff"/><path d="M7 15h10" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
           <strong>Featured Game</strong>
           <p>This game is being prepared and will load here once it is ready for classroom play.</p>
         </div>
@@ -306,7 +307,7 @@ Create `index.html` with this exact structure and content:
 
       <p>The featured game is a browser-based challenge designed for short play sessions. It opens in the game area above, so you can start, pause, and return to your schoolwork without installing anything. The controls are simple enough for a first try, but the challenge grows as you learn the patterns and make better decisions.</p>
 
-      <p>Because the game runs inside this page, the experience stays tidy and easy to manage. You can use the game tabs on the left to explore other options, or ask a teacher if you want to use the game as part of a classroom activity. If you are using a touchscreen, follow the on-screen prompts and tap or swipe. If you are using a keyboard or mouse, the controls should be clear from the first move.</p>
+      <p>Because the game runs inside this page, the experience stays tidy and easy to manage. You can use the Games menu to explore other options, or ask a teacher if you want to use the game as part of a classroom activity. If you are using a touchscreen, follow the on-screen prompts and tap or swipe. If you are using a keyboard or mouse, the controls should be clear from the first move.</p>
 
       <p>Every game on this page is made to be easy to start and easy to pause when class begins again. If a title is marked Coming Soon, it means the game is being prepared for its own page. When it arrives, you will find controls, tips, and classroom-friendly details right here.</p>
 
@@ -320,16 +321,16 @@ Create `index.html` with this exact structure and content:
       <p>Most free browser games are safe when they come from a reviewed source and do not ask for personal details. This site uses games that run directly in the browser, without downloads or sign-up forms. Students should still follow school rules, and teachers should review any game before using it with a class. If a game asks for money, private information, or unusual permissions, close it and choose another game.</p>
 
       <h2>Best Unblocked Games for Classroom</h2>
-      <p>The best classroom games unblocked are simple to explain, quick to load, and easy to end between periods. Puzzle games work well for quiet brain breaks, while word games and math challenges fit learning goals. The game tabs on the left show the featured game and a short list of titles that are planned for upcoming pages.</p>
+      <p>The best classroom games unblocked are simple to explain, quick to load, and easy to end between periods. Puzzle games work well for quiet brain breaks, while word games and math challenges fit learning goals. The Games menu shows the featured game and a short list of titles that are planned for upcoming pages.</p>
 
       <h3>Popular Games You Can Play Unblocked</h3>
       <p>Popular choices include 2048, Snake, word games, and classroom-friendly puzzle games. They share the same pattern: short rounds, clear rules, and no download required. When a new game is added, it will get its own page with a longer description, controls, and tips.</p>
 
       <h3>How to Find More Games</h3>
-      <p>Use the game tabs on the left of this page to find classroom games unblocked quickly. If a game shows Coming Soon, it means the page is planned but not live yet. You can also return to the top of the page and use the navigation links to get back to the featured game or jump to the FAQ.</p>
+      <p>Use the Games menu to find classroom games unblocked quickly. If a game shows Coming Soon, it means the page is planned but not live yet. You can also return to the top of the page and use the navigation links to get back to the featured game or jump to the FAQ.</p>
 
       <h2>How to Play Unblocked Games at School</h2>
-      <p>To play games at school, pick a game from the left sidebar, make sure the game area is visible, and click the play prompt inside the frame. If the game does not load, refresh the page and try again. Some school networks may limit certain sites, so a game that works at home may not open at school. This site does not bypass network policies and does not guarantee that every title will be available everywhere.</p>
+      <p>To play games at school, pick a game from the Games menu, make sure the game area is visible, and click the play prompt inside the frame. If the game does not load, refresh the page and try again. Some school networks may limit certain sites, so a game that works at home may not open at school. This site does not bypass network policies and does not guarantee that every title will be available everywhere.</p>
 
       <h3>Do Unblocked Games Require Download?</h3>
       <p>No. These games run in the browser and do not require a download, installation, or account. This makes them easier to use on shared school devices and Chromebooks. If you see a download button or a request to install an app, you are not on the intended game experience and should return to this page.</p>
@@ -460,8 +461,9 @@ Create exactly:
   function createBadge(status) {
     const badge = document.createElement("span");
     badge.className = "badge";
+    badge.setAttribute("aria-hidden", "true");
     if (status === "active") {
-      badge.textContent = "Now Playing";
+      badge.textContent = "This Page";
     } else if (status === "live") {
       badge.textContent = "Live";
     } else {
@@ -487,7 +489,7 @@ Create exactly:
       } else {
         link.href = "#";
         link.classList.add("is-coming-soon");
-        link.setAttribute("aria-disabled", "true");
+        link.setAttribute("aria-label", game.name + " is coming soon");
         link.addEventListener("click", (event) => {
           event.preventDefault();
           showToast(`${game.name} is coming soon.`);
@@ -803,6 +805,10 @@ button:focus-visible {
   display: none;
 }
 
+.game-placeholder svg {
+  color: var(--primary);
+}
+
 .game-toolbar {
   display: flex;
   align-items: center;
@@ -874,6 +880,8 @@ button:focus-visible {
 
 .content-card p {
   color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 1.1em;
 }
 
 .site-footer {
@@ -1281,6 +1289,15 @@ check(html.includes("class=\"skip-link\""), "skip link present");
 check(html.includes("id=\"game-placeholder\""), "game placeholder present");
 check(!html.includes("Once the featured game is confirmed"), "no developer placeholder note");
 check(mainJs.includes("placeholder.hidden = true"), "placeholder hides after game loads");
+check(!mainJs.includes("Now Playing"), "no false playing claim");
+check(html.includes("Games menu shows"), "device-neutral games menu copy");
+check(html.includes("Games menu to explore"), "explore copy is device neutral");
+check(html.includes("Games menu to find"), "find copy is device neutral");
+check(!html.includes("left sidebar"), "no desktop-only sidebar copy");
+check(css.includes(".game-placeholder svg"), "placeholder icon style");
+check(mainJs.includes('badge.textContent = "This Page"'), "this page badge label");
+check(mainJs.includes('link.setAttribute("aria-label"'), "placeholder uses aria-label");
+check(!mainJs.includes("aria-disabled"), "no conflicting disabled state");
 check(!/<img\b/i.test(html), "no raster images in HTML");
 
 const articleMatch = html.match(/<article class="content-card" id="content">([\s\S]*?)<\/article>/);

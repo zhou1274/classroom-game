@@ -74,6 +74,15 @@ check(html.includes('class="skip-link"'), "skip link present");
 check(html.includes("id=\"game-placeholder\""), "game placeholder present");
 check(!html.includes("Once the featured game is confirmed"), "no developer placeholder note");
 check(mainJs.includes("placeholder.hidden = true"), "placeholder hides after game loads");
+check(!mainJs.includes("Now Playing"), "no false playing claim");
+check(html.includes("Games menu shows"), "device-neutral games menu copy");
+check(html.includes("Games menu to explore"), "explore copy is device neutral");
+check(html.includes("Games menu to find"), "find copy is device neutral");
+check(!html.includes("left sidebar"), "no desktop-only sidebar copy");
+check(css.includes(".game-placeholder svg"), "placeholder icon style");
+check(mainJs.includes('badge.textContent = "This Page"'), "this page badge label");
+check(mainJs.includes('link.setAttribute("aria-label"'), "placeholder uses aria-label");
+check(!mainJs.includes("aria-disabled"), "no conflicting disabled state");
 check(!/<img\b/i.test(html), "no raster images in HTML");
 
 const articleMatch = html.match(/<article class="content-card" id="content">([\s\S]*?)<\/article>/);
@@ -120,6 +129,7 @@ for (const rule of [
   ".skip-link",
   "scroll-behavior: smooth",
   "linear-gradient",
+  "line-height: 1.75",
   "prefers-reduced-motion"
 ]) {
   check(css.includes(rule), `CSS rule: ${rule}`);

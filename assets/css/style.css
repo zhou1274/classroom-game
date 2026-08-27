@@ -240,6 +240,10 @@ button:focus-visible {
   display: none;
 }
 
+.game-placeholder svg {
+  color: var(--primary);
+}
+
 .game-toolbar {
   display: flex;
   align-items: center;
@@ -319,6 +323,8 @@ button:focus-visible {
 
 .content-card p {
   color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 1.1em;
 }
 
 .site-footer {

@@ -25,8 +25,9 @@
   function createBadge(status) {
     const badge = document.createElement("span");
     badge.className = "badge";
+    badge.setAttribute("aria-hidden", "true");
     if (status === "active") {
-      badge.textContent = "Now Playing";
+      badge.textContent = "This Page";
     } else if (status === "live") {
       badge.textContent = "Live";
     } else {
@@ -52,7 +53,7 @@
       } else {
         link.href = "#";
         link.classList.add("is-coming-soon");
-        link.setAttribute("aria-disabled", "true");
+        link.setAttribute("aria-label", game.name + " is coming soon");
         link.addEventListener("click", (event) => {
           event.preventDefault();
           showToast(`${game.name} is coming soon.`);
