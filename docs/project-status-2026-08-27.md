@@ -48,7 +48,8 @@
 
 ## 7. 当前部署状态（2026-08-27 更新）
 
-- 当前线上托管：Vercel。
-- 已新增 Railway 静态托管配置文件：`Dockerfile`、`Caddyfile`、`.dockerignore`。
-- Railway 部署方法见 `docs/railway-deployment-2026-08-27.md`。
-- 正式域名切换或托管平台切换前，需要验证自定义域名、SSL、404 页、sitemap 与 iframe 路径。
+- 正式环境：Cloudflare DNS/Proxy → Railway（Caddy 静态托管）。
+- Cloudflare Nameserver、Railway CNAME 与 `_railway-verify` TXT 已生效。
+- 已验证：首页、Snake 页、CSS、robots、sitemap 返回 200；未知路径返回自定义 404。
+- 正式域名：`https://classroom-game.com/`。
+- Vercel 仍可保留，但不再作为正式域名入口。
