@@ -29,7 +29,7 @@
 6. 按 Railway 给出的目标，在 Cloudflare 创建 CNAME：
    - `classroom-game.com` → Railway 提供的目标
    - `www.classroom-game.com` → 指向主域名或 Railway 目标
-7. 如果通过 Cloudflare 代理，建议把 SSL/TLS 设为“完全（严格）”，并确认源站证书由 Railway 自动签发。
+7. 如果通过 Cloudflare 代理，Cloudflare 的 SSL/TLS 模式必须设为“Full（完全）”，不能选 Full (Strict)；CNAME 必须保持橙色云（Proxied），否则可能出现 `ERR_TOO_MANY_REDIRECTS`。
 8. 部署完成后验证首页、`/games/snake-unblocked.html`、未知路径 404、`/robots.txt`、`/sitemap.xml` 和 iframe 游戏。
 
 ## 4. 域名与 SEO 注意
