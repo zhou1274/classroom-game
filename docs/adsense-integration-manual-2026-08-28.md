@@ -221,15 +221,11 @@ tools/generate_game_pages.mjs 中的 ASSET_VERSION
 
 ## 十一、Cloudflare 缓存与版本化文件
 
-当前 CSS 使用独立文件名：
+当前 CSS 暂时使用 `assets/css/style.css?v=20260828p`。
 
-```text
-assets/css/style-20260828p.css
-```
-
-不要只依赖 `?v=` 查询参数，Cloudflare 可能忽略查询参数并继续返回旧文件。每次修改 CSS 后：
+Cloudflare 可能忽略查询参数并继续返回旧文件，因此修改样式后：
 
 1. 在 `tools/generate_game_pages.mjs` 中递增 `ASSET_VERSION`。
-2. 将样式另存为 `assets/css/style-<新版本号>.css`。
-3. 更新页面中的样式路径，不要继续使用 `style.css?v=`。
-4. 重新生成页面并部署。
+2. 确认 Railway 完成部署。
+3. 检查线上 CSS 是否返回新规则。
+4. 如果 Cloudflare 仍返回旧文件，清除该文件的缓存，或再使用独立的版本化文件名。

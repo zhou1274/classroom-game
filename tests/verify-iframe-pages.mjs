@@ -77,7 +77,7 @@ for (const game of ALL_GAME_PAGES) {
   check(/^https:\/\//.test(iframe), `${label}: iframe is remote HTTPS`);
   check(html.includes('loading="lazy"'), `${label}: iframe lazy loading`);
   check(html.includes('tabindex="0"'), `${label}: iframe keyboard focusable`);
-  check(html.includes('style-20260828p.css"'), `${label}: versioned stylesheet`);
+  check(html.includes('style.css?v=20260828p"'), `${label}: versioned stylesheet`);
   check(html.includes('height="540"'), `${label}: iframe height 600`);
   check(html.includes('games.js?v=20260828p"'), `${label}: versioned games script`);
   check(html.includes('allow="pointer-lock; fullscreen; autoplay; encrypted-media; clipboard-write"'), `${label}: iframe pointer lock permission`);

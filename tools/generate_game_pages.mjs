@@ -229,7 +229,7 @@ function buildPage(game) {
   <meta property="og:description" content="${escapeHtml(description)}">
   <meta name="twitter:card" content="summary">
   <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
-  <link rel="stylesheet" href="../assets/css/style-${ASSET_VERSION}.css">
+  <link rel="stylesheet" href="../assets/css/style.css?v=${ASSET_VERSION}">
 
   ${website}
 

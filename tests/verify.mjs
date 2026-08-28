@@ -24,7 +24,6 @@ const requiredFiles = [
   "robots.txt",
   "sitemap.xml",
   "assets/css/style.css",
-  "assets/css/style-20260828p.css",
   "assets/js/games.js",
   "assets/js/main.js",
   "assets/icons/favicon.svg",
@@ -162,7 +161,7 @@ check(css.includes("max-width: 900px"), "CSS game area uses full main width");
 check(css.includes("height: 540px"), "CSS desktop game height 600px");
 check(css.includes("height: 450px"), "CSS mobile game height 480px");
 check(html.includes('height="540"'), "home iframe height 540");
-check(html.includes("assets/css/style-20260828p.css"), "home versioned stylesheet");
+check(html.includes("assets/css/style.css?v=20260828p"), "home versioned stylesheet");
 check(html.includes("assets/js/games.js?v=20260828p"), "home versioned games script");
 check(html.includes('allow="pointer-lock; fullscreen; autoplay; encrypted-media; clipboard-write"'), "home iframe pointer lock permission");
 check(!mainJs.includes("Now Playing"), "no false playing claim");
