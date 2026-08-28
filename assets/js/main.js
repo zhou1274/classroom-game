@@ -7,6 +7,14 @@
 
   const currentPage = document.body.dataset.page || "home";
 
+  const gameFrame = document.querySelector(".game-frame");
+
+  function focusGameFrame() {
+    if (!gameFrame) return;
+    gameFrame.setAttribute("tabindex", "0");
+    gameFrame.focus();
+  }
+
   const toast = document.createElement("div");
   toast.className = "toast";
   toast.setAttribute("role", "status");
@@ -98,11 +106,11 @@
       } else {
         shell.requestFullscreen?.();
       }
+      focusGameFrame();
     });
   }
 
   const placeholder = document.getElementById("game-placeholder");
-  const gameFrame = document.querySelector(".game-frame");
   if (placeholder && gameFrame) {
     function hidePlaceholder() {
       if (gameFrame.getAttribute("src")) {
@@ -110,11 +118,13 @@
       }
     }
     gameFrame.addEventListener("load", hidePlaceholder, { once: true });
+    gameFrame.addEventListener("load", focusGameFrame);
     const localDoc = gameFrame.contentDocument;
     if (localDoc && localDoc.readyState === "complete") {
       hidePlaceholder();
+      focusGameFrame();
     }
-    setTimeout(hidePlaceholder, 5000);
+    setTimeout(() => { hidePlaceholder(); focusGameFrame(); }, 5000);
   }
 
   renderGameList();
