@@ -5,11 +5,64 @@ import { GAME_PAGES } from "./game-pages-data.mjs";
 import { CATALOG_GAME_PAGES } from "./catalog-game-pages-data.mjs";
 import { REMAINING_GAME_PAGES } from "./remaining-games-data.mjs";
 
-const ASSET_VERSION = "20260828j";
+const ASSET_VERSION = "20260828k";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const gamesDir = path.join(root, "games");
-const ALL_GAME_PAGES = [...GAME_PAGES, ...CATALOG_GAME_PAGES, ...REMAINING_GAME_PAGES];
+// ALL_GAME_PAGES is defined below after priority ordering.
+
+const PRIORITY_GAME_SLUGS = [
+  "minecraft",
+  "1v1-lol",
+  "moto-x3m",
+  "hill-climb-racing",
+  "drift-hunters",
+  "subway-surfers",
+  "temple-run",
+  "geometry-dash",
+  "slope",
+  "ovo",
+  "vex",
+  "run-3",
+  "among-us",
+  "chess",
+  "checkers",
+  "solitaire",
+  "uno",
+  "cookie-clicker",
+  "paper-io",
+  "doodle-jump",
+  "tetris",
+  "math-games",
+  "puzzle-games",
+  "ball-sort-puzzle",
+  "2048-classic",
+  "wordle-extra",
+  "minesweeper-classic",
+  "tic-tac-toe-classic"
+];
+
+function orderGames(games) {
+  const bySlug = new Map(games.map((game) => [game.slug, game]));
+  const ordered = [];
+  const used = new Set();
+  for (const slug of PRIORITY_GAME_SLUGS) {
+    const game = bySlug.get(slug);
+    if (game && !used.has(slug)) {
+      ordered.push(game);
+      used.add(slug);
+    }
+  }
+  for (const game of games) {
+    if (!used.has(game.slug)) {
+      ordered.push(game);
+      used.add(game.slug);
+    }
+  }
+  return ordered;
+}
+
+const ALL_GAME_PAGES = orderGames([...GAME_PAGES, ...CATALOG_GAME_PAGES, ...REMAINING_GAME_PAGES]);
 
 function titleFor(game) {
   const variants = [
@@ -299,12 +352,12 @@ function buildPage(game) {
 function gamesJs() {
   return `window.CLASSROOM_GAMES = [
   { name: "2048 Unblocked", url: "/index.html#game-area", page: "home", status: "active" },
+${ALL_GAME_PAGES.map((game) => `  { name: ${JSON.stringify(game.name)}, url: ${JSON.stringify(`/games/${game.slug}-unblocked.html`)}, page: ${JSON.stringify(game.slug)}, status: "live" },`).join("\n")}
   { name: "Snake Unblocked", url: "/games/snake-unblocked.html", page: "snake", status: "live" },
   { name: "2048 Cupcakes Unblocked", url: "/games/cupcake-2048-unblocked.html", page: "cupcake-2048", status: "live" },
   { name: "Wordle Unblocked", url: "/games/wordle-unblocked.html", page: "wordle", status: "live" },
   { name: "Minesweeper Unblocked", url: "/games/minesweeper-unblocked.html", page: "minesweeper", status: "live" },
   { name: "Tic Tac Toe Unblocked", url: "/games/tic-tac-toe-unblocked.html", page: "tic-tac-toe", status: "live" },
-${ALL_GAME_PAGES.map((game) => `  { name: ${JSON.stringify(game.name)}, url: ${JSON.stringify(`/games/${game.slug}-unblocked.html`)}, page: ${JSON.stringify(game.slug)}, status: "live" },`).join("\n")}
 ];
 `;
 }
@@ -312,12 +365,12 @@ ${ALL_GAME_PAGES.map((game) => `  { name: ${JSON.stringify(game.name)}, url: ${J
 function sitemapXml() {
   const urls = [
     ["https://classroom-game.com/", "daily", "1.0", true],
+    ...ALL_GAME_PAGES.map((game) => [`https://classroom-game.com/games/${game.slug}-unblocked.html`, "weekly", "0.9", false]),
     ["https://classroom-game.com/games/snake-unblocked.html", "weekly", "0.9", false],
     ["https://classroom-game.com/games/cupcake-2048-unblocked.html", "weekly", "0.9", false],
     ["https://classroom-game.com/games/wordle-unblocked.html", "weekly", "0.9", false],
     ["https://classroom-game.com/games/minesweeper-unblocked.html", "weekly", "0.9", false],
-    ["https://classroom-game.com/games/tic-tac-toe-unblocked.html", "weekly", "0.9", false],
-    ...ALL_GAME_PAGES.map((game) => [`https://classroom-game.com/games/${game.slug}-unblocked.html`, "weekly", "0.9", false])
+    ["https://classroom-game.com/games/tic-tac-toe-unblocked.html", "weekly", "0.9", false]
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
