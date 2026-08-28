@@ -3,6 +3,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { GAME_PAGES } from "./game-pages-data.mjs";
 
+const ASSET_VERSION = "20260828b";
+
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const gamesDir = path.join(root, "games");
 
@@ -268,8 +270,8 @@ function buildPage(game) {
     </div>
   </footer>
 
-  <script src="../assets/js/games.js" defer></script>
-  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/games.js?v=${ASSET_VERSION}" defer></script>
+  <script src="../assets/js/main.js?v=${ASSET_VERSION}" defer></script>
 </body>
 </html>
 `;
