@@ -1,7 +1,6 @@
 # classroom-game.com 添加游戏实现指南（2026-08-28）
 
 > 本文说明当前项目如何从“数据定义”到“生成游戏页、菜单、sitemap”，再到部署上线的完整方法。  
-> 适用于接管项目的开发者、维护者和需要批量扩充游戏目录的协助人员。
 
 ## 1. 当前实现方式概览
 
@@ -450,21 +449,3 @@ Railway 构建有时需要 1–3 分钟；页面如果旧但新页面已 200，�
 - 换一个同玩法来源
 - 在页面 FAQ 中保留“学校网络可能限制”的说明
 
-## 14. 相关文件索引
-
-| 文件 | 作用 |
-| --- | --- |
-| `tools/game-pages-data.mjs` | 第一批 30 个游戏数据 |
-| `tools/catalog-game-pages-data.mjs` | 精选 68 个游戏数据 |
-| `tools/remaining-games-data.mjs` | 剩余 319 个游戏数据 |
-| `tools/generate_game_pages.mjs` | 页面/菜单/sitemap 生成器 |
-| `tools/crawl_embed_catalog.py` | 从 classroomgame 仓库提取 embed 目标 |
-| `tools/build_catalog_data.py` | 生成精选游戏数据 |
-| `tools/build_all_remaining_data.py` | 生成全量剩余游戏数据 |
-| `assets/js/games.js` | 线上菜单数据（生成产物，勿手改） |
-| `assets/js/main.js` | 菜单渲染、全屏、占位逻辑 |
-| `assets/css/style.css` | 全局样式和响应式 |
-| `docs/embed-catalog-2026-08-28.tsv` | 420 个 embed 来源映射 |
-| `docs/embed-remaining-2026-08-28.tsv` | 未接入入口清单 |
-| `docs/remaining-games-summary-2026-08-28.md` | 来源与决策记录 |
-| `docs/client-and-team-maintenance-guide-2026-08-28.md` | 甲方/维护者讲解版 |

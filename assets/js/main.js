@@ -104,11 +104,17 @@
   const placeholder = document.getElementById("game-placeholder");
   const gameFrame = document.querySelector(".game-frame");
   if (placeholder && gameFrame) {
-    gameFrame.addEventListener("load", () => {
-      if (gameFrame.src) {
+    function hidePlaceholder() {
+      if (gameFrame.getAttribute("src")) {
         placeholder.hidden = true;
       }
-    });
+    }
+    gameFrame.addEventListener("load", hidePlaceholder, { once: true });
+    const localDoc = gameFrame.contentDocument;
+    if (localDoc && localDoc.readyState === "complete") {
+      hidePlaceholder();
+    }
+    setTimeout(hidePlaceholder, 5000);
   }
 
   renderGameList();

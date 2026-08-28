@@ -5,7 +5,7 @@ import { GAME_PAGES } from "./game-pages-data.mjs";
 import { CATALOG_GAME_PAGES } from "./catalog-game-pages-data.mjs";
 import { REMAINING_GAME_PAGES } from "./remaining-games-data.mjs";
 
-const ASSET_VERSION = "20260828e";
+const ASSET_VERSION = "20260828f";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const gamesDir = path.join(root, "games");
@@ -213,6 +213,7 @@ function buildPage(game) {
           width="100%"
           height="680"
           frameborder="0"
+          allow="pointer-lock; fullscreen; autoplay; encrypted-media; clipboard-write"
           allowfullscreen
           loading="lazy">
         </iframe>

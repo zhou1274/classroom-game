@@ -76,6 +76,7 @@ for (const game of ALL_GAME_PAGES) {
   check(iframe === game.embedUrl, `${label}: iframe source exact`);
   check(/^https:\/\//.test(iframe), `${label}: iframe is remote HTTPS`);
   check(html.includes('loading="lazy"'), `${label}: iframe lazy loading`);
+  check(html.includes('allow="pointer-lock; fullscreen; autoplay; encrypted-media; clipboard-write"'), `${label}: iframe pointer lock permission`);
   check(html.includes('class="game-controls"'), `${label}: controls helper`);
   check(html.includes('id="game-placeholder"'), `${label}: game placeholder`);
   check(html.includes('class="skip-link"'), `${label}: skip link`);
