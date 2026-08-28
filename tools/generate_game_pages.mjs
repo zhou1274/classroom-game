@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import { GAME_PAGES } from "./game-pages-data.mjs";
 import { CATALOG_GAME_PAGES } from "./catalog-game-pages-data.mjs";
 
-const ASSET_VERSION = "20260828b";
+const ASSET_VERSION = "20260828c";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const gamesDir = path.join(root, "games");
