@@ -201,8 +201,8 @@ python tools/crawl_embed_catalog.py --src <临时目录>
 每次修改 `games.js` 或 `main.js` 时，必须升级资源版本号：
 
 ```text
-assets/js/games.js?v=20260828h
-assets/js/main.js?v=20260828h
+assets/js/games.js?v=20260828i
+assets/js/main.js?v=20260828i
 ```
 
 原因：Cloudflare 会缓存旧 JS，导致页面结构已更新但菜单仍显示旧数量。

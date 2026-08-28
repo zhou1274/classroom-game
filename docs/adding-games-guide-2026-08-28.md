@@ -235,7 +235,7 @@ python tools/crawl_embed_catalog.py --src <临时目录>
 - canonical、OG、twitter:card
 - 三个广告位 HTML 注释
 - `iframe` 带 `loading="lazy"` 和 `allowfullscreen`
-- 桌面 680px、移动端 520px
+- 桌面外部游戏 600px、移动端 480px；本地游戏 680px / 520px
 
 ### 6.2 自动生成菜单
 
@@ -320,20 +320,20 @@ Cloudflare 会缓存 `assets/js/games.js` 和 `assets/js/main.js`，因此每次
 当前生成器变量：
 
 ```js
-const ASSET_VERSION = "20260828h";
+const ASSET_VERSION = "20260828i";
 ```
 
 所有页面引用：
 
 ```html
-<script src="../assets/js/games.js?v=20260828h" defer></script>
-<script src="../assets/js/main.js?v=20260828h" defer></script>
+<script src="../assets/js/games.js?v=20260828i" defer></script>
+<script src="../assets/js/main.js?v=20260828i" defer></script>
 ```
 
 以后每次修改 `games.js` / `main.js`，把版本号改成新的日期或递增号，例如：
 
 ```text
-20260828h -> 20260829a
+20260828i -> 20260829a
 ```
 
 不要复用旧版本号，否则线上仍可能显示旧菜单。

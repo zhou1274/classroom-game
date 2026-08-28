@@ -140,7 +140,7 @@ check(html.includes("Best Unblocked Games for Classroom"), "home H2 best games h
 check(html.includes("How to Play Unblocked Games at School"), "home H2 how-to heading");
 check(html.includes("FAQ About Classroom Games Unblocked"), "home H2 FAQ heading");
 check(html.includes("Snake Unblocked"), "home mentions Snake Unblocked");
-check(html.includes('class="game-frame"'), "home game iframe uses game-frame class");
+check(html.includes('class="game-frame'), "home game iframe uses game-frame class");
 check(html.includes('src="assets/games/2048/index.html"'), "home game iframe local 2048");
 check(html.includes('class="game-controls"'), "home game controls helper present");
 check(html.includes("Use arrow keys or swipe to move."), "home 2048 controls copy present");
@@ -154,8 +154,11 @@ check(mainJs.includes("gameFrame.focus()"), "main.js calls iframe focus");
 check(html.includes('tabindex="0"'), "home iframe is keyboard focusable");
 check(css.includes("pointer-events: none;"), "CSS placeholder never blocks clicks");
 check(css.includes("max-width: 100%"), "CSS game area uses full main width");
-check(html.includes("assets/css/style.css?v=20260828h"), "home versioned stylesheet");
-check(html.includes("assets/js/games.js?v=20260828h"), "home versioned games script");
+check(css.includes("height: 600px"), "CSS desktop game height 600px");
+check(css.includes("height: 480px"), "CSS mobile game height 480px");
+check(html.includes('height="680"'), "home iframe height 680");
+check(html.includes("assets/css/style.css?v=20260828i"), "home versioned stylesheet");
+check(html.includes("assets/js/games.js?v=20260828i"), "home versioned games script");
 check(html.includes('allow="pointer-lock; fullscreen; autoplay; encrypted-media; clipboard-write"'), "home iframe pointer lock permission");
 check(!mainJs.includes("Now Playing"), "no false playing claim");
 check(mainJs.includes("document.body.dataset.page"), "main.js reads current page");
@@ -205,7 +208,7 @@ check(count(snakeHtml, /<h4\b/gi) === 0, "snake no H4");
 check(snakeHtml.includes("Why Snake Is a Good Classroom Game"), "snake teacher/student heading");
 check(snakeHtml.includes("FAQ About Snake Unblocked"), "snake FAQ heading");
 check(snakeHtml.includes('src="../assets/games/snake/index.html"'), "snake iframe local source");
-check(snakeHtml.includes('class="game-frame"'), "snake iframe uses game-frame class");
+check(snakeHtml.includes('class="game-frame'), "snake iframe uses game-frame class");
 check(snakeHtml.includes('class="game-controls"'), "snake controls helper present");
 check(snakeHtml.includes('class="skip-link"'), "snake skip link present");
 check(snakeHtml.includes('id="game-placeholder"'), "snake game placeholder present");
@@ -276,7 +279,7 @@ for (const pageData of newPages) {
   check(count(pageData.html, /<h4\b/gi) === 0, `${name} no H4`);
   check(pageData.html.includes(`<body data-page="${pageData.page}">`), `${name} body data-page`);
   check(pageData.html.includes(`src="${pageData.iframe}"`), `${name} local iframe`);
-  check(pageData.html.includes('class="game-frame"'), `${name} game frame class`);
+  check(pageData.html.includes('class="game-frame'), `${name} game frame class`);
   check(pageData.html.includes('class="game-controls"'), `${name} controls helper`);
   check(pageData.html.includes('id="faq"'), `${name} FAQ anchor`);
   check(articleWordCount(pageData.html) >= 600, `${name} SEO article words >=600`);
@@ -328,8 +331,8 @@ for (const rule of [
   "padding-left: 292px",
   "width: 260px",
   "max-width: 960px",
-  "height: 680px",
-  "height: 520px",
+  "height: 600px",
+  "height: 480px",
   "overflow-x: auto",
   "min-height: 56px",
   "min-width: 150px",
