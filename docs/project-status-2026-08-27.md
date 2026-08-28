@@ -94,3 +94,11 @@
 - 失效入口已记录并排除：gunspin-2、slice-master-2、slice-master2、soccer-bros、sbrunga。
 - 生成数据：`tools/remaining-games-data.mjs`；重生成：`python tools/build_all_remaining_data.py && node tools/generate_game_pages.mjs`。
 - 验证：`node tests/verify.mjs` 1077 项、`node tests/verify-iframe-pages.mjs` 14178 项、视觉测试全部通过。
+
+## 12. 首页主游戏调整（2026-08-28）
+
+- 首页主游戏已从本地 2048 切换为 Minecraft Unblocked（外部 iframe）。
+- 菜单第一项现在是 Minecraft Unblocked，并标记为“This Page”；独立 Minecraft SEO 页仍保留，但从菜单中不再重复展示。
+- 菜单总数为 422 项（首页 active + 421 live）；sitemap 仍包含独立 Minecraft 页，因此仍为 423 个 URL。
+- 2048 Classic Unblocked 仍保留在菜单后部。
+- 资源版本：`20260828m`。

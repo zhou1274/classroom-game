@@ -77,9 +77,9 @@ for (const game of ALL_GAME_PAGES) {
   check(/^https:\/\//.test(iframe), `${label}: iframe is remote HTTPS`);
   check(html.includes('loading="lazy"'), `${label}: iframe lazy loading`);
   check(html.includes('tabindex="0"'), `${label}: iframe keyboard focusable`);
-  check(html.includes('style.css?v=20260828l"'), `${label}: versioned stylesheet`);
+  check(html.includes('style.css?v=20260828m"'), `${label}: versioned stylesheet`);
   check(html.includes('height="540"'), `${label}: iframe height 600`);
-  check(html.includes('games.js?v=20260828l"'), `${label}: versioned games script`);
+  check(html.includes('games.js?v=20260828m"'), `${label}: versioned games script`);
   check(html.includes('allow="pointer-lock; fullscreen; autoplay; encrypted-media; clipboard-write"'), `${label}: iframe pointer lock permission`);
   check(html.includes('class="game-controls"'), `${label}: controls helper`);
   check(html.includes('id="game-placeholder"'), `${label}: game placeholder`);
@@ -100,8 +100,10 @@ for (const game of ALL_GAME_PAGES) {
   check(!/fonts\.googleapis\.com|fonts\.gstatic\.com|@font-face/i.test(html), `${label}: no external fonts`);
   check(!html.includes("javascript:"), `${label}: no javascript URLs`);
   check(!html.includes("aggregateRating"), `${label}: no fake aggregateRating`);
-  check(menu.includes(`page: "${game.slug}"`) && menu.includes(`status: "live"`), `${label}: menu live entry`);
-  check(menu.includes(`/games/${game.slug}-unblocked.html`), `${label}: menu URL`);
+  if (game.slug !== "minecraft") {
+    check(menu.includes(`page: "${game.slug}"`) && menu.includes(`status: "live"`), `${label}: menu live entry`);
+    check(menu.includes(`/games/${game.slug}-unblocked.html`), `${label}: menu URL`);
+  }
   check(sitemap.includes(`<loc>${canonical}</loc>`), `${label}: sitemap URL`);
 }
 

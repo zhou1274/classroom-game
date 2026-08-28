@@ -139,11 +139,11 @@ check(html.includes("What Are Classroom Games Unblocked?"), "home H2 explainer h
 check(html.includes("Best Unblocked Games for Classroom"), "home H2 best games heading");
 check(html.includes("How to Play Unblocked Games at School"), "home H2 how-to heading");
 check(html.includes("FAQ About Classroom Games Unblocked"), "home H2 FAQ heading");
-check(html.includes("Snake Unblocked"), "home mentions Snake Unblocked");
+check(html.includes("Minecraft Unblocked"), "home mentions Minecraft Unblocked");
 check(html.includes('class="game-frame'), "home game iframe uses game-frame class");
-check(html.includes('src="assets/games/2048/index.html"'), "home game iframe local 2048");
+check(html.includes('src="https://minecraft-free-online.github.io/minecraft-github/"'), "home game iframe local 2048");
 check(html.includes('class="game-controls"'), "home game controls helper present");
-check(html.includes("Use arrow keys or swipe to move."), "home 2048 controls copy present");
+check(html.includes("Use WASD to move, the mouse to look"), "home 2048 controls copy present");
 check(html.includes('class="skip-link"'), "home skip link present");
 check(html.includes('id="game-placeholder"'), "home game placeholder present");
 check(!html.includes("Once the featured game is confirmed"), "home no developer placeholder note");
@@ -156,9 +156,9 @@ check(css.includes("pointer-events: none;"), "CSS placeholder never blocks click
 check(css.includes("max-width: 900px"), "CSS game area uses full main width");
 check(css.includes("height: 540px"), "CSS desktop game height 600px");
 check(css.includes("height: 450px"), "CSS mobile game height 480px");
-check(html.includes('height="680"'), "home iframe height 680");
-check(html.includes("assets/css/style.css?v=20260828l"), "home versioned stylesheet");
-check(html.includes("assets/js/games.js?v=20260828l"), "home versioned games script");
+check(html.includes('height="540"'), "home iframe height 540");
+check(html.includes("assets/css/style.css?v=20260828m"), "home versioned stylesheet");
+check(html.includes("assets/js/games.js?v=20260828m"), "home versioned games script");
 check(html.includes('allow="pointer-lock; fullscreen; autoplay; encrypted-media; clipboard-write"'), "home iframe pointer lock permission");
 check(!mainJs.includes("Now Playing"), "no false playing claim");
 check(mainJs.includes("document.body.dataset.page"), "main.js reads current page");
@@ -185,14 +185,14 @@ for (const comment of [
 }
 
 const statuses = [...gamesJs.matchAll(/status:\s*"(active|live|coming-soon)"/g)].map((match) => match[1]);
-check(statuses.length === 423, "423 game entries (got " + statuses.length + ")");
+check(statuses.length === 422, "422 menu entries (got " + statuses.length + ")");
 check(statuses[0] === "active", "first game is 2048 active");
 check(statuses.slice(1).every((status) => status === "live"), "all other entries are live");
 check(!statuses.includes("coming-soon"), "no coming-soon entries in menu");
 const menuNames = [...gamesJs.matchAll(/name: "([^"]+)"/g)].map((match) => match[1]);
-check(menuNames[1] === "Minecraft Unblocked", "menu first game is Minecraft");
-check(menuNames[2] === "1v1 LOL Unblocked", "menu second game is 1v1 LOL");
-check(menuNames[3] === "Moto X3M Unblocked", "menu third game is Moto X3M");
+check(menuNames[0] === "Minecraft Unblocked", "menu first game is Minecraft");
+check(menuNames[1] === "1v1 LOL Unblocked", "menu second game is 1v1 LOL");
+check(menuNames[2] === "Moto X3M Unblocked", "menu third game is Moto X3M");
 check(menuNames.slice(0, 28).includes("Hill Climb Racing Unblocked"), "popular racing game is high in menu");
 check(gamesJs.includes('page: "home"'), "games.js marks home page");
 check(gamesJs.includes('page: "snake"'), "games.js marks snake page");

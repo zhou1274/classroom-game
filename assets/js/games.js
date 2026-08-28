@@ -1,6 +1,5 @@
 window.CLASSROOM_GAMES = [
-  { name: "2048 Unblocked", url: "/index.html#game-area", page: "home", status: "active" },
-  { name: "Minecraft Unblocked", url: "/games/minecraft-unblocked.html", page: "minecraft", status: "live" },
+  { name: "Minecraft Unblocked", url: "/index.html#game-area", page: "home", status: "active" },
   { name: "1v1 LOL Unblocked", url: "/games/1v1-lol-unblocked.html", page: "1v1-lol", status: "live" },
   { name: "Moto X3M Unblocked", url: "/games/moto-x3m-unblocked.html", page: "moto-x3m", status: "live" },
   { name: "Hill Climb Racing Unblocked", url: "/games/hill-climb-racing-unblocked.html", page: "hill-climb-racing", status: "live" },

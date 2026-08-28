@@ -5,7 +5,7 @@ import { GAME_PAGES } from "./game-pages-data.mjs";
 import { CATALOG_GAME_PAGES } from "./catalog-game-pages-data.mjs";
 import { REMAINING_GAME_PAGES } from "./remaining-games-data.mjs";
 
-const ASSET_VERSION = "20260828l";
+const ASSET_VERSION = "20260828m";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const gamesDir = path.join(root, "games");
@@ -350,9 +350,12 @@ function buildPage(game) {
 }
 
 function gamesJs() {
+  const ordered = [
+    { slug: "home", name: "Minecraft Unblocked", url: "/index.html#game-area", page: "home", status: "active" },
+    ...ALL_GAME_PAGES.filter((game) => game.slug !== "minecraft")
+  ];
   return `window.CLASSROOM_GAMES = [
-  { name: "2048 Unblocked", url: "/index.html#game-area", page: "home", status: "active" },
-${ALL_GAME_PAGES.map((game) => `  { name: ${JSON.stringify(game.name)}, url: ${JSON.stringify(`/games/${game.slug}-unblocked.html`)}, page: ${JSON.stringify(game.slug)}, status: "live" },`).join("\n")}
+${ordered.map((game) => `  { name: ${JSON.stringify(game.name)}, url: ${JSON.stringify(game.slug === "home" ? "/index.html#game-area" : `/games/${game.slug}-unblocked.html`)}, page: ${JSON.stringify(game.slug)}, status: ${JSON.stringify(game.status === "active" ? "active" : "live")} },`).join("\n")}
   { name: "Snake Unblocked", url: "/games/snake-unblocked.html", page: "snake", status: "live" },
   { name: "2048 Cupcakes Unblocked", url: "/games/cupcake-2048-unblocked.html", page: "cupcake-2048", status: "live" },
   { name: "Wordle Unblocked", url: "/games/wordle-unblocked.html", page: "wordle", status: "live" },

@@ -59,7 +59,7 @@ def run():
                 failures.append(f"{slug}: iframes={iframes}")
             if ads != 3:
                 failures.append(f"{slug}: ads={ads}")
-            if tabs != 423:
+            if tabs != 422:
                 failures.append(f"{slug}: tabs={tabs}")
             if active != 1 or label not in active_text:
                 failures.append(f"{slug}: active={active} text={active_text!r}")
