@@ -5,7 +5,7 @@ import { GAME_PAGES } from "./game-pages-data.mjs";
 import { CATALOG_GAME_PAGES } from "./catalog-game-pages-data.mjs";
 import { REMAINING_GAME_PAGES } from "./remaining-games-data.mjs";
 
-const ASSET_VERSION = "20260828n";
+const ASSET_VERSION = "20260828o";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SITE_HOME = "https://classroom-game.com/";
@@ -376,9 +376,11 @@ function buildPage(game) {
         <a href="../about.html">About Us</a>
         <a href="../contact.html">Contact Us</a>
       </nav>
-      <p>ClassroomGames is an independent browser game page. Access may depend on your school network.</p>
-      <p class="cookie-note">This site may use cookies and third-party advertising to keep the browser games free. See the <a href="../privacy-policy.html">Privacy Policy</a> for details.</p>
-      <p>© 2026 ClassroomGames. All rights reserved.</p>
+      <div class="footer-meta">
+        <p class="footer-blurb">ClassroomGames is an independent browser game page. Access may depend on your school network.</p>
+        <p class="cookie-note">This site may use cookies and third-party advertising to keep the browser games free. See the privacy policy for details.</p>
+        <p class="footer-copyright">© 2026 ClassroomGames. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 
