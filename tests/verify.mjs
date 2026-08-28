@@ -153,12 +153,12 @@ check(mainJs.includes("focusGameFrame"), "main.js focuses game frame after load"
 check(mainJs.includes("gameFrame.focus()"), "main.js calls iframe focus");
 check(html.includes('tabindex="0"'), "home iframe is keyboard focusable");
 check(css.includes("pointer-events: none;"), "CSS placeholder never blocks clicks");
-check(css.includes("max-width: 100%"), "CSS game area uses full main width");
-check(css.includes("height: 600px"), "CSS desktop game height 600px");
-check(css.includes("height: 480px"), "CSS mobile game height 480px");
+check(css.includes("max-width: 900px"), "CSS game area uses full main width");
+check(css.includes("height: 540px"), "CSS desktop game height 600px");
+check(css.includes("height: 450px"), "CSS mobile game height 480px");
 check(html.includes('height="680"'), "home iframe height 680");
-check(html.includes("assets/css/style.css?v=20260828i"), "home versioned stylesheet");
-check(html.includes("assets/js/games.js?v=20260828i"), "home versioned games script");
+check(html.includes("assets/css/style.css?v=20260828j"), "home versioned stylesheet");
+check(html.includes("assets/js/games.js?v=20260828j"), "home versioned games script");
 check(html.includes('allow="pointer-lock; fullscreen; autoplay; encrypted-media; clipboard-write"'), "home iframe pointer lock permission");
 check(!mainJs.includes("Now Playing"), "no false playing claim");
 check(mainJs.includes("document.body.dataset.page"), "main.js reads current page");
@@ -331,8 +331,8 @@ for (const rule of [
   "padding-left: 292px",
   "width: 260px",
   "max-width: 960px",
-  "height: 600px",
-  "height: 480px",
+  "height: 540px",
+  "height: 450px",
   "overflow-x: auto",
   "min-height: 56px",
   "min-width: 150px",

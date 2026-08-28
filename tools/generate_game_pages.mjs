@@ -5,7 +5,7 @@ import { GAME_PAGES } from "./game-pages-data.mjs";
 import { CATALOG_GAME_PAGES } from "./catalog-game-pages-data.mjs";
 import { REMAINING_GAME_PAGES } from "./remaining-games-data.mjs";
 
-const ASSET_VERSION = "20260828i";
+const ASSET_VERSION = "20260828j";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const gamesDir = path.join(root, "games");
@@ -211,7 +211,7 @@ function buildPage(game) {
           src="${game.embedUrl}"
           title="${escapeHtml(game.name)}"
           width="100%"
-          height="600"
+          height="540"
           frameborder="0"
           allow="pointer-lock; fullscreen; autoplay; encrypted-media; clipboard-write"
           allowfullscreen
