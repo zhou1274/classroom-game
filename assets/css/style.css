@@ -208,7 +208,7 @@ button:focus-visible {
 }
 
 .game-area {
-  max-width: 960px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -314,7 +314,7 @@ button:focus-visible {
 }
 
 .game-controls {
-  max-width: 960px;
+  max-width: 100%;
   margin: 12px auto 0;
   color: var(--muted);
   font-size: 14px;

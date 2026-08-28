@@ -153,6 +153,9 @@ check(mainJs.includes("focusGameFrame"), "main.js focuses game frame after load"
 check(mainJs.includes("gameFrame.focus()"), "main.js calls iframe focus");
 check(html.includes('tabindex="0"'), "home iframe is keyboard focusable");
 check(css.includes("pointer-events: none;"), "CSS placeholder never blocks clicks");
+check(css.includes("max-width: 100%"), "CSS game area uses full main width");
+check(html.includes("assets/css/style.css?v=20260828h"), "home versioned stylesheet");
+check(html.includes("assets/js/games.js?v=20260828h"), "home versioned games script");
 check(html.includes('allow="pointer-lock; fullscreen; autoplay; encrypted-media; clipboard-write"'), "home iframe pointer lock permission");
 check(!mainJs.includes("Now Playing"), "no false playing claim");
 check(mainJs.includes("document.body.dataset.page"), "main.js reads current page");

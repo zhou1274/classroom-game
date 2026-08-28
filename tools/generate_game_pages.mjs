@@ -5,7 +5,7 @@ import { GAME_PAGES } from "./game-pages-data.mjs";
 import { CATALOG_GAME_PAGES } from "./catalog-game-pages-data.mjs";
 import { REMAINING_GAME_PAGES } from "./remaining-games-data.mjs";
 
-const ASSET_VERSION = "20260828g";
+const ASSET_VERSION = "20260828h";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const gamesDir = path.join(root, "games");
@@ -146,7 +146,7 @@ function buildPage(game) {
   <meta property="og:description" content="${escapeHtml(description)}">
   <meta name="twitter:card" content="summary">
   <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/style.css?v=${ASSET_VERSION}">
 
   ${website}
 

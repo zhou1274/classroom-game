@@ -320,20 +320,20 @@ Cloudflare 会缓存 `assets/js/games.js` 和 `assets/js/main.js`，因此每次
 当前生成器变量：
 
 ```js
-const ASSET_VERSION = "20260828g";
+const ASSET_VERSION = "20260828h";
 ```
 
 所有页面引用：
 
 ```html
-<script src="../assets/js/games.js?v=20260828g" defer></script>
-<script src="../assets/js/main.js?v=20260828g" defer></script>
+<script src="../assets/js/games.js?v=20260828h" defer></script>
+<script src="../assets/js/main.js?v=20260828h" defer></script>
 ```
 
 以后每次修改 `games.js` / `main.js`，把版本号改成新的日期或递增号，例如：
 
 ```text
-20260828g -> 20260829a
+20260828h -> 20260829a
 ```
 
 不要复用旧版本号，否则线上仍可能显示旧菜单。
