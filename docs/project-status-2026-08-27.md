@@ -83,3 +83,14 @@
 - 清单与来源：`docs/catalog-games-batch-2026-08-28.md`。
 - 生成工具：`tools/build_catalog_data.py`、`tools/generate_game_pages.mjs`。
 - 验证：`node tests/verify.mjs` 439 项、`node tests/verify-iframe-pages.mjs` 3332 项、视觉检查全部通过。
+
+
+## 11. 全量接入（2026-08-28 A 方案）
+
+- 按用户选择 A，将剩余可用入口全部接入。
+- 692->? 实际统计：原 392 个剩余入口，精选 68 后剩 324；其中 5 个上游入口已失效，最终新增 319 个。
+- 页面总数：417 个生成页 + 首页/现有 5 个页面 = 423 个菜单项（1 active + 422 live）。
+- `sitemap.xml` 共 423 个 URL。
+- 失效入口已记录并排除：gunspin-2、slice-master-2、slice-master2、soccer-bros、sbrunga。
+- 生成数据：`tools/remaining-games-data.mjs`；重生成：`python tools/build_all_remaining_data.py && node tools/generate_game_pages.mjs`。
+- 验证：`node tests/verify.mjs` 1077 项、`node tests/verify-iframe-pages.mjs` 14178 项、视觉测试全部通过。

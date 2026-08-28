@@ -74,7 +74,7 @@ with sync_playwright() as p:
         print("CONSOLE_ERRORS=" + " | ".join(errors))
         raise SystemExit(1)
 
-    if h1_count != 1 or h4_count != 0 or tab_count != 104 or iframe_count != 1 or ad_count != 3:
+    if h1_count != 1 or h4_count != 0 or tab_count != 423 or iframe_count != 1 or ad_count != 3:
         raise SystemExit("desktop structural check failed")
     if "assets/games/2048/index.html" not in game_frame_src:
         raise SystemExit("local game iframe missing")
@@ -90,7 +90,7 @@ with sync_playwright() as p:
         raise SystemExit("fullscreen button state is not updated")
     if not fullscreen_fit:
         raise SystemExit("fullscreen game iframe has internal vertical scrolling")
-    if mobile_h1 != 1 or mobile_tabs != 104:
+    if mobile_h1 != 1 or mobile_tabs != 423:
         raise SystemExit("mobile structural check failed")
     if "/games/minecraft-unblocked.html" not in minecraft_href:
         raise SystemExit("Minecraft live link missing")

@@ -37,7 +37,7 @@ with sync_playwright() as p:
             failures.append(f"{slug}-{label}: h1={h1}")
         if h4 != 0:
             failures.append(f"{slug}-{label}: h4={h4}")
-        if tabs != 104:
+        if tabs != 423:
             failures.append(f"{slug}-{label}: tabs={tabs}")
         if active != 1:
             failures.append(f"{slug}-{label}: active={active}")

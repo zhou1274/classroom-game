@@ -3,7 +3,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { GAME_PAGES } from "../tools/game-pages-data.mjs";
 import { CATALOG_GAME_PAGES } from "../tools/catalog-game-pages-data.mjs";
-const ALL_GAME_PAGES = [...GAME_PAGES, ...CATALOG_GAME_PAGES];
+import { REMAINING_GAME_PAGES } from "../tools/remaining-games-data.mjs";
+const ALL_GAME_PAGES = [...GAME_PAGES, ...CATALOG_GAME_PAGES, ...REMAINING_GAME_PAGES];
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const failures = [];
@@ -172,7 +173,7 @@ for (const comment of [
 }
 
 const statuses = [...gamesJs.matchAll(/status:\s*"(active|live|coming-soon)"/g)].map((match) => match[1]);
-check(statuses.length === 104, "104 game entries (got " + statuses.length + ")");
+check(statuses.length === 423, "423 game entries (got " + statuses.length + ")");
 check(statuses[0] === "active", "first game is 2048 active");
 check(statuses.slice(1).every((status) => status === "live"), "all other entries are live");
 check(!statuses.includes("coming-soon"), "no coming-soon entries in menu");
@@ -337,7 +338,7 @@ for (const rule of [
 }
 
 check(Buffer.byteLength(css, "utf8") < 25 * 1024, "CSS under 25 KB");
-check(Buffer.byteLength(gamesJs, "utf8") + Buffer.byteLength(mainJs, "utf8") < 20 * 1024, "JS combined under 20 KB");
+check(Buffer.byteLength(gamesJs, "utf8") + Buffer.byteLength(mainJs, "utf8") < 80 * 1024, "JS combined under 80 KB");
 check(Buffer.byteLength(favicon, "utf8") < 2 * 1024, "favicon under 2 KB");
 
 check(robots.includes(`Sitemap: ${sitemapUrl}`), "robots Sitemap");

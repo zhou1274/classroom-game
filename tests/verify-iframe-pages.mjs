@@ -3,7 +3,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { GAME_PAGES } from "../tools/game-pages-data.mjs";
 import { CATALOG_GAME_PAGES } from "../tools/catalog-game-pages-data.mjs";
-const ALL_GAME_PAGES = [...GAME_PAGES, ...CATALOG_GAME_PAGES];
+import { REMAINING_GAME_PAGES } from "../tools/remaining-games-data.mjs";
+const ALL_GAME_PAGES = [...GAME_PAGES, ...CATALOG_GAME_PAGES, ...REMAINING_GAME_PAGES];
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const failures = [];
