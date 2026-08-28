@@ -218,3 +218,18 @@ tools/generate_game_pages.mjs 中的 ASSET_VERSION
 3. 重新生成并部署。
 
 空广告位不会占空间，因此不会影响页面布局。
+
+## 十一、Cloudflare 缓存与版本化文件
+
+当前 CSS 使用独立文件名：
+
+```text
+assets/css/style-20260828p.css
+```
+
+不要只依赖 `?v=` 查询参数，Cloudflare 可能忽略查询参数并继续返回旧文件。每次修改 CSS 后：
+
+1. 在 `tools/generate_game_pages.mjs` 中递增 `ASSET_VERSION`。
+2. 将样式另存为 `assets/css/style-<新版本号>.css`。
+3. 更新页面中的样式路径，不要继续使用 `style.css?v=`。
+4. 重新生成页面并部署。
