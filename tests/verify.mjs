@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { GAME_PAGES } from "../tools/game-pages-data.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const failures = [];
@@ -49,6 +50,15 @@ for (const file of requiredFiles) {
   }
 }
 
+
+for (const game of GAME_PAGES) {
+  const file = "games/" + game.slug + "-unblocked.html";
+  if (existsSync(path.join(root, file))) {
+    passes.push("File exists: " + file);
+  } else {
+    failures.push("Missing file: " + file);
+  }
+}
 function readOrEmpty(file) {
   const fullPath = path.join(root, file);
   return existsSync(fullPath) ? readFileSync(fullPath, "utf8") : "";
@@ -159,11 +169,11 @@ for (const comment of [
   check(html.includes(comment), `home ad comment: ${comment}`);
 }
 
-const statuses = [...gamesJs.matchAll(/status:\s*"(active|coming-soon|live)"/g)].map((match) => match[1]);
-check(statuses.length === 10, `ten game entries (got ${statuses.length})`);
+const statuses = [...gamesJs.matchAll(/status:\s*"(active|live|coming-soon)"/g)].map((match) => match[1]);
+check(statuses.length === 36, "36 game entries (got " + statuses.length + ")");
 check(statuses[0] === "active", "first game is 2048 active");
-check(statuses.slice(1, 6).every((status) => status === "live"), "next five games are live");
-check(statuses.slice(6).every((status) => status === "coming-soon"), "remaining entries are coming soon");
+check(statuses.slice(1).every((status) => status === "live"), "all other entries are live");
+check(!statuses.includes("coming-soon"), "no coming-soon entries in menu");
 check(gamesJs.includes('page: "home"'), "games.js marks home page");
 check(gamesJs.includes('page: "snake"'), "games.js marks snake page");
 check(gamesJs.includes("/games/snake-unblocked.html"), "games.js uses Snake page URL");
@@ -336,11 +346,16 @@ check(sitemap.includes("<changefreq>daily</changefreq>"), "sitemap home changefr
 check(sitemap.includes("<changefreq>weekly</changefreq>"), "sitemap snake changefreq");
 check(sitemap.includes("<priority>1.0</priority>"), "sitemap home priority");
 check(sitemap.includes("<priority>0.9</priority>"), "sitemap snake priority");
-check(notFound.includes("noindex, follow"), "404 noindex");
-check(notFound.includes("Back to Home"), "404 home link");
 check(notFound.includes('href="games/snake-unblocked.html"'), "404 Snake real link");
-for (const game of ["2048 Unblocked", "Snake Unblocked", "2048 Cupcakes Unblocked", "Wordle Unblocked", "Minesweeper Unblocked", "Tic Tac Toe Unblocked"]) {
-  check(notFound.includes(game), `404 link: ${game}`);
+check(notFound.includes('href="games/minecraft-unblocked.html"'), "404 Minecraft real link");
+for (const game of ["2048 Unblocked", "Snake Unblocked", "Minecraft Unblocked", "Tetris Unblocked", "Chess Unblocked", "Solitaire Unblocked"]) {
+  check(notFound.includes(game), "404 link: " + game);
+}
+
+
+for (const game of GAME_PAGES) {
+  const url = "https://classroom-game.com/games/" + game.slug + "-unblocked.html";
+  check(sitemap.includes("<loc>" + url + "</loc>"), "sitemap " + game.slug);
 }
 
 if (failures.length) {

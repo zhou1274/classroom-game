@@ -64,3 +64,13 @@
 - 导航统一显示 10 个游戏选项卡：6 个 Live + 4 个 Coming Soon。
 - 验证：`node tests/verify.mjs` 244 项通过；首页、Snake、5 个新游戏页的 Playwright 视觉测试通过；无外部网络请求。
 - 当前 `jasongamesdev` 无公开源码仓库，因此这些文件属于迁移副本，不视为有公开许可证的原始源码；后续可按同玩法策略逐个替换为已验证 MIT 版本。
+
+## 9. 30 个 iframe 游戏迁移（2026-08-28 更新）
+
+- 已按站长确认新增 30 个 iframe 游戏页，全部走第三方托管源，不做本地化。
+- 页面包括 Minecraft、Tetris、Math、Puzzle、Geometry Dash、Slope、Subway Surfers、Temple Run、Among Us、8 Ball Pool、Basketball Legends、Crossy Road、Paper.io、Doodle Jump、Pac-Man、Flappy Bird、Cookie Clicker、1v1 LOL、Chess、Checkers、Solitaire、UNO、Ball Sort Puzzle、Stickman Hook、Moto X3M、Drift Hunters、Run 3、Vex、Red Ball、Bloons Tower Defense。
+- 菜单现为 36 项：首页 2048 active + 35 个游戏页 live；`sitemap.xml` 36 个 URL。
+- 每个新页面：唯一 H1、title/description 长度校验、canonical、OG、WebSite/VideoGame/FAQPage、600+ 英文词、三个广告注释。
+- 来源映射与风险说明见 `docs/iframe-game-migration-2026-08-28.md`。
+- 生成器：`tools/generate_game_pages.mjs`；数据源：`tools/game-pages-data.mjs`。
+- 再生命令：`node tools/generate_game_pages.mjs`；全量静态校验：`node tests/verify.mjs`。
