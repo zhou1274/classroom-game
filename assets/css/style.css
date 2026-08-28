@@ -356,6 +356,98 @@ button:focus-visible {
   margin-top: 0;
 }
 
+.related-games {
+  margin-top: 2rem;
+}
+
+.related-game-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.related-game-list a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card-bg);
+  font-weight: 700;
+}
+
+.related-game-list a:hover {
+  border-color: var(--primary);
+  background: var(--hover-bg);
+}
+
+.compliance-page {
+  max-width: 960px;
+}
+
+.legal-card {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card-bg);
+}
+
+.legal-card h1 {
+  margin: 0 0 8px;
+  font-size: 34px;
+  line-height: 1.2;
+}
+
+.legal-card h2 {
+  margin: 2rem 0 0.75rem;
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+.legal-card p {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.legal-note {
+  margin: 0 0 1.5rem;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.cookie-note {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+.game-list li {
+  content-visibility: auto;
+  contain-intrinsic-size: 44px;
+}
+
+.game-list a,
+.fullscreen-button,
+.site-nav a,
+.footer-inner a,
+.related-game-list a,
+.skip-link {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 .content-card h3 {
   margin-top: 1.5rem;
   font-size: 20px;

@@ -5,9 +5,10 @@ import { GAME_PAGES } from "./game-pages-data.mjs";
 import { CATALOG_GAME_PAGES } from "./catalog-game-pages-data.mjs";
 import { REMAINING_GAME_PAGES } from "./remaining-games-data.mjs";
 
-const ASSET_VERSION = "20260828m";
+const ASSET_VERSION = "20260828n";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const SITE_HOME = "https://classroom-game.com/";
 const gamesDir = path.join(root, "games");
 // ALL_GAME_PAGES is defined below after priority ordering.
 
@@ -105,29 +106,39 @@ function escapeHtml(value) {
     .replace(/"/g, "&quot;");
 }
 
-function faqEntries(game) {
+function faqEntries(game, mode = "short", content = {}, exactFaqCount = 0) {
+  const questionName = (index) => index < exactFaqCount ? game.name : "this game";
+  const answerName = mode === "short" ? game.name : "This game";
   return [
     {
-      q: `How do I play ${game.name}?`,
-      a: game.howToPlay
+      q: `How do I play ${questionName(0)}?`,
+      a: content.howToPlay || game.howToPlay
     },
     {
-      q: `Is ${game.name} free to play?`,
-      a: `Yes. ${game.name} is free to play in the browser. No download, account, or purchase is required for the current page.`
+      q: `Is ${questionName(1)} free to play?`,
+      a: `Yes. ${answerName} is free to play in the browser. No download, account, or purchase is required for the current page.`
     },
     {
-      q: `Can I play ${game.name} on a Chromebook or phone?`,
-      a: `Yes. The page works in a modern browser on a Chromebook, laptop, tablet, or phone. ${game.mobileControls}`
+      q: `Can I play ${questionName(2)} on a Chromebook or phone?`,
+      a: `Yes. The page works in a modern browser on a Chromebook, laptop, tablet, or phone. ${content.mobileControls || game.mobileControls}`
     },
     {
-      q: `Is ${game.name} good for a classroom?`,
-      a: game.why
+      q: `Is ${questionName(3)} good for a classroom?`,
+      a: content.why || game.why
     },
     {
-      q: `What if ${game.name} does not load at school?`,
+      q: `What if ${questionName(4)} does not load at school?`,
       a: "Refresh the page and try again. If the game still does not open, check the connection or choose another game from the Games menu. School network rules can affect third-party game hosts."
     }
   ];
+}
+
+function relatedGames(game, count = 5) {
+  return ALL_GAME_PAGES
+    .filter((item) => item.slug !== game.slug)
+    .slice(0, count)
+    .map((item) => `<li><a href="../games/${item.slug}-unblocked.html">${escapeHtml(item.name)}</a></li>`)
+    .join("\n        ");
 }
 
 function jsonLd(type, payload) {
@@ -140,8 +151,27 @@ function buildPage(game) {
   const title = titleFor(game);
   const description = descriptionFor(game);
   const canonical = `https://classroom-game.com/games/${game.slug}-unblocked.html`;
-  const faqs = faqEntries(game);
-  const introParagraphs = game.intro.split("\n\n").map((value) => `<p>${value}</p>`).join("\n      ");
+  const nameTokens = game.name.trim().split(/\s+/).length;
+  const nameMode = nameTokens <= 2 ? "short" : nameTokens === 3 ? "medium" : "long";
+  const introText = nameMode !== "short"
+    ? game.intro.split(game.name).join("This game").split(game.shortName).join("this game")
+    : game.intro;
+  const introParagraphs = introText.split("\n\n").map((value) => `<p>${value}</p>`).join("\n      ");
+  const prose = (value) => String(value).split(game.name).join("This game").split(game.shortName).join("the game");
+  const safeWhy = prose(game.why);
+  const safeStudents = prose(game.students);
+  const safeTeachers = prose(game.teachers);
+  const safeHowToPlay = prose(game.howToPlay);
+  const safeControls = prose(game.controls);
+  const safeMobileControls = prose(game.mobileControls);
+  const safeTip = prose(game.tip);
+  const safeSafety = prose(game.safety);
+  const exactFaqCount = nameMode === "short" ? 5 : nameMode === "medium" ? 2 : nameTokens === 4 ? 2 : 0;
+  const faqs = faqEntries(game, nameMode, {
+    why: safeWhy,
+    howToPlay: safeHowToPlay,
+    mobileControls: safeMobileControls
+  }, exactFaqCount);
   const faqHtml = faqs.map(({ q, a }) => `<h3>${q}</h3>\n      <p>${a}</p>`).join("\n\n      ");
 
   if (title.length < 50 || title.length > 60) {
@@ -153,7 +183,7 @@ function buildPage(game) {
 
   const website = jsonLd("WebSite", {
     name: "ClassroomGames",
-    url: canonical,
+    url: SITE_HOME,
     description,
     inLanguage: "en"
   });
@@ -245,7 +275,7 @@ function buildPage(game) {
 
     <section class="hero" id="site-title" aria-labelledby="hero-title">
       <h1 id="hero-title">${escapeHtml(game.name)}</h1>
-      <p>${escapeHtml(game.why)}</p>
+      <p>${escapeHtml(safeWhy)}</p>
     </section>
 
     <section class="game-area" id="game-area" aria-label="Play ${game.name}">
@@ -273,7 +303,7 @@ function buildPage(game) {
         </iframe>
       </div>
       <p class="game-controls">
-        ${escapeHtml(game.controls)} ${escapeHtml(game.mobileControls)}
+        ${escapeHtml(safeControls)} ${escapeHtml(safeMobileControls)}
       </p>
     </section>
 
@@ -285,44 +315,51 @@ function buildPage(game) {
       <h2>Play ${escapeHtml(game.name)} at School</h2>
       ${introParagraphs}
 
-      <p>${escapeHtml(game.name)} is part of a growing browser game menu for school. The Games tab always shows the current title, the other live games, and the quickest way to return to the game area. You can switch to another title without closing the page, which makes the whole catalog easier to explore when class time is short.</p>
+      <p>${nameMode === "short" ? escapeHtml(game.name) : "This game"} is part of a growing browser game menu for school. The Games tab always shows the current title, the other live games, and the quickest way to return to the game area. You can switch to another title without closing the page, which makes the whole catalog easier to explore when class time is short.</p>
 
       <h2>Why ${escapeHtml(game.name)} Is a Good Classroom Game</h2>
-      <p>${escapeHtml(game.why)}</p>
+      <p>${escapeHtml(safeWhy)}</p>
 
       <h3>For Students</h3>
-      <p>${escapeHtml(game.students)}</p>
+      <p>${escapeHtml(safeStudents)}</p>
 
       <h3>For Teachers</h3>
-      <p>${escapeHtml(game.teachers)}</p>
+      <p>${escapeHtml(safeTeachers)}</p>
 
       <h2>How to Play ${escapeHtml(game.name)}</h2>
-      <p>${escapeHtml(game.howToPlay)}</p>
+      <p>${escapeHtml(safeHowToPlay)}</p>
 
       <p>A good first session does not need a perfect score. Start with one short round, learn where the controls are, and then decide whether to try a higher goal in the next attempt. This keeps the game easy to stop and gives every student a fair way to measure progress.</p>
 
       <h3>Desktop Controls</h3>
-      <p>${escapeHtml(game.controls)}</p>
+      <p>${escapeHtml(safeControls)}</p>
 
       <h3>Mobile Controls</h3>
-      <p>${escapeHtml(game.mobileControls)}</p>
+      <p>${escapeHtml(safeMobileControls)}</p>
 
       <h3>Classroom Tips</h3>
-      <p>${escapeHtml(game.tip)}</p>
+      <p>${escapeHtml(safeTip)}</p>
 
       <h2>Is ${escapeHtml(game.name)} Safe at School?</h2>
-      <p>${escapeHtml(game.safety)}</p>
+      <p>${escapeHtml(safeSafety)}</p>
 
       <p>If you use this game with a group, keep the session short and let students know the stopping rule before the timer starts. A clear end time makes the browser break feel optional rather than open-ended, and it gives teachers more control over the transition back to class work.</p>
 
       <h3>Safe to Play</h3>
-      <p>This page embeds ${escapeHtml(game.name)} in the game area. It does not add a download, sign-up form, or personal data request to the classroom site. Students should still stop if the game asks for payment or unusual permissions.</p>
+      <p>This page embeds ${nameTokens >= 6 ? "the game" : escapeHtml(game.name)} in the game area. It does not add a download, sign-up form, or personal data request to the classroom site. Students should still stop if the game asks for payment or unusual permissions.</p>
 
       <h3>School Network Rules</h3>
       <p>This site does not bypass school filters or network policies. Some school networks limit third-party game hosts, so a title that works at home may not open at school. If that happens, refresh the page or choose another game from the menu.</p>
 
       <h2 id="faq">FAQ About ${escapeHtml(game.name)}</h2>
       ${faqHtml}
+      <section class="related-games" aria-labelledby="related-games-title">
+        <h2 id="related-games-title">More Unblocked Games to Try</h2>
+        <p>Looking for another quick break? These popular classroom games unblocked open in the browser with no download.</p>
+        <ul class="related-game-list">
+        ${relatedGames(game)}
+        </ul>
+      </section>
     </article>
 
     <div class="ad-slot" aria-hidden="true">
@@ -334,10 +371,13 @@ function buildPage(game) {
     <div class="footer-inner container">
       <nav aria-label="Footer navigation">
         <a href="../index.html">Home</a>
-        <a href="#game-area">Play Now</a>
-        <a href="#faq">FAQ</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Service</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact Us</a>
       </nav>
       <p>ClassroomGames is an independent browser game page. Access may depend on your school network.</p>
+      <p class="cookie-note">This site may use cookies and third-party advertising to keep the browser games free. See the <a href="../privacy-policy.html">Privacy Policy</a> for details.</p>
       <p>© 2026 ClassroomGames. All rights reserved.</p>
     </div>
   </footer>
@@ -373,7 +413,11 @@ function sitemapXml() {
     ["https://classroom-game.com/games/cupcake-2048-unblocked.html", "weekly", "0.9", false],
     ["https://classroom-game.com/games/wordle-unblocked.html", "weekly", "0.9", false],
     ["https://classroom-game.com/games/minesweeper-unblocked.html", "weekly", "0.9", false],
-    ["https://classroom-game.com/games/tic-tac-toe-unblocked.html", "weekly", "0.9", false]
+    ["https://classroom-game.com/games/tic-tac-toe-unblocked.html", "weekly", "0.9", false],
+    ["https://classroom-game.com/privacy-policy.html", "monthly", "0.3", false],
+    ["https://classroom-game.com/terms.html", "monthly", "0.3", false],
+    ["https://classroom-game.com/about.html", "monthly", "0.4", false],
+    ["https://classroom-game.com/contact.html", "monthly", "0.3", false]
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -407,5 +451,5 @@ if (problems.length) {
 }
 
 console.log(`Generated ${ALL_GAME_PAGES.length} game pages.`);
-console.log(`Menu entries: ${1 + 5 + ALL_GAME_PAGES.length}. Sitemap URLs: ${1 + 5 + ALL_GAME_PAGES.length}.`);
+console.log(`Menu entries: ${1 + 5 + ALL_GAME_PAGES.length}. Sitemap URLs: ${1 + 5 + ALL_GAME_PAGES.length + 4}.`);
 console.log(`Lowest article word count: ${Math.min(...wordCounts.map(([, count]) => count))}.`);

@@ -27,6 +27,10 @@ const requiredFiles = [
   "assets/js/games.js",
   "assets/js/main.js",
   "assets/icons/favicon.svg",
+  "privacy-policy.html",
+  "terms.html",
+  "about.html",
+  "contact.html",
   "assets/games/2048/index.html",
   "assets/games/2048/LICENSE.txt",
   "games/snake-unblocked.html",
@@ -136,14 +140,14 @@ check(/<h1[^>]*>\s*Classroom Games Unblocked\s*<\/h1>/i.test(html), "home H1 tex
 check(count(html, /<h4\b/gi) === 0, "home no H4");
 check(html.includes("Play Classroom Games Unblocked Online"), "home H2 content heading");
 check(html.includes("What Are Classroom Games Unblocked?"), "home H2 explainer heading");
-check(html.includes("Best Unblocked Games for Classroom"), "home H2 best games heading");
-check(html.includes("How to Play Unblocked Games at School"), "home H2 how-to heading");
+check(html.includes("Best Classroom Games Unblocked for Class"), "home H2 best games heading");
+check(html.includes("How to Play Classroom Games Unblocked at School"), "home H2 how-to heading");
 check(html.includes("FAQ About Classroom Games Unblocked"), "home H2 FAQ heading");
 check(html.includes("Minecraft Unblocked"), "home mentions Minecraft Unblocked");
 check(html.includes('class="game-frame'), "home game iframe uses game-frame class");
-check(html.includes('src="https://minecraft-free-online.github.io/minecraft-github/"'), "home game iframe local 2048");
+check(html.includes('src="https://minecraft-free-online.github.io/minecraft-github/"'), "home game iframe Minecraft source");
 check(html.includes('class="game-controls"'), "home game controls helper present");
-check(html.includes("Use WASD to move, the mouse to look"), "home 2048 controls copy present");
+check(html.includes("Use WASD to move, the mouse to look"), "home Minecraft controls copy present");
 check(html.includes('class="skip-link"'), "home skip link present");
 check(html.includes('id="game-placeholder"'), "home game placeholder present");
 check(!html.includes("Once the featured game is confirmed"), "home no developer placeholder note");
@@ -157,8 +161,8 @@ check(css.includes("max-width: 900px"), "CSS game area uses full main width");
 check(css.includes("height: 540px"), "CSS desktop game height 600px");
 check(css.includes("height: 450px"), "CSS mobile game height 480px");
 check(html.includes('height="540"'), "home iframe height 540");
-check(html.includes("assets/css/style.css?v=20260828m"), "home versioned stylesheet");
-check(html.includes("assets/js/games.js?v=20260828m"), "home versioned games script");
+check(html.includes("assets/css/style.css?v=20260828n"), "home versioned stylesheet");
+check(html.includes("assets/js/games.js?v=20260828n"), "home versioned games script");
 check(html.includes('allow="pointer-lock; fullscreen; autoplay; encrypted-media; clipboard-write"'), "home iframe pointer lock permission");
 check(!mainJs.includes("Now Playing"), "no false playing claim");
 check(mainJs.includes("document.body.dataset.page"), "main.js reads current page");
@@ -174,7 +178,7 @@ check(!html.includes("src=\"javascript:"), "home no javascript URLs");
 const homeArticleWords = articleWordCount(html);
 check(homeArticleWords >= 600, `home SEO article words >=600 (got ${homeArticleWords})`);
 const homeCoreCount = (articleWordText(html).match(/classroom games unblocked/gi) || []).length;
-check(homeCoreCount >= 5 && homeCoreCount <= 8, `home core phrase 5-8 times (got ${homeCoreCount})`);
+check(homeCoreCount >= 10 && homeCoreCount <= 16, `home core phrase 10-16 times (got ${homeCoreCount})`);
 
 for (const comment of [
   "<!-- AdSense Ad Slot: top banner -->",
@@ -238,7 +242,7 @@ assertJsonLd(snakeHtml, "snake");
 const newPages = [
   {
     html: cupcakeHtml,
-    title: "2048 Cupcakes Unblocked - Play a Sweet Number Puzzle at School",
+    title: "2048 Cupcakes Unblocked - Sweet School Number Puzzle",
     canonical: "https://classroom-game.com/games/cupcake-2048-unblocked.html",
     h1: "2048 Cupcakes Unblocked",
     page: "cupcake-2048",
@@ -368,7 +372,7 @@ check(sitemap.includes("<priority>1.0</priority>"), "sitemap home priority");
 check(sitemap.includes("<priority>0.9</priority>"), "sitemap snake priority");
 check(notFound.includes('href="games/snake-unblocked.html"'), "404 Snake real link");
 check(notFound.includes('href="games/minecraft-unblocked.html"'), "404 Minecraft real link");
-for (const game of ["2048 Unblocked", "Snake Unblocked", "Minecraft Unblocked", "Tetris Unblocked", "Chess Unblocked", "Solitaire Unblocked"]) {
+for (const game of ["2048 Unblocked", "Snake Unblocked", "Minecraft Unblocked", "Tetris Unblocked", "Chess Unblocked", "Math Games Unblocked"]) {
   check(notFound.includes(game), "404 link: " + game);
 }
 
