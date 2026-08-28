@@ -5,7 +5,7 @@ import { GAME_PAGES } from "./game-pages-data.mjs";
 import { CATALOG_GAME_PAGES } from "./catalog-game-pages-data.mjs";
 import { REMAINING_GAME_PAGES } from "./remaining-games-data.mjs";
 
-const ASSET_VERSION = "20260828k";
+const ASSET_VERSION = "20260828l";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const gamesDir = path.join(root, "games");
