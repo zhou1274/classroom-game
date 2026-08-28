@@ -320,20 +320,20 @@ Cloudflare 会缓存 `assets/js/games.js` 和 `assets/js/main.js`，因此每次
 当前生成器变量：
 
 ```js
-const ASSET_VERSION = "20260828e";
+const ASSET_VERSION = "20260828f";
 ```
 
 所有页面引用：
 
 ```html
-<script src="../assets/js/games.js?v=20260828e" defer></script>
-<script src="../assets/js/main.js?v=20260828e" defer></script>
+<script src="../assets/js/games.js?v=20260828f" defer></script>
+<script src="../assets/js/main.js?v=20260828f" defer></script>
 ```
 
 以后每次修改 `games.js` / `main.js`，把版本号改成新的日期或递增号，例如：
 
 ```text
-20260828e -> 20260829a
+20260828f -> 20260829a
 ```
 
 不要复用旧版本号，否则线上仍可能显示旧菜单。
@@ -410,6 +410,7 @@ Railway 构建有时需要 1–3 分钟；页面如果旧但新页面已 200，�
 - [ ] 正文 ≥ 600 英文词
 - [ ] 三个广告位注释保留
 - [ ] iframe 使用 `loading="lazy"` / `allowfullscreen`
+- [ ] iframe 包含 `allow="pointer-lock..."`，确保 Minecraft 类鼠标锁定游戏可操作
 - [ ] noindex 处理正确（内嵌本地游戏页 `noindex`，独立 SEO 页 `index,follow`）
 - [ ] `node tests/verify.mjs` 通过
 - [ ] `node tests/verify-iframe-pages.mjs` 通过
