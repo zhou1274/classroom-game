@@ -248,3 +248,18 @@ https://ubghyper.github.io/{shard}/{slug}/
 - <https://ubghyper.github.io/assets/games.json>
 - <https://developer.gamedistribution.com/>
 - <https://github.com/GameDistribution/gd-defold>
+
+
+## 8. 第一批实际迁移记录（2026-08-28）
+
+| 本地目录 | 上游页面 | 运行时处理 |
+| --- | --- | --- |
+| `assets/games/cupcake-2048` | `https://jasongamesdev.github.io/cupcake-2048/` | 已移除 Google Fonts 外链 |
+| `assets/games/wordle` | `https://jasongamesdev.github.io/wordle/` | 已移除 `./js` Google Analytics 脚本 |
+| `assets/games/minesweeper` | `https://jasongamesdev.github.io/minesweeper/` | 全本地，无外部依赖 |
+| `assets/games/snake` | `https://jasongamesdev.github.io/snake.io/` | Unity 本地 Build；Poki SDK 替换为无网络 stub |
+| `assets/games/tic-tac-toe` | `https://jasongamesdev.github.io/Tic-Tac-Toe/` | CreateJS 本地资源；Poki SDK 替换为无网络 stub |
+
+- 迁移使用 `tools/asset_mirror.py`：Playwright 捕获同源请求后写回 `assets/games/<slug>/`。
+- 所有内嵌页已加 `noindex, follow`，不参与独立索引。
+- Snake 的 Unity data/wasm 已手动从上游补齐；本地运行不再请求外部域名。

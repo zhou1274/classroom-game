@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+
+<head>
+  <meta name="robots" content="noindex, follow">
+  <meta charset="utf-8">
+  <title>2048 Cupcakes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="./assets/css/main.min.css?v1.4" rel="stylesheet">
+  <link href="./assets/css/cupcakes/2048.css?v1.4" rel="stylesheet">
+</head>
+
+<body>
+  <div class="page">
+    <div class="page__wrapper">
+      <div class="container">
+        <div class="headline">
+          <h1 class="headline__title">2048 Cupcakes</h1>
+        </div>
+      </div>
+      <section class="section section--main">
+        <div class="container no-pading">
+                    <style>
+            .score-container:after {
+              content: "Score" !important;
+            }
+
+            .best-container:after {
+              content: "Best" !important;
+            }
+          </style>
+
+          <script>
+            window.translations = {
+              win: 'You win!',
+              game_over: 'Game over!'
+            };
+          </script>
+
+          <div class="gameplay-container">
+            <div class="heading">
+              <div class="scores-container">
+                <div class="score-container">0</div>
+                <div class="best-container">0</div>
+              </div>
+              <a class="restart-button">New game</a>
+            </div>
+
+            <div class="game-container">
+              <div class="game-message">
+                <p></p>
+                <div class="lower">
+                  <a class="keep-playing-button">Keep going</a>
+                  <a class="retry-button">Try again</a>
+                </div>
+              </div>
+
+              <div class="grid-container">
+                <div class="grid-row">
+                  <div class="grid-cell"></div>
+                  <div class="grid-cell"></div>
+                  <div class="grid-cell"></div>
+                  <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                  <div class="grid-cell"></div>
+                  <div class="grid-cell"></div>
+                  <div class="grid-cell"></div>
+                  <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                  <div class="grid-cell"></div>
+                  <div class="grid-cell"></div>
+                  <div class="grid-cell"></div>
+                  <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                  <div class="grid-cell"></div>
+                  <div class="grid-cell"></div>
+                  <div class="grid-cell"></div>
+                  <div class="grid-cell"></div>
+                </div>
+              </div>
+
+              <div class="tile-container">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+   </div>
+   
+  </div>
+
+
+
+  <script src="./js/cupcakes/bind_polyfill.js?v2"></script>
+  <script src="./js/cupcakes/classlist_polyfill.js?v2"></script>
+  <script src="./js/cupcakes/animframe_polyfill.js?v2"></script>
+  <script src="./js/cupcakes/keyboard_input_manager.js?v2"></script>
+  <script src="./js/cupcakes/html_actuator.js?v2"></script>
+  <script src="./js/cupcakes/grid.js?v2"></script>
+  <script src="./js/cupcakes/tile.js?v2"></script>
+  <script src="./js/cupcakes/local_storage_manager.js?v2"></script>
+  <script src="./js/cupcakes/game_manager.js?v2"></script>
+  <script src="./js/cupcakes/application.js?v2"></script>
+</body>
+
+</html>

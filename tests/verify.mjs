@@ -27,9 +27,18 @@ const requiredFiles = [
   "assets/games/2048/LICENSE.txt",
   "games/snake-unblocked.html",
   "assets/games/snake/index.html",
-  "assets/games/snake/embed.css",
-  "assets/games/snake/CHANGES.md",
-  "assets/games/snake/UPSTREAM_README.md"
+  "assets/games/snake/patch/master-loader.js",
+  "assets/games/snake/patch/unity-2020.js",
+  "assets/games/snake/Build/Snake MLG Edition_3.0.35.4044.data.unityweb",
+  "assets/games/snake/Build/Snake MLG Edition_3.0.35.4044.wasm.unityweb",
+  "games/cupcake-2048-unblocked.html",
+  "assets/games/cupcake-2048/index.html",
+  "games/wordle-unblocked.html",
+  "assets/games/wordle/index.html",
+  "games/minesweeper-unblocked.html",
+  "assets/games/minesweeper/index.html",
+  "games/tic-tac-toe-unblocked.html",
+  "assets/games/tic-tac-toe/index.html"
 ];
 
 for (const file of requiredFiles) {
@@ -56,8 +65,17 @@ const notFound = readOrEmpty("404.html");
 const favicon = readOrEmpty("assets/icons/favicon.svg");
 const gameHtml = readOrEmpty("assets/games/2048/index.html");
 const snakeGameHtml = readOrEmpty("assets/games/snake/index.html");
-const snakeGameCss = readOrEmpty("assets/games/snake/embed.css");
-const snakeMainJs = readOrEmpty("assets/games/snake/main.js");
+const snakeLoaderJs = readOrEmpty("assets/games/snake/patch/master-loader.js");
+const snakeUnityJs = readOrEmpty("assets/games/snake/patch/unity-2020.js");
+const snakePokiStub = readOrEmpty("assets/games/snake/patch/poki-sdk.js");
+const cupcakeHtml = readOrEmpty("games/cupcake-2048-unblocked.html");
+const wordleHtml = readOrEmpty("games/wordle-unblocked.html");
+const minesweeperHtml = readOrEmpty("games/minesweeper-unblocked.html");
+const ticTacToeHtml = readOrEmpty("games/tic-tac-toe-unblocked.html");
+const cupcakeGameHtml = readOrEmpty("assets/games/cupcake-2048/index.html");
+const wordleGameHtml = readOrEmpty("assets/games/wordle/index.html");
+const minesweeperGameHtml = readOrEmpty("assets/games/minesweeper/index.html");
+const ticTacToeGameHtml = readOrEmpty("assets/games/tic-tac-toe/index.html");
 
 function check(condition, label) {
   if (condition) {
@@ -142,10 +160,10 @@ for (const comment of [
 }
 
 const statuses = [...gamesJs.matchAll(/status:\s*"(active|coming-soon|live)"/g)].map((match) => match[1]);
-check(statuses.length === 7, `seven game entries (got ${statuses.length})`);
+check(statuses.length === 10, `ten game entries (got ${statuses.length})`);
 check(statuses[0] === "active", "first game is 2048 active");
-check(statuses[1] === "live", "second game is Snake live");
-check(statuses.slice(2).every((status) => status === "coming-soon"), "remaining entries are coming soon");
+check(statuses.slice(1, 6).every((status) => status === "live"), "next five games are live");
+check(statuses.slice(6).every((status) => status === "coming-soon"), "remaining entries are coming soon");
 check(gamesJs.includes('page: "home"'), "games.js marks home page");
 check(gamesJs.includes('page: "snake"'), "games.js marks snake page");
 check(gamesJs.includes("/games/snake-unblocked.html"), "games.js uses Snake page URL");
@@ -187,13 +205,83 @@ for (const comment of [
 assertJsonLd(html, "home");
 assertJsonLd(snakeHtml, "snake");
 
+const newPages = [
+  {
+    html: cupcakeHtml,
+    title: "2048 Cupcakes Unblocked - Play a Sweet Number Puzzle at School",
+    canonical: "https://classroom-game.com/games/cupcake-2048-unblocked.html",
+    h1: "2048 Cupcakes Unblocked",
+    page: "cupcake-2048",
+    iframe: "../assets/games/cupcake-2048/index.html",
+    label: "cupcake"
+  },
+  {
+    html: wordleHtml,
+    title: "Wordle Unblocked - Play the Daily Word Game at School",
+    canonical: "https://classroom-game.com/games/wordle-unblocked.html",
+    h1: "Wordle Unblocked",
+    page: "wordle",
+    iframe: "../assets/games/wordle/index.html",
+    label: "wordle"
+  },
+  {
+    html: minesweeperHtml,
+    title: "Minesweeper Unblocked - Play the Classic Puzzle at School",
+    canonical: "https://classroom-game.com/games/minesweeper-unblocked.html",
+    h1: "Minesweeper Unblocked",
+    page: "minesweeper",
+    iframe: "../assets/games/minesweeper/index.html",
+    label: "minesweeper"
+  },
+  {
+    html: ticTacToeHtml,
+    title: "Tic Tac Toe Unblocked - Play XOXO Online at School",
+    canonical: "https://classroom-game.com/games/tic-tac-toe-unblocked.html",
+    h1: "Tic Tac Toe Unblocked",
+    page: "tic-tac-toe",
+    iframe: "../assets/games/tic-tac-toe/index.html",
+    label: "tic-tac-toe"
+  }
+];
+
+for (const pageData of newPages) {
+  const name = pageData.label;
+  check(/<html lang="en">/i.test(pageData.html), `${name} html lang=en`);
+  check(pageData.html.includes(`<title>${pageData.title}</title>`), `${name} title exact`);
+  check(pageData.html.includes(`<link rel="canonical" href="${pageData.canonical}">`), `${name} canonical`);
+  check(count(pageData.html, /<h1\b/gi) === 1, `${name} exactly one H1`);
+  check(pageData.html.includes(pageData.h1), `${name} H1 text`);
+  check(count(pageData.html, /<h4\b/gi) === 0, `${name} no H4`);
+  check(pageData.html.includes(`<body data-page="${pageData.page}">`), `${name} body data-page`);
+  check(pageData.html.includes(`src="${pageData.iframe}"`), `${name} local iframe`);
+  check(pageData.html.includes('class="game-frame"'), `${name} game frame class`);
+  check(pageData.html.includes('class="game-controls"'), `${name} controls helper`);
+  check(pageData.html.includes('id="faq"'), `${name} FAQ anchor`);
+  check(articleWordCount(pageData.html) >= 600, `${name} SEO article words >=600`);
+  assertJsonLd(pageData.html, name);
+}
+
+for (const [gameName, gameHtml] of [
+  ["cupcake embed", cupcakeGameHtml],
+  ["wordle embed", wordleGameHtml],
+  ["minesweeper embed", minesweeperGameHtml],
+  ["tic tac toe embed", ticTacToeGameHtml]
+]) {
+  check(gameHtml.includes("noindex"), `${gameName} noindex`);
+  check(!/src="https?:\/\//i.test(gameHtml), `${gameName} no remote script`);
+}
+
+check(cupcakeGameHtml.includes("2048 Cupcakes"), "cupcake embed title");
+check(wordleGameHtml.includes("Wordle"), "wordle embed title");
+check(minesweeperGameHtml.includes("Minesweeper"), "minesweeper embed title");
+check(ticTacToeGameHtml.includes("Tic Tac Toe"), "tic tac toe embed title");
+
 check(gameHtml.includes('content="noindex"'), "2048 embed noindex");
 check(gameHtml.includes("MIT License"), "2048 embed license notice");
 check(snakeGameHtml.includes('content="noindex, follow"'), "snake embed noindex");
-check(snakeGameHtml.includes('href="../../icons/favicon.svg"'), "snake embed favicon relative");
-check(snakeGameHtml.includes("Source: https://github.com/xosg/WebGames"), "snake embed source comment");
-check(snakeGameHtml.includes("MIT License"), "snake embed license statement");
-check(snakeGameCss.includes("aspect-ratio"), "snake embed responsive canvas");
+check(snakeGameHtml.includes("Source: jasongamesdev.github.io/snake.io"), "snake embed source comment");
+check(snakeLoaderJs.includes("master-loader.js"), "snake loader is local");
+check(snakePokiStub.includes("isAdBlocked"), "snake Poki stub handles SDK");
 
 const forbiddenPatterns = [
   "fonts.googleapis.com",
@@ -208,10 +296,9 @@ const forbiddenPatterns = [
 ];
 for (const pattern of forbiddenPatterns) {
   check(!snakeGameHtml.includes(pattern), `snake embed no forbidden pattern: ${pattern}`);
-  check(!snakeGameCss.includes(pattern), `snake embed CSS no forbidden pattern: ${pattern}`);
-  check(!snakeMainJs.includes(pattern), `snake game no forbidden pattern: ${pattern}`);
+  check(!snakeLoaderJs.includes(pattern), `snake loader no forbidden pattern: ${pattern}`);
 }
-check(snakeMainJs.includes("localStorage"), "snake uses local high score storage");
+check(snakeLoaderJs.includes("document.body.appendChild"), "snake loads local scripts");
 check(!/src="https?:\/\//i.test(snakeGameHtml), "snake no remote script source");
 check(!/href="https?:\/\//i.test(snakeGameHtml), "snake no remote stylesheet source");
 
@@ -244,7 +331,7 @@ check(Buffer.byteLength(favicon, "utf8") < 2 * 1024, "favicon under 2 KB");
 check(robots.includes(`Sitemap: ${sitemapUrl}`), "robots Sitemap");
 check(sitemap.includes(`<loc>${canonical}</loc>`), "sitemap home loc");
 check(sitemap.includes(`<loc>${snakeCanonical}</loc>`), "sitemap snake loc");
-check(sitemap.includes("<lastmod>2026-08-27</lastmod>"), "sitemap lastmod");
+check(sitemap.includes("<lastmod>2026-08-28</lastmod>"), "sitemap lastmod");
 check(sitemap.includes("<changefreq>daily</changefreq>"), "sitemap home changefreq");
 check(sitemap.includes("<changefreq>weekly</changefreq>"), "sitemap snake changefreq");
 check(sitemap.includes("<priority>1.0</priority>"), "sitemap home priority");
@@ -252,7 +339,7 @@ check(sitemap.includes("<priority>0.9</priority>"), "sitemap snake priority");
 check(notFound.includes("noindex, follow"), "404 noindex");
 check(notFound.includes("Back to Home"), "404 home link");
 check(notFound.includes('href="games/snake-unblocked.html"'), "404 Snake real link");
-for (const game of ["2048 Unblocked", "Snake Unblocked", "Tetris Unblocked", "Wordle Unblocked", "Math Games Unblocked", "Puzzle Games Unblocked"]) {
+for (const game of ["2048 Unblocked", "Snake Unblocked", "2048 Cupcakes Unblocked", "Wordle Unblocked", "Minesweeper Unblocked", "Tic Tac Toe Unblocked"]) {
   check(notFound.includes(game), `404 link: ${game}`);
 }
 

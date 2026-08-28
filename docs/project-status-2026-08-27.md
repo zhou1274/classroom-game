@@ -53,3 +53,14 @@
 - 已验证：首页、Snake 页、CSS、robots、sitemap 返回 200；未知路径返回自定义 404。
 - 正式域名：`https://classroom-game.com/`。
 - Vercel 仍可保留，但不再作为正式域名入口。
+
+
+## 8. 第一批游戏迁移结果（2026-08-28）
+
+- 新增本地自托管游戏：2048 Cupcakes、Wordle、Minesweeper、Snake（Unity 版）、Tic Tac Toe。
+- 上游来源：`jasongamesdev.github.io` 对应游戏目录；迁移脚本见 `tools/asset_mirror.py`。
+- Snake、Tic Tac Toe 已用本地无网络 Poki SDK stub，移除 Google Analytics / 外部字体 / Unity 远程分析请求。
+- 新增独立页面：`games/cupcake-2048-unblocked.html`、`games/wordle-unblocked.html`、`games/minesweeper-unblocked.html`、`games/tic-tac-toe-unblocked.html`；Snake 继续使用 `/games/snake-unblocked.html`。
+- 导航统一显示 10 个游戏选项卡：6 个 Live + 4 个 Coming Soon。
+- 验证：`node tests/verify.mjs` 244 项通过；首页、Snake、5 个新游戏页的 Playwright 视觉测试通过；无外部网络请求。
+- 当前 `jasongamesdev` 无公开源码仓库，因此这些文件属于迁移副本，不视为有公开许可证的原始源码；后续可按同玩法策略逐个替换为已验证 MIT 版本。
