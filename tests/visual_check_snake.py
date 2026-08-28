@@ -77,9 +77,9 @@ def run():
         browser.close()
 
     if (
-        home_tabs != 10
+        home_tabs != 104
         or "/games/snake-unblocked.html" not in snake_href
-        or tabs != 10
+        or tabs != 104
         or h1 != 1
         or h4 != 0
         or iframes != 1

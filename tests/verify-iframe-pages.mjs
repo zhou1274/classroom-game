@@ -2,6 +2,8 @@ import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { GAME_PAGES } from "../tools/game-pages-data.mjs";
+import { CATALOG_GAME_PAGES } from "../tools/catalog-game-pages-data.mjs";
+const ALL_GAME_PAGES = [...GAME_PAGES, ...CATALOG_GAME_PAGES];
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const failures = [];
@@ -27,7 +29,7 @@ function articleWordCount(html) {
 const menu = readFileSync(path.join(root, "assets/js/games.js"), "utf8");
 const sitemap = readFileSync(path.join(root, "sitemap.xml"), "utf8");
 
-for (const game of GAME_PAGES) {
+for (const game of ALL_GAME_PAGES) {
   const label = game.slug;
   const file = path.join(root, "games", `${game.slug}-unblocked.html`);
   check(existsSync(file), `${label}: file exists`);
@@ -35,18 +37,17 @@ for (const game of GAME_PAGES) {
 
   const html = readFileSync(file, "utf8");
   const canonical = `https://classroom-game.com/games/${game.slug}-unblocked.html`;
-  const expectedTitle = `${game.name} - ${game.titleTag}`;
   const actualTitle = (html.match(/<title>(.*?)<\/title>/) || [])[1] || "";
   const description = (html.match(/<meta name="description" content="([^"]*)">/) || [])[1] || "";
 
   check(/<html lang="en">/i.test(html), `${label}: html lang=en`);
   check(html.includes(`<meta name="robots" content="index, follow">`), `${label}: indexed`);
-  check(actualTitle === expectedTitle, `${label}: title exact`);
+  check(actualTitle.startsWith(game.name + " - "), `${label}: title based on game name`);
   check(actualTitle.length >= 50 && actualTitle.length <= 60, `${label}: title length ${actualTitle.length}`);
   check(description.length >= 150 && description.length <= 160, `${label}: description length ${description.length}`);
   check(html.includes(`<link rel="canonical" href="${canonical}">`), `${label}: canonical`);
   check(html.includes(`<meta property="og:url" content="${canonical}">`), `${label}: og:url`);
-  check(html.includes(`<meta property="og:title" content="${expectedTitle}">`), `${label}: og:title`);
+  check(html.includes(`<meta property="og:title" content="${actualTitle}">`), `${label}: og:title`);
   check(html.includes(`<body data-page="${game.slug}">`), `${label}: body data-page`);
   check(count(html, /<h1\b/gi) === 1, `${label}: one H1`);
   check(count(html, /<h4\b/gi) === 0, `${label}: no H4`);
@@ -103,5 +104,5 @@ if (failures.length) {
   failures.forEach((message) => console.error(`- ${message}`));
   process.exitCode = 1;
 } else {
-  console.log(`PASS (${passes} checks passed for ${GAME_PAGES.length} iframe game pages)`);
+  console.log(`PASS (${passes} checks passed for ${ALL_GAME_PAGES.length} iframe game pages)`);
 }

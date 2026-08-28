@@ -2,29 +2,45 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { GAME_PAGES } from "./game-pages-data.mjs";
+import { CATALOG_GAME_PAGES } from "./catalog-game-pages-data.mjs";
 
 const ASSET_VERSION = "20260828b";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const gamesDir = path.join(root, "games");
+const ALL_GAME_PAGES = [...GAME_PAGES, ...CATALOG_GAME_PAGES];
 
 function titleFor(game) {
-  return `${game.name} - ${game.titleTag}`;
+  const variants = [
+    `${game.name} - ${game.titleTag}`,
+    `${game.name} - ${game.titleTag} at School`,
+    `${game.name} - Fun Class Game for School Time`,
+    `${game.name} - Quick Class Game`,
+    `${game.name} - Fun Browser Game for Class`,
+    `${game.name} - Easy Game for a Class Break`,
+    `${game.name} - A Fun Class Break for School Time`,
+    `${game.name} - Fun Class Game for Extra School Time`,
+    `${game.name} - Fun Browser Game for School Time`,
+    `${game.name} - Easy Class Break`
+  ];
+  const valid = variants.filter((value) => value.length >= 50 && value.length <= 60);
+  return valid[0] || variants.sort((a, b) => Math.abs(a.length - 55) - Math.abs(b.length - 55))[0];
 }
 
 function descriptionFor(game) {
   const variants = [
     `Play ${game.shortName} online for free. No download or sign-up needed. Enjoy ${game.category} gameplay in the browser on a Chromebook, laptop, or phone at school. Start now.`,
     `Play ${game.shortName} online for free. No download or sign-up needed. Enjoy fast ${game.category} gameplay on a Chromebook, laptop, or phone at school. Start now.`,
-    `Play ${game.shortName} online for free. No download or sign-up needed. Enjoy ${game.category} gameplay on a Chromebook, laptop, or phone at school. Start now.`,
     `Play ${game.shortName} online for free. No download or sign-up needed. Try a quick ${game.category} game for school devices. Start now.`,
-    `Play ${game.shortName} online for free. No download or sign-up needed. Try an easy ${game.category} game in the browser at school. Start now.`
+    `Play ${game.shortName} online for free. No download or sign-up needed. A school-friendly ${game.category} in the browser. Start now.`,
+    `Play ${game.shortName} online for free. No download or sign-up needed. A quick ${game.category} for classroom breaks. Start now.`
   ];
   const valid = variants.filter((value) => value.length >= 150 && value.length <= 160);
-  if (valid.length) {
-    return valid[0];
-  }
-  return variants.sort((a, b) => Math.abs(a.length - 155) - Math.abs(b.length - 155))[0];
+  if (valid.length) return valid[0];
+  let description = variants.sort((a, b) => Math.abs(a.length - 155) - Math.abs(b.length - 155))[0];
+  if (description.length > 160) description = description.replace(" Start now.", "");
+  if (description.length < 150) description = description.replace("Start now.", "Start playing now.");
+  return description;
 }
 
 function escapeHtml(value) {
@@ -285,7 +301,7 @@ function gamesJs() {
   { name: "Wordle Unblocked", url: "/games/wordle-unblocked.html", page: "wordle", status: "live" },
   { name: "Minesweeper Unblocked", url: "/games/minesweeper-unblocked.html", page: "minesweeper", status: "live" },
   { name: "Tic Tac Toe Unblocked", url: "/games/tic-tac-toe-unblocked.html", page: "tic-tac-toe", status: "live" },
-${GAME_PAGES.map((game) => `  { name: ${JSON.stringify(game.name)}, url: ${JSON.stringify(`/games/${game.slug}-unblocked.html`)}, page: ${JSON.stringify(game.slug)}, status: "live" },`).join("\n")}
+${ALL_GAME_PAGES.map((game) => `  { name: ${JSON.stringify(game.name)}, url: ${JSON.stringify(`/games/${game.slug}-unblocked.html`)}, page: ${JSON.stringify(game.slug)}, status: "live" },`).join("\n")}
 ];
 `;
 }
@@ -298,7 +314,7 @@ function sitemapXml() {
     ["https://classroom-game.com/games/wordle-unblocked.html", "weekly", "0.9", false],
     ["https://classroom-game.com/games/minesweeper-unblocked.html", "weekly", "0.9", false],
     ["https://classroom-game.com/games/tic-tac-toe-unblocked.html", "weekly", "0.9", false],
-    ...GAME_PAGES.map((game) => [`https://classroom-game.com/games/${game.slug}-unblocked.html`, "weekly", "0.9", false])
+    ...ALL_GAME_PAGES.map((game) => [`https://classroom-game.com/games/${game.slug}-unblocked.html`, "weekly", "0.9", false])
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -315,7 +331,7 @@ ${urls.map(([loc, change, priority]) => `  <url>
 mkdirSync(gamesDir, { recursive: true });
 
 const wordCounts = [];
-for (const game of GAME_PAGES) {
+for (const game of ALL_GAME_PAGES) {
   const html = buildPage(game);
   const article = html.match(/<article class="content-card" id="content">([\s\S]*?)<\/article>/)?.[1] || "";
   const words = (article.replace(/<[^>]+>/g, " ").match(/[A-Za-z]+/g) || []).length;
@@ -331,6 +347,6 @@ if (problems.length) {
   throw new Error(`Word count below 600: ${problems.map(([slug, count]) => `${slug}=${count}`).join(", ")}`);
 }
 
-console.log(`Generated ${GAME_PAGES.length} game pages.`);
-console.log(`Menu entries: 36. Sitemap URLs: 36.`);
+console.log(`Generated ${ALL_GAME_PAGES.length} game pages.`);
+console.log(`Menu entries: ${1 + 5 + ALL_GAME_PAGES.length}. Sitemap URLs: ${1 + 5 + ALL_GAME_PAGES.length}.`);
 console.log(`Lowest article word count: ${Math.min(...wordCounts.map(([, count]) => count))}.`);

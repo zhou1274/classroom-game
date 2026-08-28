@@ -74,3 +74,12 @@
 - 来源映射与风险说明见 `docs/iframe-game-migration-2026-08-28.md`。
 - 生成器：`tools/generate_game_pages.mjs`；数据源：`tools/game-pages-data.mjs`。
 - 再生命令：`node tools/generate_game_pages.mjs`；全量静态校验：`node tests/verify.mjs`。
+
+## 10. 第二批精选游戏（2026-08-28）
+
+- 从 classroomgame 的 392 个未接入入口中按“课堂友好 + 热门 + 可 iframe”精选 68 个。
+- 新增页面全部走 iframe，不本地化；每页包含完整 SEO 结构、命中词、FAQ、广告位与版本化脚本。
+- 菜单现共 104 项：首页 active + 103 个游戏页 live；`sitemap.xml` 共 104 个 URL。
+- 清单与来源：`docs/catalog-games-batch-2026-08-28.md`。
+- 生成工具：`tools/build_catalog_data.py`、`tools/generate_game_pages.mjs`。
+- 验证：`node tests/verify.mjs` 439 项、`node tests/verify-iframe-pages.mjs` 3332 项、视觉检查全部通过。

@@ -37,13 +37,9 @@ with sync_playwright() as p:
 
     results.append(f"desktop h1={h1_count} h4={h4_count} tabs={tab_count} iframes={iframe_count} ad-slots={ad_count}")
 
-    coming = page.get_by_text("Coming Soon", exact=False).first
-    # The first matching text may be inside a tab; click the Minecraft tab by link text.
-    page.locator("#game-list a", has_text="Minecraft Unblocked").click(force=True)
-    page.wait_for_timeout(300)
-    toast = page.locator(".toast")
-    toast_text = toast.inner_text() if toast.count() else ""
-    results.append(f"coming-soon-toast={toast_text!r}")
+    minecraft_link = page.locator("#game-list a", has_text="Minecraft Unblocked")
+    minecraft_href = minecraft_link.get_attribute("href") or ""
+    results.append(f"minecraft-href={minecraft_href}")
 
     page.evaluate("document.querySelector(\".toast\")?.remove()")
     page.screenshot(path="visual-desktop.png", full_page=True)
@@ -78,7 +74,7 @@ with sync_playwright() as p:
         print("CONSOLE_ERRORS=" + " | ".join(errors))
         raise SystemExit(1)
 
-    if h1_count != 1 or h4_count != 0 or tab_count != 10 or iframe_count != 1 or ad_count != 3:
+    if h1_count != 1 or h4_count != 0 or tab_count != 104 or iframe_count != 1 or ad_count != 3:
         raise SystemExit("desktop structural check failed")
     if "assets/games/2048/index.html" not in game_frame_src:
         raise SystemExit("local game iframe missing")
@@ -94,7 +90,7 @@ with sync_playwright() as p:
         raise SystemExit("fullscreen button state is not updated")
     if not fullscreen_fit:
         raise SystemExit("fullscreen game iframe has internal vertical scrolling")
-    if mobile_h1 != 1 or mobile_tabs != 10:
+    if mobile_h1 != 1 or mobile_tabs != 104:
         raise SystemExit("mobile structural check failed")
-    if "coming soon" not in toast_text.lower():
-        raise SystemExit("coming soon feedback missing")
+    if "/games/minecraft-unblocked.html" not in minecraft_href:
+        raise SystemExit("Minecraft live link missing")

@@ -2,6 +2,8 @@ import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { GAME_PAGES } from "../tools/game-pages-data.mjs";
+import { CATALOG_GAME_PAGES } from "../tools/catalog-game-pages-data.mjs";
+const ALL_GAME_PAGES = [...GAME_PAGES, ...CATALOG_GAME_PAGES];
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const failures = [];
@@ -51,7 +53,7 @@ for (const file of requiredFiles) {
 }
 
 
-for (const game of GAME_PAGES) {
+for (const game of ALL_GAME_PAGES) {
   const file = "games/" + game.slug + "-unblocked.html";
   if (existsSync(path.join(root, file))) {
     passes.push("File exists: " + file);
@@ -170,7 +172,7 @@ for (const comment of [
 }
 
 const statuses = [...gamesJs.matchAll(/status:\s*"(active|live|coming-soon)"/g)].map((match) => match[1]);
-check(statuses.length === 36, "36 game entries (got " + statuses.length + ")");
+check(statuses.length === 104, "104 game entries (got " + statuses.length + ")");
 check(statuses[0] === "active", "first game is 2048 active");
 check(statuses.slice(1).every((status) => status === "live"), "all other entries are live");
 check(!statuses.includes("coming-soon"), "no coming-soon entries in menu");
@@ -353,7 +355,7 @@ for (const game of ["2048 Unblocked", "Snake Unblocked", "Minecraft Unblocked", 
 }
 
 
-for (const game of GAME_PAGES) {
+for (const game of ALL_GAME_PAGES) {
   const url = "https://classroom-game.com/games/" + game.slug + "-unblocked.html";
   check(sitemap.includes("<loc>" + url + "</loc>"), "sitemap " + game.slug);
 }
