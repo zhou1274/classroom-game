@@ -1,6 +1,6 @@
 # 发布说明（不计入正文）
 - 用途：同步到 dev.to，并作为站内博客内容的一部分。
-- 发布到 dev.to 时：在 canonical URL 字段填你自己站上的原文地址（例如 https://classroom-game.com/blog/how-i-built-400-plus-game-static-site.html）。
+- 发布到 dev.to 时：在 canonical URL 字段填你站上的原文章节 `https://classroom-game.com/how-i-built-400-plus-game-static-site.html`。
 - 若原文尚未发布，先在你站上发一版，再同步 dev.to 并设 canonical，避免重复内容。
 
 ---
@@ -8,6 +8,8 @@
 # How I Built a 400+ Game Static Site for Schools (No Framework, No Build Step)
 
 I wanted a free, instant game site that a student could open on a school Chromebook and play in seconds — no download, no signup, nothing for IT to install. The simplest way to get there was to build it as a plain static site with zero frameworks and zero build step. Here's how it works and why I made those choices.
+
+You can see the live result at [classroom-game.com](https://classroom-game.com) — free browser games for classrooms. The rest of this post is about how it was built.
 
 ## The core constraint
 

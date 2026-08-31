@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#1A2B3C">
+  <title>How I Built a 400+ Game Static Site for Schools</title>
+  <meta name="description" content="How to build a fast, free static game site for school: no framework, no build step, hundreds of browser games in lightweight HTML pages. Read the build story.">
+  <link rel="canonical" href="https://classroom-game.com/how-i-built-400-plus-game-static-site.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ClassroomGames">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://classroom-game.com/how-i-built-400-plus-game-static-site.html">
+  <meta property="og:title" content="How I Built a 400+ Game Static Site for Schools">
+  <meta property="og:description" content="How to build a fast, free static game site for school: no framework, no build step, hundreds of browser games in lightweight HTML pages. Read the build story.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260828p">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RM24028WLP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RM24028WLP');
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ClassroomGames",
+  "url": "https://classroom-game.com/",
+  "description": "Free classroom games unblocked for school. Play in the browser, no download or signup.",
+  "inLanguage": "en"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How I Built a 400+ Game Static Site for Schools",
+  "description": "A build story about creating a fast, free static game site for classrooms: no framework, no build step, hundreds of browser games in lightweight HTML pages.",
+  "image": "https://classroom-game.com/assets/brand/classroom-games-logo.png",
+  "author": {
+    "@type": "Organization",
+    "name": "ClassroomGames",
+    "url": "https://classroom-game.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ClassroomGames",
+    "url": "https://classroom-game.com/"
+  },
+  "mainEntityOfPage": "https://classroom-game.com/how-i-built-400-plus-game-static-site.html",
+  "inLanguage": "en"
+}
+  </script>
+</head>
+<body data-page="how-i-built-400-plus-game-static-site">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="index.html" aria-label="ClassroomGames home">
+        <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="5" width="20" height="14" rx="7" fill="#2563EB"/>
+          <circle cx="8" cy="10" r="1.3" fill="#fff"/>
+          <circle cx="12" cy="10" r="1.3" fill="#fff"/>
+          <circle cx="16" cy="10" r="1.3" fill="#fff"/>
+          <path d="M7 15h10" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span>ClassroomGames</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content compliance-page" id="main-content">
+    <article class="legal-card" id="content">
+      <h1>How I Built a 400+ Game Static Site for Schools</h1>
+      <p class="legal-summary">A build story about making a fast, free browser game site for classrooms: lightweight HTML, no framework, no build step, and hundreds of games ready to play in seconds.</p>
+
+      <p>I wanted a free, instant game site that a student could open on a school Chromebook and play in seconds. No download, no signup, nothing for IT to install. The simplest way to get there was a plain static site with zero frameworks and zero build step. Here is how the site works and why those choices mattered.</p>
+
+      <h2>The Core Constraint</h2>
+      <p>The main constraint was school computers: Chromebooks, locked-down networks, and sometimes slow connections. So the site had to be lightweight, fully browser-based, responsive, and cheap to host. That pointed to plain HTML, CSS, and vanilla JavaScript rather than a modern front-end framework.</p>
+
+      <h2>The Big Idea: Embed Games, Don't Rebuild Them</h2>
+      <p>A big part of keeping the site light is that I do not host or rewrite the games. Each one loads in an iframe pointing to its own URL. The game code lives elsewhere, while the page provides a clean, consistent frame around it. The frame is lazy-loaded, and everything around it stays small.</p>
+      <p>For the site itself, that means the core pages stay tiny and load fast. You can see the result on the <a href="index.html">Classroom Games Unblocked home page</a>, where the sidebar and game area are the whole experience.</p>
+
+      <h2>Generating Hundreds of Pages From Data</h2>
+      <p>The tricky part was scale. I did not want to hand-write hundreds of near-identical pages, so the game catalog lives as data and one script generates the rest. Every game is just a small object with a slug, a name, and an embed URL.</p>
+      <p>The script orders games by a priority list and writes one page per game into a games directory. Re-run the script and the whole site regenerates. A version constant gets appended to every CSS and JS reference, so a change makes browsers cache-bust and load the new files.</p>
+
+      <h2>The Layout</h2>
+      <p>The site uses a two-column layout: a left sidebar listing the games, and a main area on the right where the game loads. It is a predictable "pick a game and play" flow. On mobile the sidebar collapses so it never covers the game.</p>
+
+      <h2>SEO as a First-Class Concern</h2>
+      <p>A game site lives on search traffic, so every generated page gets a unique title and description, a self-referencing canonical tag, Open Graph tags, and structured data. Each page keeps one main heading, with a clean heading hierarchy underneath. The site also ships a robots file that allows crawlers and points to a sitemap.</p>
+
+      <h2>Performance and Analytics</h2>
+      <p>Because everything is static, performance is easy: no heavy scripts, no external font library, no big images. Analytics loads asynchronously so it never blocks rendering or delays a game.</p>
+
+      <h2>Deployment</h2>
+      <p>The whole thing is a folder of static files, so deployment is trivial. I serve it from a static host and put a CDN in front for DNS and caching. There is no server to maintain and no database.</p>
+
+      <h3>Games That Work Well on the Site</h3>
+      <p>The library holds titles that suit short class breaks. <a href="games/2048-classic-unblocked.html">2048</a> is a quiet number puzzle, <a href="games/snake-unblocked.html">Snake</a> has simple controls, <a href="games/wordle-unblocked.html">Wordle</a> makes a good short discussion, and <a href="games/minecraft-unblocked.html">Minecraft</a> lets students build. These are the kinds of games that load fast and stop easily.</p>
+
+      <h2>What's Next</h2>
+      <p>The catalog keeps growing, so the main workflow is add a game to the data, then re-run the generator. Beyond that, I want to improve internal linking between games and add more focused content to help teachers find what they need.</p>
+      <p>Building it this way kept the site fast, cheap, and easy to maintain — and let me focus on the thing that actually matters: giving a student a game they can play in the next ten seconds.</p>
+
+      <div class="legal-actions">
+        <a class="button-quiet" href="index.html">Back to Home</a>
+        <a class="button-quiet" href="contact.html">Contact Us</a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner container">
+      <nav aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+      <nav class="footer-guides" aria-label="Guides">
+        <p class="footer-guides-title">Guides</p>
+        <ul>
+          <li><a href="best-unblocked-games-for-school.html">Best Unblocked Games for School</a></li>
+          <li><a href="how-to-play-unblocked-games-on-chromebook.html">How to Play on a Chromebook</a></li>
+          <li><a href="what-are-unblocked-games.html">What Are Unblocked Games?</a></li>
+          <li><a href="10-quick-brain-break-games-for-classroom.html">10 Quick Brain Break Games</a></li>
+          <li><a href="how-to-choose-safe-browser-game-for-school.html">How to Choose a Safe Game</a></li>
+        </ul>
+      </nav>
+      <div class="footer-meta">
+        <p class="footer-blurb">ClassroomGames is an independent browser game page. Access may depend on your school network.</p>
+        <p class="cookie-note">This site may use cookies and third-party advertising to keep the browser games free. See the privacy policy for details.</p>
+        <p class="footer-copyright">© 2026 ClassroomGames. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
