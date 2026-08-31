@@ -147,23 +147,32 @@ Start with 2048, Snake, or a quick puzzle. If you like word games or math challe
 
 ---
 
-## 三、替代目录站素材（因为 TAAFT / Toolify 只收 AI 工具，改用这 3 个免费目录站）
+## 三、替代目录站素材（因为 TAAFT / Toolify 只收 AI 工具，改用这 4 个免费目录站，SaaSHub 优先）
 
-### 替代 1：AlternativeTo（免费，DR 约 80）
+### 替代 1：SaaSHub（推荐优先，免费 + dofollow DR 约 79）
+
+- **名称**：ClassroomGames
+- **网址**：https://classroom-game.com
+- **分类建议**：Education / Games / Freeware
+- **Competitors（对比锚点）**：hoodamath.com、classroom6x.school
+- **简介（约 150 词）**：
+`ClassroomGames is a free browser-based game platform built for schools and classrooms. It brings together 400+ lightweight games that run instantly in the browser — no download, no install, no signup, and no email required. Students use it for brain breaks, indoor recess, and free time; teachers use it to find a ready-made classroom game in under a minute. The library includes classic favorites like 2048, Snake, word games, math challenges, and puzzles, organized into categories so students can jump to a favorite or discover something new. It works on any modern browser, including Chromebooks and school-issued laptops, with nothing extra for IT to set up. There's no social feed, no chat, and no personal data collection for kids — just a clean, quiet game corner for classroom time. ClassroomGames is free to play and open to any school.`
+
+### 替代 2：AlternativeTo（免费，DR 约 80）
 
 - **名称**：ClassroomGames
 - **分类建议**：Games / Web Games（作为其他在线游戏门户的替代品，可关联 classroom6x.school / hoodamath.com 类站点）
 - **简介（约 150 词）**：
 `ClassroomGames is a free browser game platform made for schools and classrooms. It brings together 400+ lightweight games that run instantly in the browser — no download, no install, no signup, and no email required. Students can use it for a quick brain break, indoor recess, or free time, while teachers can find a ready-made classroom game in under a minute. The library includes classic favorites like 2048, Snake, puzzle games, word games, and math challenges, organized so you can jump to a favorite or discover something new. It works on any modern browser, including Chromebooks and school-issued laptops, with no extra setup for IT. There's no social feed, no chat, and no personal data collection for kids — just a clean, quiet game corner for school. ClassroomGames is a simpler alternative to large unblocked game portals: fewer distractions, faster loading, and a calmer experience designed around classroom time.`
 
-### 替代 2：Indie Hackers（免费 listing，DR 约 81）
+### 替代 3：Indie Hackers（免费 listing，DR 约 81）
 
 - **名称**：ClassroomGames
 - **分类建议**：Indie project / Education / Games
 - **简介（约 120 词）**：
 `ClassroomGames is an independent browser game hub for classrooms. I built it because teachers kept asking for a simple way to give students a quick, safe brain break — without downloads, signups, or anything for IT to install. It collects 400+ free games that run directly in the browser and works great on Chromebooks and school laptops. Students just open the site, pick a game, and play. Teachers can use the same library to find a quick math game, a typing challenge, or a calm puzzle. No social feed, no chat, no data collection for kids. It's a quiet corner of the internet designed around classroom time.`
 
-### 替代 3：TIPITY Labs（免费，收录 apps / games / tools / websites）
+### 替代 4：TIPITY Labs（免费，收录 apps / games / tools / websites）
 
 - **名称**：ClassroomGames
 - **分类建议**：Games / Education / Websites
@@ -193,10 +202,11 @@ Start with 2048, Snake, or a quick puzzle. If you like word games or math challe
 ### Toolify
 **跳过**。原因：同 TAAFT，只收 AI 工具，游戏站不符合收录范围。
 
-### 替代目录站（接替以上两个渠道）
-10. AlternativeTo：免费提交，填名称 / URL / 描述，指定“作为哪个站点的替代品”，选 Games 分类。
-11. Indie Hackers：提交独立产品 listing，填项目介绍，选 Education / Games 分类。
-12. TIPITY Labs：粘贴站点 URL，自动抓取标题 / 描述 / 图标，选 Games / Websites 分类，加标签提交。
+### 替代目录站（接替以上两个渠道，SaaSHub 优先）
+10. SaaSHub（优先投，最值）：填名称 / URL / 简介，选 Education / Games / Freeware 分类，填 Competitors（hoodamath.com、classroom6x.school）。注意：需人工审核、过审非必然；定位为“free browser game platform for classrooms”；免费层可能要求网站挂 SaaSHub badge（提交前确认）。
+11. AlternativeTo：免费提交，填名称 / URL / 描述，指定“作为哪个站点的替代品”，选 Games 分类。
+12. Indie Hackers：提交独立产品 listing，填项目介绍，选 Education / Games 分类。
+13. TIPITY Labs：粘贴站点 URL，自动抓取标题 / 描述 / 图标，选 Games / Websites 分类，加标签提交。
 
 ### 外链跟踪表更新
 按实际结果填入（日期 / 渠道 / 链接 / 状态：`养号中 / 已提交 / 通过 / 跳过`）。
@@ -209,7 +219,8 @@ Start with 2048, Snake, or a quick puzzle. If you like word games or math challe
 - [ ] 注册 Product Hunt 个人账号，完善 maker 资料
 - [ ] 开始养号（投票 / 评价 / 浏览），标记“养号中”
 - [ ] 建 PH Coming Soon 页面，上传素材草稿
-- [ ] 在 AlternativeTo 提交（免费，最早上线，先拿一条收录）
+- [ ] 在 SaaSHub 提交（优先，免费 + dofollow DR 约 79；确认是否需挂 badge）
+- [ ] 在 AlternativeTo 提交（免费，再拿一条收录）
 - [ ] 外链跟踪表填入上述渠道，状态“养号中 / 已提交”
 
 **第 2–7 天**
@@ -224,7 +235,7 @@ Start with 2048, Snake, or a quick puzzle. If you like word games or math challe
 - [ ] 选定发布日期，预约周二–周四 00:01–00:30 PST
 - [ ] 发布当天发链接请大家 upvote（不买赞、不刷票）
 - [ ] 发布后 24 小时内回复全部评论（用模板 A / B / C）
-- [ ] 确认 AlternativeTo / Indie Hackers / TIPITY Labs 是否收录，更新状态
+- [ ] 确认 SaaSHub / AlternativeTo / Indie Hackers / TIPITY Labs 是否收录，更新状态
 
 **持续**
 - [ ] 发布后 1–2 周回访 PH 评论区，回复新评论、跟进 feature request
