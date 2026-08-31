@@ -147,7 +147,7 @@ Start with 2048, Snake, or a quick puzzle. If you like word games or math challe
 
 ---
 
-## 三、替代目录站素材（因为 TAAFT / Toolify 只收 AI 工具，改用这 4 个免费目录站，SaaSHub 优先）
+## 三、替代目录站素材（因为 TAAFT / Toolify 只收 AI 工具，改用这 5 个免费渠道，SaaSHub 优先）
 
 ### 替代 1：SaaSHub（推荐优先，免费 + dofollow DR 约 79）
 
@@ -179,6 +179,13 @@ Start with 2048, Snake, or a quick puzzle. If you like word games or math challe
 - **简介（约 120 词）**：
 `ClassroomGames is a free browser game hub for school. It brings together 400+ lightweight games that run instantly in the browser — no download, no signup, no install. Students use it for brain breaks, indoor recess, and free time; teachers use it to find a ready-made classroom game in seconds. The library includes classics like 2048, Snake, word games, math challenges, and puzzles, organized so you can jump to a favorite or explore something new. It works on Chromebooks and school-issued laptops with nothing extra for IT to set up, and there's no social feed or data collection for kids. Just open it, pick a game, and play at school.`
 
+### 替代 5：PromoteProject（发布板，免费 + dofollow DR 约 48）
+
+- **名称**：Classroom Games Unblocked
+- **网址**：https://classroom-game.com
+- **一句话简介**：`Free browser games for classrooms — 400+ games, no download, no signup. Play at school on any browser.`
+- **定位**：发布冲刺 + 免费 dofollow；DR 约 48，SEO 价值中等偏下，主要拿发布/推荐流量与一条 dofollow。建议与 Product Hunt 同一天做集中发布。
+
 > 备选：Fazier（DR 约 82，免费层）、Adsyte.org（免费收录独立站）。如需再加，可优先考虑这两个。
 
 ---
@@ -207,6 +214,7 @@ Start with 2048, Snake, or a quick puzzle. If you like word games or math challe
 11. AlternativeTo：免费提交，填名称 / URL / 描述，指定“作为哪个站点的替代品”，选 Games 分类。
 12. Indie Hackers：提交独立产品 listing，填项目介绍，选 Education / Games 分类。
 13. TIPITY Labs：粘贴站点 URL，自动抓取标题 / 描述 / 图标，选 Games / Websites 分类，加标签提交。
+14. PromoteProject（发布冲刺，跟 PH 同步发）：登记名称 / 链接 / 一句话简介，发布后请社区 upvote。免费 + dofollow DR 约 48，价值在发布/推荐流量与一条 dofollow。
 
 ### 外链跟踪表更新
 按实际结果填入（日期 / 渠道 / 链接 / 状态：`养号中 / 已提交 / 通过 / 跳过`）。
@@ -221,6 +229,7 @@ Start with 2048, Snake, or a quick puzzle. If you like word games or math challe
 - [ ] 建 PH Coming Soon 页面，上传素材草稿
 - [ ] 在 SaaSHub 提交（优先，免费 + dofollow DR 约 79；确认是否需挂 badge）
 - [ ] 在 AlternativeTo 提交（免费，再拿一条收录）
+- [ ] 在 PromoteProject 提交（发布板，免费 + dofollow DR 约 48）
 - [ ] 外链跟踪表填入上述渠道，状态“养号中 / 已提交”
 
 **第 2–7 天**
@@ -235,7 +244,7 @@ Start with 2048, Snake, or a quick puzzle. If you like word games or math challe
 - [ ] 选定发布日期，预约周二–周四 00:01–00:30 PST
 - [ ] 发布当天发链接请大家 upvote（不买赞、不刷票）
 - [ ] 发布后 24 小时内回复全部评论（用模板 A / B / C）
-- [ ] 确认 SaaSHub / AlternativeTo / Indie Hackers / TIPITY Labs 是否收录，更新状态
+- [ ] 确认 SaaSHub / AlternativeTo / Indie Hackers / TIPITY Labs / PromoteProject 是否收录，更新状态
 
 **持续**
 - [ ] 发布后 1–2 周回访 PH 评论区，回复新评论、跟进 feature request
