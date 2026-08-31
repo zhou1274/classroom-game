@@ -2,7 +2,7 @@
 
 日期：2026-08-31  
 用途：为 classroom-game.com 接入 Google Analytics（GA4）流量统计  
-Measurement ID：`G-XXXXXXXXXX`（占位符，需替换为真实 ID）
+Measurement ID：`G-RM24028WLP`（已使用站长提供的真实 ID）
 
 ## 一、修改范围
 
@@ -22,13 +22,13 @@ Measurement ID：`G-XXXXXXXXXX`（占位符，需替换为真实 ID）
 在 head 中紧跟 `<title>` 之后插入：
 
 ```html
-<!-- Google Analytics: replace G-XXXXXXXXXX with your real Measurement ID -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM24028WLP"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
+  gtag('config', 'G-RM24028WLP');
 </script>
 ```
 
@@ -43,13 +43,13 @@ Measurement ID：`G-XXXXXXXXXX`（占位符，需替换为真实 ID）
 
 ```html
 <title>Classroom Games Unblocked - Play Free Games Online at School</title>
-<!-- Google Analytics: replace G-XXXXXXXXXX with your real Measurement ID -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM24028WLP"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
+  gtag('config', 'G-RM24028WLP');
 </script>
 <meta name="description" content="Play classroom games unblocked online for free. ...">
 ```
@@ -80,7 +80,7 @@ Measurement ID：`G-XXXXXXXXXX`（占位符，需替换为真实 ID）
 ## 五、自检清单
 
 1. 打开 `https://classroom-game.com/`，打开浏览器 Network 面板，确认存在：
-   - `googletagmanager.com/gtag/js?id=G-XXXXXXXXXX`
+   - `googletagmanager.com/gtag/js?id=G-RM24028WLP`
    - `google-analytics.com` 的 collect 请求
 
 2. 登录 GA4 后台，打开“实时”报告，刷新站点后能看到：
@@ -95,8 +95,8 @@ Measurement ID：`G-XXXXXXXXXX`（占位符，需替换为真实 ID）
 
 ## 六、上线注意
 
-1. 将全站 `G-XXXXXXXXXX` 替换为真实的 Measurement ID。
-2. 替换后重新生成全站页面：
+1. 全站已使用真实 Measurement ID：`G-RM24028WLP`。
+2. 如需继续调整页面，重新生成全站页面：
    ```bash
    node tools/generate_game_pages.mjs
    ```

@@ -133,7 +133,7 @@ check(/<html lang="en">/i.test(html), "home html lang=en");
 check(html.includes(`<title>${expectedTitle}</title>`), "home title exact");
 check(html.includes(`<meta name="description" content="${expectedDescription}">`), "home description exact");
 check(html.includes(`<link rel="canonical" href="${canonical}">`), "home canonical");
-check(html.includes("Google Analytics: replace") && html.includes("gtag/js?id=G-XXXXXXXXXX"), "home GA4 tag");
+check(html.includes("Google tag (gtag.js)") && html.includes("gtag/js?id=G-RM24028WLP"), "home GA4 tag");
 check(html.includes(`<meta property="og:url" content="${canonical}">`), "home og:url");
 check(html.includes('<body data-page="home">'), "home body data-page");
 check(count(html, /<h1\b/gi) === 1, "home exactly one H1");
@@ -287,7 +287,7 @@ for (const pageData of newPages) {
   check(count(pageData.html, /<h1\b/gi) === 1, `${name} exactly one H1`);
   check(pageData.html.includes(pageData.h1), `${name} H1 text`);
   check(count(pageData.html, /<h4\b/gi) === 0, `${name} no H4`);
-  check(pageData.html.includes("gtag/js?id=G-XXXXXXXXXX"), `${name} GA4 tag`);
+  check(pageData.html.includes("gtag/js?id=G-RM24028WLP"), `${name} GA4 tag`);
   check(pageData.html.includes(`<body data-page="${pageData.page}">`), `${name} body data-page`);
   check(pageData.html.includes(`src="${pageData.iframe}"`), `${name} local iframe`);
   check(pageData.html.includes('class="game-frame'), `${name} game frame class`);
