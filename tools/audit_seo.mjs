@@ -127,6 +127,7 @@ for (const file of files) {
   const html = readFileSync(file, "utf8");
   const relative = path.relative(root, file).replace(/\\/g, "/");
   const isGamePage = relative.startsWith("games/");
+  const isArticlePage = /^(best-unblocked-games-for-school|how-to-play-unblocked-games-on-chromebook|what-are-unblocked-games|10-quick-brain-break-games-for-classroom|how-to-choose-safe-browser-game-for-school)\.html$/.test(relative);
   const issues = [];
   const title = (html.match(/<title>([\s\S]*?)<\/title>/i) || [])[1]?.trim() || "";
   const description = meta(html, "description");
@@ -188,7 +189,7 @@ for (const file of files) {
       break;
     }
   }
-  if ((relative === "index.html" || isGamePage) && articleWords > 0 && articleWords < 600) {
+  if ((relative === "index.html" || isGamePage || isArticlePage) && articleWords > 0 && articleWords < 600) {
     issues.push(`${relative} - article word count ${articleWords} (expected 600+)`);
   }
   for (const iframe of iframes) {
@@ -206,8 +207,8 @@ for (const file of files) {
   if (relative !== "404.html") {
     checkEntity(types.includes("WebSite"), "WebSite", issues);
     if (!isCompliancePage) {
-      checkEntity(types.includes("VideoGame"), "VideoGame", issues);
       checkEntity(types.includes("FAQPage"), "FAQPage", issues);
+      if (!isArticlePage) checkEntity(types.includes("VideoGame"), "VideoGame", issues);
     }
     if (types.includes("WebSite")) {
       const website = parsed.find((item) => item["@type"] === "WebSite");
@@ -318,7 +319,7 @@ if (cssIssues.length) report.push({ file: path.join("assets", "css", "style.css"
 
 const errorFiles = report.flatMap((entry) => entry.issues.map((issue) => `${entry.file}: ${issue}`));
 const warnings = report.flatMap((entry) => {
-  if (/^(404|privacy-policy|terms|about|contact)\.html$/.test(entry.file)) return [];
+  if (/^(404|privacy-policy|terms|about|contact|best-unblocked-games-for-school|how-to-play-unblocked-games-on-chromebook|what-are-unblocked-games|10-quick-brain-break-games-for-classroom|how-to-choose-safe-browser-game-for-school)\.html$/.test(entry.file)) return [];
   return entry.density < 3 || entry.density > 5
     ? [`${entry.file}: ${entry.keywordText} density ${entry.density.toFixed(2)}% (outside 3-5%)`]
     : [];

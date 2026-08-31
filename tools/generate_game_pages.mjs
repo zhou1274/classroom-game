@@ -385,6 +385,16 @@ function buildPage(game) {
         <a href="../about.html">About Us</a>
         <a href="../contact.html">Contact Us</a>
       </nav>
+      <nav class="footer-guides" aria-label="Guides">
+        <p class="footer-guides-title">Guides</p>
+        <ul>
+          <li><a href="../best-unblocked-games-for-school.html">Best Unblocked Games for School</a></li>
+          <li><a href="../how-to-play-unblocked-games-on-chromebook.html">How to Play on a Chromebook</a></li>
+          <li><a href="../what-are-unblocked-games.html">What Are Unblocked Games?</a></li>
+          <li><a href="../10-quick-brain-break-games-for-classroom.html">10 Quick Brain Break Games</a></li>
+          <li><a href="../how-to-choose-safe-browser-game-for-school.html">How to Choose a Safe Game</a></li>
+        </ul>
+      </nav>
       <div class="footer-meta">
         <p class="footer-blurb">ClassroomGames is an independent browser game page. Access may depend on your school network.</p>
         <p class="cookie-note">This site may use cookies and third-party advertising to keep the browser games free. See the privacy policy for details.</p>
@@ -419,6 +429,11 @@ ${ordered.map((game) => `  { name: ${JSON.stringify(game.name)}, url: ${JSON.str
 function sitemapXml() {
   const urls = [
     ["https://classroom-game.com/", "daily", "1.0", true],
+    ["https://classroom-game.com/best-unblocked-games-for-school.html", "monthly", "0.6", false],
+    ["https://classroom-game.com/how-to-play-unblocked-games-on-chromebook.html", "monthly", "0.6", false],
+    ["https://classroom-game.com/what-are-unblocked-games.html", "monthly", "0.6", false],
+    ["https://classroom-game.com/10-quick-brain-break-games-for-classroom.html", "monthly", "0.6", false],
+    ["https://classroom-game.com/how-to-choose-safe-browser-game-for-school.html", "monthly", "0.6", false],
     ...ALL_GAME_PAGES.map((game) => [`https://classroom-game.com/games/${game.slug}-unblocked.html`, "weekly", "0.9", false]),
     ["https://classroom-game.com/games/snake-unblocked.html", "weekly", "0.9", false],
     ["https://classroom-game.com/games/cupcake-2048-unblocked.html", "weekly", "0.9", false],
@@ -462,5 +477,5 @@ if (problems.length) {
 }
 
 console.log(`Generated ${ALL_GAME_PAGES.length} game pages.`);
-console.log(`Menu entries: ${1 + 5 + ALL_GAME_PAGES.length}. Sitemap URLs: ${1 + 5 + ALL_GAME_PAGES.length + 4}.`);
+console.log(`Menu entries: ${1 + 5 + ALL_GAME_PAGES.length}. Sitemap URLs: ${1 + 5 + ALL_GAME_PAGES.length + 9}.`);
 console.log(`Lowest article word count: ${Math.min(...wordCounts.map(([, count]) => count))}.`);

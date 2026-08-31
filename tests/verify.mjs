@@ -46,6 +46,11 @@ const requiredFiles = [
   "games/minesweeper-unblocked.html",
   "assets/games/minesweeper/index.html",
   "games/tic-tac-toe-unblocked.html",
+  "best-unblocked-games-for-school.html",
+  "how-to-play-unblocked-games-on-chromebook.html",
+  "what-are-unblocked-games.html",
+  "10-quick-brain-break-games-for-classroom.html",
+  "how-to-choose-safe-browser-game-for-school.html",
   "assets/games/tic-tac-toe/index.html"
 ];
 
