@@ -24,9 +24,9 @@ with sync_playwright() as p:
 
     browser.close()
 
-    if privacy_padding != "0px" or privacy_links != 1 or cookie_links != 0 or footer_links != 5:
+    if privacy_padding != "0px" or privacy_links != 1 or cookie_links != 0 or footer_links != 10:
         raise SystemExit("compliance/footer UI metric check failed")
-    if home_privacy_links != 1 or home_cookie_links != 0 or home_footer_links != 5:
+    if home_privacy_links != 1 or home_cookie_links != 0 or home_footer_links != 10:
         raise SystemExit("home footer UI metric check failed")
 
 print("PASS: UI layout metrics")

@@ -613,7 +613,12 @@ h3 {
 body[data-page="privacy-policy"],
 body[data-page="terms"],
 body[data-page="about"],
-body[data-page="contact"] {
+body[data-page="contact"],
+body[data-page="best-unblocked-games-for-school"],
+body[data-page="how-to-play-unblocked-games-on-chromebook"],
+body[data-page="what-are-unblocked-games"],
+body[data-page="10-quick-brain-break-games-for-classroom"],
+body[data-page="how-to-choose-safe-browser-game-for-school"] {
   padding-left: 0;
   background: var(--bg);
 }
@@ -712,32 +717,45 @@ body[data-page="contact"] {
 
 
 .footer-guides {
-  margin-top: 16px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin-top: 14px;
 }
 
 .footer-guides-title {
-  margin: 0 0 6px;
-  font-size: 14px;
+  margin: 0;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  color: var(--muted);
 }
 
 .footer-guides ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px 16px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  display: contents;
+}
+
+.footer-guides li {
+  display: contents;
 }
 
 .footer-guides a {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
-  padding: 6px 8px;
+  min-height: 36px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.footer-guides a:hover {
+  background: var(--hover-bg);
+  color: var(--primary);
 }
 
 @media (prefers-reduced-motion: reduce) {
