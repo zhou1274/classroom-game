@@ -149,7 +149,7 @@ Start with 2048, Snake, or a quick puzzle. If you like word games or math challe
 
 ## 三、替代目录站素材（因为 TAAFT / Toolify 只收 AI 工具，改用这 5 个免费渠道，SaaSHub 优先）
 
-### 替代 1：SaaSHub（推荐优先，免费 + dofollow DR 约 79）
+### 替代 1：SaaSHub（推荐优先，免费 + DR 约 79，链接实测为 nofollow）
 
 - **名称**：ClassroomGames
 - **网址**：https://classroom-game.com
@@ -165,7 +165,7 @@ Start with 2048, Snake, or a quick puzzle. If you like word games or math challe
 - **简介（约 150 词）**：
 `ClassroomGames is a free browser game platform made for schools and classrooms. It brings together 400+ lightweight games that run instantly in the browser — no download, no install, no signup, and no email required. Students can use it for a quick brain break, indoor recess, or free time, while teachers can find a ready-made classroom game in under a minute. The library includes classic favorites like 2048, Snake, puzzle games, word games, and math challenges, organized so you can jump to a favorite or discover something new. It works on any modern browser, including Chromebooks and school-issued laptops, with no extra setup for IT. There's no social feed, no chat, and no personal data collection for kids — just a clean, quiet game corner for school. ClassroomGames is a simpler alternative to large unblocked game portals: fewer distractions, faster loading, and a calmer experience designed around classroom time.`
 
-### 替代 3：Indie Hackers（免费 listing，DR 约 81）
+### 替代 3：Indie Hackers（免费 listing，DR 约 81，链接实测为 nofollow）
 
 - **名称**：ClassroomGames
 - **分类建议**：Indie project / Education / Games
@@ -210,7 +210,7 @@ Start with 2048, Snake, or a quick puzzle. If you like word games or math challe
 **跳过**。原因：同 TAAFT，只收 AI 工具，游戏站不符合收录范围。
 
 ### 替代目录站（接替以上两个渠道，SaaSHub 优先）
-10. SaaSHub（优先投，最值）：填名称 / URL / 简介，选 Education / Games / Freeware 分类，填 Competitors（hoodamath.com、classroom6x.school）。注意：需人工审核、过审非必然；定位为“free browser game platform for classrooms”；免费层可能要求网站挂 SaaSHub badge（提交前确认）。
+10. SaaSHub（优先投，权重高但链接为 nofollow）：填名称 / URL / 简介，选 Education / Games / Freeware 分类，填 Competitors（hoodamath.com、classroom6x.school）。注意：需人工审核、过审非必然；定位为“free browser game platform for classrooms”；免费层可能要求网站挂 SaaSHub badge（提交前确认）。
 11. AlternativeTo：免费提交，填名称 / URL / 描述，指定“作为哪个站点的替代品”，选 Games 分类。
 12. Indie Hackers：提交独立产品 listing，填项目介绍，选 Education / Games 分类。
 13. TIPITY Labs：粘贴站点 URL，自动抓取标题 / 描述 / 图标，选 Games / Websites 分类，加标签提交。
@@ -257,3 +257,19 @@ Start with 2048, Snake, or a quick puzzle. If you like word games or math challe
 - 以上平台政策均来自联网检索，标注了【核实日期 2026-08-31】。涉及具体费用 / 队列时长以各平台官网当前为准，建议提交前再次复核。
 - 涉及“否被收录”“是否 dofollow”等以实际提交结果为准，不做保证。
 - 本包不含任何代注册、代登录、代提交、代付款、买赞刷票行为。
+
+
+---
+
+## 七、链接属性实测结果（2026-08-31，抓取真实 HTML 确认）
+
+| 平台 | 实测 rel 属性 | 是否传权重 |
+| --- | --- | --- |
+| PromoteProject | `href="https://classroom-game.com"`，无 `rel="nofollow"` | **dofollow ✅** |
+| SaaSHub | `rel="nofollow"` | nofollow |
+| Indie Hackers | `rel="nofollow noopener"` | nofollow |
+| dev.to 文章 | 无指向本站的 `<a>` 直链（仅 robots.txt 代码片段含 sitemap 网址） | 不算外链 |
+
+> 重要更正：此前资料把 SaaSHub 与 Indie Hackers 标为 dofollow，实测均为 nofollow（以真实 HTML 为准）。
+> 结论：四条渠道中仅 PromoteProject 为真正 dofollow 外链；其余主要提供引流与曝光，不传 PageRank。
+> dev.to 文章需在正文补一条指向本站的真实链接才具引流价值（仍为 nofollow）。
