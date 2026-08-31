@@ -219,6 +219,15 @@ function buildPage(game) {
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#1A2B3C">
   <title>${escapeHtml(title)}</title>
+
+  <!-- Google Analytics: replace G-XXXXXXXXXX with your real Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
   <meta name="description" content="${escapeHtml(description)}">
   <link rel="canonical" href="${canonical}">
   <meta property="og:type" content="website">
