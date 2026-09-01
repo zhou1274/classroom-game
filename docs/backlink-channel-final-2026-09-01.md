@@ -53,7 +53,7 @@
 | --- | --- | --- |
 | AlternativeTo | 免费，DR 约 80 | 需指定“作为哪个站点的替代品”（如 hoodamath.com） |
 | TIPITY Labs | 免费，收 games/websites | rel 未实测 |
-| Notion 公开页 | 高 DR（约 90+）、大概率 dofollow | 发布公开页写真实内容自然链接；发布后 F12 自查 rel |
+| Notion 公开页 | 高 DR（约 90+）、**实测 dofollow**（rel=noopener noreferrer，无 nofollow） | 发布公开页写真实内容自然链接；已发布，rel 已实测确认 |
 | dev.to | nofollow，内容分发 | 同步 build-story 技术文，canonical 指向站内原文 |
 | Reddit（r/SideProject 等） | nofollow，曝光 | 先参与攒 karma，发“求反馈”帖，别硬甩链接 |
 | Twelve Tools | DR 约 81，dofollow 有代价 | 免费提交**要求你挂它的 badge 回链** |
@@ -119,3 +119,4 @@
 触发：GSC「效果」出现曝光 + 点击 + 有戏的排名。
 标准：DR 不低；来源仍有自然流量；词下能排前；出站域名不多；入站域名多。
 策略：多买几个稍便宜 > 买一个贵；`$0.9–$19.9` 批量无用；数量太小不如不花。
+

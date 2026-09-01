@@ -26,7 +26,11 @@
 - 若 `rel` 里含 `nofollow` → nofollow（不传权重）
 - 若 `rel` 只有 `noreferrer` / `noopener` / `external`，**没有** `nofollow` → **dofollow**（大概率）
 
-> 来源：Notion 渲染外面链接通常加 `rel="noreferrer"` 而非 `rel="nofollow"`，因此大概率 dofollow。**以你发布后实测为准。**
+> 来源：Notion 渲染外面链接通常加 `rel="noreferrer"` 而非 `rel="nofollow"`，因此大概率 dofollow。**以你发布后实测为准。**`
+`
+**✅ 实测确认（2026-09-01）**：公开页指向 `https://classroom-game.com/` 的链接为：`
+“\`<a href="https://classroom-game.com/" rel="noopener noreferrer" ...>Classroom Games Unblocked</a>\`”`
+`rel` 只含 `noopener noreferrer`，**无 `nofollow`** → **dofollow，传权重**。
 
 ## 四、正文内容（英文，可直接用）
 
@@ -58,3 +62,4 @@ If you want to explore more, head over to Classroom Games Unblocked — it's fre
 - 别做成“纯外链垃圾页”：Notion 是**自产内容外链**，谷歌信任度低于编辑/目录外链，内容必须真实有用。
 - 优先级：**中低**，归入「内容外链/分发」档，与 dev.to / Tumblr / 博客评论同类。
 - 主力仍是 Product Hunt + PromoteProject + 博客评论那批。
+
