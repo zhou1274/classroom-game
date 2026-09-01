@@ -1,1 +1,0 @@
-[0901/115148.931:ERROR:chrome\app\chrome_main.cc:236] Multiple targets are not supported in headless mode.
