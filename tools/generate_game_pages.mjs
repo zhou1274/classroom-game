@@ -228,6 +228,7 @@ function buildPage(game) {
     gtag('js', new Date());
     gtag('config', 'G-RM24028WLP');
   </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2389196995237471" crossorigin="anonymous"></script>
   <meta name="description" content="${escapeHtml(description)}">
   <link rel="canonical" href="${canonical}">
   <meta property="og:type" content="website">
