@@ -53,6 +53,7 @@
 | --- | --- | --- |
 | AlternativeTo | 免费，DR 约 80 | 需指定“作为哪个站点的替代品”（如 hoodamath.com） |
 | TIPITY Labs | 免费，收 games/websites | rel 未实测 |
+| Notion 公开页 | 高 DR（约 90+）、大概率 dofollow | 发布公开页写真实内容自然链接；发布后 F12 自查 rel |
 | dev.to | nofollow，内容分发 | 同步 build-story 技术文，canonical 指向站内原文 |
 | Reddit（r/SideProject 等） | nofollow，曝光 | 先参与攒 karma，发“求反馈”帖，别硬甩链接 |
 | Twelve Tools | DR 约 81，dofollow 有代价 | 免费提交**要求你挂它的 badge 回链** |
