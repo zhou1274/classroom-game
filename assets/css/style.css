@@ -771,3 +771,25 @@ body[data-page="how-to-choose-safe-browser-game-for-school"] {
     transition-duration: 0.01ms !important;
   }
 }
+
+.footer-badges {
+  margin: 14px 0 0;
+  text-align: center;
+}
+
+.footer-badges a {
+  display: inline-block;
+  line-height: 0;
+}
+
+.footer-badges img {
+  height: 28px;
+  width: auto;
+  vertical-align: middle;
+  opacity: 0.85;
+  transition: opacity 0.15s ease;
+}
+
+.footer-badges img:hover {
+  opacity: 1;
+}
